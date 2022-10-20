@@ -1,0 +1,255 @@
+<style>
+  .nav-link-border::after {
+    content: '';
+    height: 70%;
+    display: inline-block;
+    width: 0.05em;
+    border-radius: 0;
+    position: absolute;
+    top: 0.35em;
+    margin-left: 1em;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .nav-link-border:last-child::after {
+    width: 0 !important;
+  }
+  .secondary-nav {
+    background: rgba(25, 25, 25, .75);
+    top: 4.5rem !important;
+  }
+
+  .nav-link.active {
+    color: #fff !important;
+  }
+
+  .secondary-nav .nav-link {
+    font-size: 1rem;
+  }
+  .secondary-nav .dropdown-menu {
+    width: 100%;
+    background: #191919;
+    border-radius: 0;
+    top: -2px !important;
+  }
+
+  .secondary-nav .dropdown-menu .dropdown-item {
+    text-align: left;
+    color: #939598;
+  }
+
+  .secondary-nav .dropdown-menu .dropdown-item:hover,
+  .secondary-nav .dropdown-menu .dropdown-item.active {
+    background: none !important;
+    color: #fff;
+  }
+
+  @media (max-width: 767px) {
+    .secondary-nav {
+      top: 4rem !important;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+</style>
+<div class="canvas">
+<section class="secondary-nav fixed-top px-15 {{section.settings.sectionClass}}">
+  {% for block in section.blocks %}
+    {% if block.type == 'fixedNav-start' %}
+      <nav class="nav d-none d-md-flex {{ block.settings.navStart }}">
+    {% endif %}
+
+    
+
+    {% if block.type == 'nav-link' %}
+      <a class="nav-link m-0 ps-4 text-gray position-relative nav-link-border d-none d-md-block {{block.settings.active1}}"
+        href="{{ block.settings.nav-url1 }}">{{ block.settings.nav-text1 }}
+      </a>
+    {% endif %}
+
+    {% if block.type == 'endButton' %}
+       <a class="btn btn-sm btn-outline-td-primary py-0  my-2 d-inline-flex align-items-center fs-7 {{block.settings.endbuttonClass}}" 
+       href="{{ block.settings.endbuttonUrl }}">{{ block.settings.endbuttonText }}</a>
+    {% endif %}
+
+    {% if block.type == 'fixedNav-end' %}
+      </nav>
+    {% endif %}
+
+    {% if block.type == 'fixedNav-startmob' %}
+      <nav class="px-4 d-flex d-md-none {{block.settings.mobfixedClass}}">
+    {% endif %}
+
+    {% if block.type == 'dropdown-link' %}
+      <a class="nav-link text-white border-0 dropdown-toggle {{ block.settings.nav-active-class }}" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false" id="nav-drop">
+        {{ block.settings.nav-active-text }}
+      </a>
+    {% endif %}
+
+    {% if block.type == 'dropdown-menu' %}
+      <ul class="dropdown-menu {{ block.settings.dropdown-menuClass }}" aria-labelledby="nav-drop">
+    {% endif %}
+
+    {% if block.type == 'dropdown-item' %}
+      <li>
+        <a class="dropdown-item {{block.settings.active1}}" href="{{ block.settings.nav-url2 }}">
+          {{block.settings.nav-text2 }}
+        </a>
+      </li>
+    {% endif %}
+
+    {% if block.type == 'dropdown-menu-end' %}
+      </ul>
+    {% endif %}
+
+  {% endfor %}
+</section>
+</div>
+{% schema %}
+{
+"name": "Fixed Navbar",
+"settings": [
+  {
+    "type": "text",
+    "id": "sectionClass",
+    "label": "Section Class"
+  }
+],
+"blocks": [
+    {
+  "type": "fixedNav-start",
+  "name": "fixedNav Start",
+  "settings": [
+    {
+      "type": "text",
+      "id": "navStart",
+      "label": "Desktop Class"
+    },
+    {
+      "type": "text",
+      "id": "navStartmob",
+      "label": "Mobile Class"
+    }
+  ]
+},
+{
+  "type": "fixedNav-end",
+  "name": "fixedNav End"
+},
+{
+  "type": "nav-link",
+  "name": "Nav item",
+  "settings": [
+    {
+      "type": "text",
+      "id": "active1",
+      "label": "Nav Link class"
+    },
+    {
+      "type": "url",
+      "id": "nav-url1",
+      "label": "Nav Link URL"
+    },
+    {
+      "type": "text",
+      "id": "nav-text1",
+      "label":"Navlink text"
+    }
+  ]
+},
+  {
+    "type": "dropdown-link",
+    "name": "Mobile Active dropdown",
+    "settings": [
+      {
+        "type": "text",
+        "id": "nav-active-text",
+        "label": "Active link Text"
+      },
+      {
+        "type":"text",
+        "id": "nav-active-class",
+        "label": "Active link Class"
+      }
+    ]
+  },
+  {
+    "type": "dropdown-menu",
+    "name":"Dropdown Menu",
+    "settings": [
+      {
+        "type": "text",
+        "id": "dropdown-menuClass",
+        "label": "Dropdown Menu Class"
+      }
+     ]
+  },
+  {
+    "type": "dropdown-menu-end",
+    "name": "Dropdown Menu End"
+  },
+  {
+     "type": "dropdown-item",
+     "name": "Dropdown_item",
+     "settings": [
+       {
+      "type": "text",
+      "id": "active1",
+      "label": "Dropdown_item Link class"
+    },
+    {
+      "type": "url",
+      "id": "nav-url2",
+      "label": "Link Url"
+    },
+    {
+      "type": "text",
+      "id": "nav-text2",
+      "label": "Link Text"
+    }
+     ]
+  },
+  {
+    "type": "endButton",
+    "name": "Nav-item Button",
+    "settings": [
+    {
+      "type": "text",
+      "id": "endbuttonClass",
+      "label": "Button Class"
+    },
+    {
+      "type": "url",
+      "id": "endbuttonUrl",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "endbuttonText",
+      "label": "Button Text"
+    }
+    ]
+  },
+  {
+    "type": "fixedNav-startmob",
+    "name": "fixedNav Start Mobile",
+    "settings": [
+    {
+      "type": "text",
+      "id": "mobfixedClass",
+      "label": "Class"
+    }
+    ]
+  }
+],
+"presets": [{
+"name": "Fixed Navbar"
+}]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
