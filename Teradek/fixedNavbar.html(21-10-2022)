@@ -12,20 +12,20 @@
 {% endstylesheet %}
 
 {% javascript %}
-$(window).on('load', function() {
+setInterval($(window).on('load', function() {
+    if($(window).width() > 767) { 
+        $('#fixedNavMobile').removeClass('dropdown-menu');
+    }else{
+        $('#fixedNavMobile').addClass('dropdown-menu');
+    }
+}), 1000);
+setInterval($(window).on('resize', function() {
     if($(window).width() > 767) {
         $('#fixedNavMobile').removeClass('dropdown-menu');
     }else{
         $('#fixedNavMobile').addClass('dropdown-menu');
     }
-});
-$(window).on('resize', function() {
-    if($(window).width() > 767) {
-        $('#fixedNavMobile').removeClass('dropdown-menu');
-    }else{
-        $('#fixedNavMobile').addClass('dropdown-menu');
-    }
-});
+}), 1000);
 {% endjavascript %}
 
 
