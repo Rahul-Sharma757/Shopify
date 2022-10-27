@@ -13,7 +13,7 @@
 
 {% javascript %}
 setInterval($(window).on('load', function() {
-    if($(window).width() > 767) { 
+    if($(window).width() > 767) {
         $('#fixedNavMobile').removeClass('dropdown-menu');
     }else{
         $('#fixedNavMobile').addClass('dropdown-menu');
