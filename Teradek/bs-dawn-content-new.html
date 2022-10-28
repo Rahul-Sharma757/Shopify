@@ -157,7 +157,7 @@
                       <div class="modal-body p-0">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                         <div class="ratio ratio-16x9">
-                          <iframe id="{{block.settings.video-id}}"  class="{{block.settings.iframeClass}}" src="{{block.settings.iframeUrl}}?controls={{block.settings.controls}}&amp;loop={{block.settings.loop}}&amp;autoplay={{block.settings.autoplay}}&amp;mute={{block.settings.mute}}&amp;playlist={{block.settings.playlist}}" title="{{block.settings.video-title}}" id="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+                          <iframe id="{{block.settings.video-id}}"  class="{{block.settings.iframeClass}}" src="{{block.settings.iframeUrl}}?controls={{block.settings.controls}}&amp;loop={{block.settings.loop}}&amp;autoplay={{block.settings.autoplay}}&amp;mute={{block.settings.mute}}" title="{{block.settings.video-title}}" id="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
                           </iframe>
                         </div>
                       </div>
@@ -237,7 +237,7 @@ $(document).ready(function(){
                   {% endif %}
           <div class="videoWidth overlay-inner position-absolute">
             <div class="ratio ratio-16x9">
-              <iframe src="{{block.settings.video_url}}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;" title="{{block.settings.video_title}}"></iframe>
+              <iframe src="{{block.settings.video_url}}?control={{block.settings.controls}}&autoplay={{block.settings.autoplay}}&mute={{block.settings.mute}}&loop={{block.settings.loop}}&h=3969001fdf&badge=0&autopause={{block.settings.autopause}}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;" title="{{block.settings.video_title}}"></iframe>
             </div>
           </div>
         </div>
@@ -1434,11 +1434,6 @@ $(document).ready(function(){
         "id": "mute",
         "label": "Video Mute settings 0 or 1"
       },
-      {
-        "type": "text",
-        "id": "playlist",
-        "label": "Video Playlist settings"
-      },
        {
          "type": "text",
          "id": "iframeClass",
@@ -1580,13 +1575,13 @@ $(document).ready(function(){
       },
       {
         "type": "text",
-        "id": "mute",
-        "label": "Video Mute settings 0 or 1"
+        "id": "autopause",
+        "label": "Video Autopause settings 0 or 1"
       },
       {
         "type": "text",
-        "id": "playlist",
-        "label": "Video Playlist settings"
+        "id": "mute",
+        "label": "Video Mute settings 0 or 1"
       },
        {
          "id": "video_title",
@@ -1997,4 +1992,4 @@ $(document).ready(function(){
   
   
   
-      </script> -->
+    </script> -->
