@@ -164,7 +164,6 @@
                     </div>
                   </div>
                   {% endif %}
-                  
                 </div>
 
 <script>	
@@ -347,6 +346,67 @@ $(document).ready(function(){
             {% if block.type == "list-col-end" %}
               </ul>   
             {% endif %}
+
+            {% if block.type == 'startcarouselBlock' %}
+              <div id="{{block.settings.carouselId}}" class="carousel slide {{block.settings.carouselClass}}" data-bs-ride="carousel" data-bs-interval="false">
+            {% endif %}
+
+            {% if block.type == 'startcaroselIndicators' %}
+              <div class="carousel-indicators {{block.settings.carouselindicatorsClass}}">
+            {% endif %}
+
+            {% if block.type == 'carouselindicatorsBtn' %}
+            <style>
+              #{{block.settings.carouselId}} .carousel-indicators{
+                  position: relative;
+              }
+              #{{block.settings.carouselId}} .carousel-indicators [data-bs-target] {
+                  box-sizing: border-box !important;
+                  flex:auto !important;
+                  width: auto !important;
+                  height: auto !important; 
+                  padding: 0.8rem 1.2rem !important;
+                  margin-right: auto !important;
+                  margin-left: auto !important;
+                  text-indent: 0 !important;
+                  cursor: pointer;
+                  background-color: {{block.settings.bgColor}} !important;
+                  background-clip: padding-box !important;
+                  border: 0 !important;
+                  border-top: 0 !important;
+                  border-bottom: 0 !important;
+                  opacity: 1 !important;
+                   transition: none !important;
+              }
+            </style>
+                  <button type="button" data-bs-target="#{{block.settings.carouselId}}" data-bs-slide-to="{{block.settings.slideNum}}" 
+                  class="btn btn-td-primary {{block.settings.btnClass}}" {% if block.settings.aria-current != blank %} aria-current="{{block.settings.aria-current}}" {% endif %} aria-label="{{block.settings.arialabel}}">fdgaegW</button>
+            {% endif %}
+
+            {% if block.type == 'endcarouselIndicator' %}   
+              </div>
+            {% endif %}
+
+            {% if block.type == 'startCarousel-inner' %}
+                  <div class="carousel-inner {{block.settings.extraClass}}">
+            {% endif %}
+
+            {% if block.type == 'carouselItem' %}
+                  <div class="carousel-item {{block.settings.carouselItemClass}}">
+            {% endif %}
+
+            {% if block.type == 'endcarouselItem' %}
+                  </div>
+            {% endif %}
+
+            {% if block.type == 'endcarouselInner' %}
+                  </div>
+            {% endif %}
+
+            {% if block.type == 'endcarousel' %}
+                  </div>
+            {% endif %}
+            
           {% endfor %}
 
       
@@ -1937,6 +1997,149 @@ $(document).ready(function(){
           "label": "Position Mobile Bottom"
         }
      ]
+   },
+   {
+      "type": "startcarouselBlock",
+      "name": "Start Carousel",
+      "settings": [
+         {
+             "type": "text",
+             "id": "carouselId",
+             "label": "Carousel ID"
+         },
+         {
+          "type": "text",
+          "id": "carouselClass",
+          "label": "Carousel Class"
+         }
+      ]
+   },
+   {
+      "type": "startcaroselIndicators",
+      "name": "Start Carousel Indicators",
+      "settings": [
+          {
+              "type": "text",
+              "id": "carouselindicatorsClass",
+              "label": "Carousel Indicator Extra Class"    
+          }
+      ]
+   },
+   {
+      "type": "carouselindicatorsBtn",
+      "name": "Carousel Indicator Button",
+      "settings": [
+         {
+          "type": "text",
+          "id": "carouselId",
+          "label": "Add Same ID which you used for carousel ID"
+         },
+         {
+          "type": "number",
+          "id": "slideNum",
+          "label": "Slide Number"
+         },
+         {
+          "type": "text",
+          "id": "btnClass",
+          "label": "Button Indicator Class"
+         },
+         {
+          "type": "color",
+          "id": "bgColor",
+          "label": "Buttons Background Color"
+         },
+         {
+          "type": "select",
+          "id": "arialabel",
+          "label": "Aria-label",
+          "options": [
+             {
+              "value": "slide 1",
+              "label": "slide 1"
+             },
+             {
+              "value": "slide 2",
+              "label": "slide 2"
+             },
+             {
+              "value": "slide 3",
+              "label": "slide 3"
+             },
+             {
+              "value": "slide 4",
+              "label": "slide 4"
+             },
+             {
+              "value": "slide 5",
+              "label": "slide 5"
+             },
+             {
+              "value": "slide 6",
+              "label": "slide 6"
+             },
+             {
+              "value": "slide 7",
+              "label": "slide 7"
+             },
+             {
+              "value": "slide 8",
+              "label": "slide 8"
+             },
+             {
+              "value": "slide 9",
+              "label": "slide 9"
+             },
+             {
+              "value": "slide 10",
+              "label": "slide 10"
+             }
+          ]
+         },
+         {
+          "type": "text",
+          "id": "aria-current",
+          "label": "Aria Current"
+         }
+      ]
+   },
+   {
+      "type": "endcarouselIndicator",
+      "name": "End Carousel Indicators"
+   },
+   {
+      "type": "startCarousel-inner",
+      "name": "Start Carousel Inner",
+      "settings": [
+          {
+              "type": "text",
+              "id": "extraClass",
+              "label": "Carousel-inner Extra Class"
+          }
+      ]
+   },
+   {
+      "type": "carouselItem",
+      "name": "Start Carousel Item",
+      "settings": [
+          {
+              "type": "text",
+              "id": "carouselItemClass",
+              "label": "Carousel Item Extra Class"
+          }
+      ]
+   },
+   {
+      "type": "endcarouselItem",
+      "name": "End Carousel Item"
+   },
+   {
+      "type": "endcarouselInner",
+      "name": "End Carousel Inner"
+   },
+   {
+      "type": "endcarousel",
+      "name": "End Carousel"
    }
  ],
  "presets": [{
@@ -1992,4 +2195,4 @@ $(document).ready(function(){
   
   
   
-    </script> -->
+      </script> -->
