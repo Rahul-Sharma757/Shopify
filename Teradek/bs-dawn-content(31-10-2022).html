@@ -291,53 +291,46 @@
           <a class="video-image-box popup-video {{block.settings.video_player_static_classes}} {{block.settings.responsiveClass}}" data-bs-target="#{{ block.settings.video_img_url }}" data-bs-toggle="modal"> </a>
         {% endif %}
   
-                {% if block.type == 'numpositionBlock' %}
-                    <style>
-                        .{{ block.settings.positionClasses}}{
-                            left: {{block.settings.leftPosition}};
-                            top: {{block.settings.topPosition}};
-                            bottom: {{block.settings.bottomPosition}};
-                            right: {{block.settings.rightPosition}};
-                        }
-                        @media (max-width: 767px){
-                                .{{ block.settings.positionClasses}}{
-                                left: {{block.settings.mobleftPosition}};
-                                top: {{block.settings.mobtopPosition}};
-                                bottom: {{block.settings.mobbottomPosition}};
-                                right: {{block.settings.mobrightPosition}};
-                            }
-                        }
-                    </style>
-                    <div class="position-absolute hardware {{ block.settings.positionClasses}} {{block.settings.responsiveClass}}">
-                {% endif %}
+        {% if block.type == 'numpositionBlock' %}
+        <style>
+            .{{ block.settings.positionClasses}}{
+                left: {{block.settings.leftPosition}};
+                top: {{block.settings.topPosition}};
+                bottom: {{block.settings.bottomPosition}};
+                right: {{block.settings.rightPosition}};
+            }
+            .popupover{
+              width: {{block.settings.popupoverWidth}}em;
+              height: {{block.settings.popupoverHeight}}em;
+              line-height: {{block.settings.popupoverLineHeight}}rem;
+            }
+            @media (max-width: 767px){
+                .{{ block.settings.positionClasses}}{
+                left: {{block.settings.mobleftPosition}};
+                top: {{block.settings.mobtopPosition}};
+                bottom: {{block.settings.mobbottomPosition}};
+                right: {{block.settings.mobrightPosition}};
+            }
+            }
+        </style>
+        <div class="vis-m position-absolute d-block d-md-none">
+          <div class="tooltip-wrapper">
+              <div class="tooltip-outer">
+                  <span class="tooltip-inner-content">
+                      <div class="tooltip-title">{{block.settings.popupoverText}}</div>
+                      <div class="tooltip-body"></div>
+                  </span>
+              </div>
+          </div>
+        </div>
+           <div class="position-absolute hardware {{ block.settings.positionClasses}} {{block.settings.responsiveClass}}">
+               <span class="btn p-0 pe-none m-0 rounded-circle popupover d-none d-md-block {{block.settings.textClass}}" style="background-color:{{block.settings.bgColor}};">{{block.settings.textText}}</span>
 
-                {% if block.type == 'endPosition' %}
-                   </div>
-                {% endif %}
-
-                {% if block.type == 'popupover-block' %}
-                    <style>
-                        .popupover{
-                          width: {{block.settings.popupoverWidth}}em;
-                          height: {{block.settings.popupoverHeight}}em;
-                          line-height: {{block.settings.popupoverLineHeight}}rem;
-                        }
-                    </style>
-                    <div class="vis-m position-absolute d-block d-md-none">
-                      <div class="tooltip-wrapper">
-                          <div class="tooltip-outer">
-                              <span class="tooltip-inner-content">
-                                  <div class="tooltip-title">{{block.settings.popupoverText}}</div>
-                                  <div class="tooltip-body"></div>
-                              </span>
-                          </div>
-                      </div>
-                    </div>
-                    <span class="btn p-0 pe-none m-0 rounded-circle popupover d-none d-md-block {{block.settings.textClass}}" style="background-color:{{block.settings.bgColor}};">{{block.settings.desktopText}}</span>
-
-                    <span class="icon-num btn p-0 m-0 rounded-circle popupover d-block d-md-none {{block.settings.mobtextClass}}" name="tooltip-link" data-title="{{ block.settings.popupoverText }}" style="
-                    background-color:{{block.settings.mobbgColor}};">{{block.settings.mobileText}}</span>
-                {% endif %}
+               <span class="icon-num btn p-0 m-0 rounded-circle popupover d-block d-md-none {{block.settings.textClass}}" name="tooltip-link" data-title="{{ block.settings.popupoverText }}" style="
+               background-color:{{block.settings.bgColor}};">{{block.settings.textText}}</span>
+               {{block.settings.customHTML}}
+           </div>
+        {% endif %}
   
                 {% if block.type == "inlineVideo" %}
                 <div class="ratio {{ block.settings.videoOuterClass}} {{block.settings.responsiveClass}}">
@@ -1879,12 +1872,27 @@
           },
           {
             "type": "numpositionBlock",
-            "name": "Start Position Block",
+            "name": "Num. Overlay",
             "settings": [{
                 "type": "text",
                 "id": "positionClasses",
                 "label": "Overlay Class"
               },
+              {
+               "type": "text",
+               "id": "textClass",
+               "label": "Text Class"
+             },
+             {
+               "type": "text",
+               "id": "textText",
+               "label": "Enter Text"
+             },
+             {
+               "type": "text",
+               "id": "popupoverText",
+               "label": "Popupover Text"
+             },
               {
                "id": "responsiveClass",
                "type": "select",
@@ -1929,6 +1937,21 @@
                ],
                "default": "None"
              },
+             {
+               "type": "text",
+               "id": "popupoverWidth",
+               "label": "Circle Width in (em)"
+             },
+             {
+               "type": "text",
+               "id": "popupoverHeight",
+               "label": "Circle Height in (em)"
+             },
+             {
+               "type": "text",
+               "id": "popupoverLineHeight",
+               "label": "Inner Text Line Height in (rem)"
+             },
               {
                 "type": "text",
                 "id": "topPosition",
@@ -1950,6 +1973,11 @@
                 "label": "Position Bottom"
               },
               {
+               "type": "color",
+               "id": "bgColor",
+               "label": "Background Color"
+              },
+              {
                  "type": "text",
                  "id": "mobtopPosition",
                  "label": "Position Mobile Top"
@@ -1968,69 +1996,14 @@
                  "type": "text",
                  "id": "mobbottomPosition",
                  "label": "Position Mobile Bottom"
+               },
+               {
+                "type": "liquid",
+                "id": "customHTML",
+                "label": "Custom Markup"
                }
             ]
-         },
-         {
-             "type": "popupover-block",
-             "name": "Popupover block",
-             "settings": [
-               {
-                 "type": "text",
-                 "id": "desktopText",
-                 "label": "Desktop Text"
-               },
-               {
-                 "type": "text",
-                 "id": "popupoverWidth",
-                 "label": "Circle Width in (em)"
-               },
-               {
-                 "type": "text",
-                 "id": "popupoverHeight",
-                 "label": "Circle Height in (em)"
-               },
-               {
-                 "type": "text",
-                 "id": "popupoverLineHeight",
-                 "label": "Inner Text Line Height in (rem)"
-               },
-               {
-                 "type": "text",
-                 "id": "textClass",
-                 "label": "Text Class"
-               },
-               {
-                 "type": "color",
-                 "id": "bgColor",
-                 "label": "Background Color"
-                },
-                {
-                 "type": "text",
-                 "id": "mobileText",
-                 "label": "Mobile text"
-                },
-                {
-                 "type": "text",
-                 "id": "mobtextClass",
-                 "label": "Mobile Text Class"
-                },
-                {
-                 "type": "color",
-                 "id": "mobbgColor",
-                 "label": "Mobile Background Color"
-                },
-                {
-                 "type": "text",
-                 "id": "popupoverText",
-                 "label": "Popupover Text"
-                }
-             ]
-         },
-         {
-             "type": "endPosition",
-             "name": "End Position Block"
-         },
+          },
           {
              "type": "startcarouselBlock",
              "name": "Start Carousel",
