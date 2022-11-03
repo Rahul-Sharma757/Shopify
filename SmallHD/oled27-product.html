@@ -1,0 +1,438 @@
+<script type="text/javascript">
+    $().ready(function(){
+      
+        affirm.ui.ready(function(){
+         $("#affirm-learn-more_{{section.settings.uuid}}_btn").click(function(){
+             $("#affirm-learn-more_{{section.settings.uuid}} .affirm-modal-trigger" ).click();
+         })
+        });        
+    })
+
+</script>
+<div id="shop-now" class="oled-27 cs-outer cs-section-padding--{{section.settings.uuid}} cs-section-margin--{{section.settings.uuid}}">
+    <div class="cs-inner shoping-col bg-white text-center " >
+      <div class="">
+        <h2 class="cs-txt text-center " style="text-align:center;">
+        {{section.settings.title}}
+          
+        </h2>
+        <p class="lead text-muted m-0">{{section.settings.subheadline}}</p>
+      </div>
+        <div class="cs-content-padding--{{section.settings.uuid}} cs-content-margin--{{section.settings.uuid}}">
+            {{section.settings.html_block}}     			
+            <div class="cs-lp-grid--{{section.settings.uuid}} cs-grid-padding--{{section.settings.uuid}}" style="column-gap:{{section.settings.col_spacing}}; row-gap:{{section.settings.row_spacing}};">
+               {%for block in section.blocks%}
+                {% if block.type == 'Product' %}
+                <div class="cs-lp-product-grid-item">                  
+                    {%if block.settings.product_img %}
+                        <div><img src={{block.settings.product_img | img_url:'master'}}/></div>
+                    {%endif%}
+                        <div>{{block.settings.icon_html}}</div>
+                    {%if block.settings.product_img_after %}
+                        <div><img src={{block.settings.product_img_after | img_url:'master'}}/></div>
+                    {%endif%}
+                    <!--div>{{block.settings.icon_html_after}}</div-->
+                    <div>
+                        <div style="display:flex; flex-direction:column;">
+                            <span class="price d-block">
+                            {% if block.settings.price_override != blank %}
+                                {{block.settings.price_override}}
+                            {% elsif block.settings.product.price_varies == true %}
+                            <span></span> {{block.settings.product.price_min | money}}
+                                {%else%}
+                                    <span></span> {{block.settings.product.price | money }}
+                                {% endif %}
+                                
+                            </span>
+                            <div class="cs-btn-wrapper" style="text-align:center;">
+                                <a class="btn" style="background-color: {{block.settings.product_button_color}}; color: {{block.settings.product_button_text_color}};"  href="{{block.settings.product_button_link}}" class="cs-btn">{{block.settings.product_button_text}}</a>                              
+                            </div>                          
+                        </div>
+                    </div>
+                </div>   
+              {% endif %}
+          {%endfor%}   
+            </div> 
+          
+          {%for block in section.blocks%}
+          
+          {% if block.type == 'block-2' %}
+          <div class="outer {{block.type}}">
+            <div class="inner">
+              <div class="cs-affirm-wrapper p-0">
+                <div class="img-d">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center lead text-muted m-0">
+                      <span>{{block.settings.line}}</span>
+                      <div class="cs-affirm-img-wrapper"> 
+                        <img class="logo w-100" src="{{block.settings.affirm_img | img_url:'master'}}"/>
+                      </div>
+                    </div>
+                    <div class="cs-affirm--right m-0">
+                      <a id="affirm-learn-more_{{section.settings.uuid}}_btn" class="btn m-0"  style="background-color: {{block.settings.affirm_button_color}}; border:2px solid #ffc107;  color:{{block.settings.affirm_button_text_color}};">{{block.settings.affirm_button_text}}</a>
+                      <p id="affirm-learn-more_{{section.settings.uuid}}"  class="affirm-as-low-as" style="display:none;" data-page-type="product" data-amount="{{block.settings.affirm_price}}"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>   
+          </div>   
+          {% endif %}
+          {%endfor%}   
+                
+          
+        </div>      
+  </div>
+</div> 
+
+{% schema %}
+{
+	"name": "OLED27-product",
+	"settings": [
+{
+  			"id":"uuid",
+  			"type":"text",
+  			"label":"Unique ID"
+  		},
+
+		{
+			"id": "num_items",
+			"type": "text",
+			"label": "Number of Products"
+		},
+		{
+			"id": "bg_color",
+			"type": "color",
+			"label": "Background Color"
+		},
+		{
+			"id": "title",
+			"type": "html",
+			"label": "Heading"
+		},
+		{
+			"id": "subheadline",
+			"type": "text",
+			"label": "Sub Headline"
+		},
+		{
+			"id": "product_button_color",
+			"type": "color",
+			"label": "Button Color"
+		},
+        {
+            "id": "product_button_text1",
+            "type": "text",
+            "label": "Button Text"
+		}
+
+	],
+
+	"blocks": [
+{
+		"name": "Product Block",
+		"type": "Product",
+		"settings": [
+		{
+			"id": "headline",
+			"type": "text",
+			"label": "Headline"
+		},
+		{
+            "type": "product",
+            "id":"product",
+            "label":"product"
+        },
+          
+        {
+            "type": "image_picker",
+            "label": "Image",
+            "id": "product_img"
+        },
+        {
+            "type": "text",
+            "label": "price",
+            "id": "price_override"
+        },
+        {
+            "id": "product_button_text",
+            "type": "text",
+            "label": "Button Text"
+		},
+		{
+			"id": "product_button_text_color",
+			"type": "color",
+			"label": "Button Text Color"
+		},
+		{
+			"id": "product_button_color",
+			"type": "color",
+			"label": "Button Color"
+		},
+		{
+			"id": "product_button_link",
+			"type": "url",
+			"label": "Button link"
+		}
+			
+		]
+	},
+{
+        "type": "block-2",
+        "name": "Affirm",
+        "settings": [
+          
+		{
+			"id": "affirm_button_text",
+			"type": "text",
+			"label": "Button  Text"
+		},
+		{
+			"id": "affirm_button_text_color",
+			"type": "color",
+			"label": "Button  Text Color"
+		},
+		{
+			"id": "affirm_button_color",
+			"type": "color",
+			"label": "Button  Color"
+		},
+
+		{
+			"id": "line",
+			"type": "text",
+			"label": "Text"
+		}, 
+		{
+			"id": "affirm_img",
+			"type": "image_picker",
+			"label": "Affirm Image"
+		},
+  {
+			"id": "affirm_price",
+			"type": "text",
+			"label": "Price"
+		}
+        ]
+      }
+
+
+],
+
+	"presets": [{
+		"name": "OLED27-product"
+	}]
+}
+{% endschema %}
+
+<style>
+  .shoping-col{    padding-top: 3.95vw;
+    padding-bottom: 4.58vw;}
+  .oled-27 h2 {
+    line-height: 1.14em !important;
+    font-size: 2.8em !important;
+}
+  .shoping-col h2 {
+    margin-bottom: 0.23em;
+}
+  .oled-27 .lead {
+    font-size: 1.1em;
+    line-height: 1.33em;
+    margin-bottom: 1em;
+    font-weight: 400;
+}
+  .shoping-col p {
+    font-size: 0.8em;
+    line-height: 1.5em;
+    margin-bottom: 0.63em;
+}
+  .cs-lp-product-grid-item img{max-width: 27.77vw;
+    width:100%;
+    margin: 0 auto;
+    margin-top: 1.805vw;}
+  
+  .shoping-col .cs-affirm-wrapper{width: 52.083vw; max-width:100%;	
+    margin: 0 auto;
+    margin-top: 4.027vw;
+    background-color: #F5F5F5;
+    border-radius: 2.22vw;}
+  .shoping-col .cs-affirm-wrapper .img-d {
+    padding: 1.94vw 2.5vw;
+}
+  .shoping-col  .logo {
+    bottom: 0.625vw;
+    position: relative;
+}
+  .shoping-col .cs-affirm-img-wrapper {
+    width: 5.55vw;
+    display: block;
+}
+  .shoping-col .btn{font-size: 0.8em;
+    font-weight:bold;   
+    line-height: 1.5em;
+    padding: 1.11vw 1.944vw;
+    margin-top: 0.69vw;
+    border-radius: 0.55vw;
+  }
+  
+  .btn-warning:hover, .btn-outline-warning:hover {
+    background: #9f9f9f !important;
+    color: #fff !important;
+    border-color: #9f9f9F !important;
+}
+  
+  
+ 
+  .d-block{ display:block;}
+  .cs-lp-grid--{{section.settings.uuid}} {
+   display:grid;
+/*    max-width:1100px; */
+    max-width:76.388vw;
+   grid-template-columns:repeat({{section.settings.num_items}}, 1fr);
+   justify-content:center;
+   justify-items:center;
+   align-items:center;
+   margin:0 auto;
+}
+  shoping-col .cs-affirm-img-wrapper {
+    width: 5.55vw;
+    display: block;
+}
+  
+/*   .cs-lp-product-grid-item img {
+    width:100%;
+    max-width:434px;
+    margin:0;
+  }
+ */
+  .img-m {
+    display: none;
+}
+  
+  .cs-affirm-wrapper {
+    background-color: #f5f5f5;
+    border-radius: 32px;
+    max-width: 728px;
+    padding-left: 2rem;
+    margin: 0 auto;
+}
+  .cs-affirm-grid {
+    display: grid;
+    max-width: 768px;
+    grid-template-columns: 70% 30%;
+    justify-content: start;
+    align-items: center;
+    margin: 0 auto;
+    padding: 1rem;
+}
+  .cs-affirm--left {
+    display: flex;
+}
+  .cs-cool-gray {
+    color: #939598;
+}
+  div.cs-txt--affirm {
+    font-size: min(max(24px,8vw),24px);
+    line-height: min(max(36px,10vw),32px);
+}
+  div.cs-txt--affirm {
+    font-size: min(max(24px,8vw),24px);
+    line-height: min(max(36px,10vw),32px);
+}
+  .cs-affirm-img-wrapper {
+    margin-top: -0.5rem;
+    margin-left: 0.5rem;
+}
+  .cs-affirm--right {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+}
+  
+  .shoping-col .cs-affirm-img-wrapper .logo{ bottom:0.325vw;}
+
+ 
+  
+  a.cs-btn {
+  text-align: center; 
+  border-radius: 8px; 
+  padding: 11px 38px 13px 39px; 
+  text-decoration: none; 
+  background-repeat: no-repeat; 
+  font-size: 16px; 
+  font-family: HKGP700; 
+   
+  display: inline-block;
+  margin:0 auto;
+  text-align:center;
+  text-decoration:none;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 24px 17px 25px;
+    font-size: 16px;
+    font-family: HKGP700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a.btn:hover {
+  background: #9f9f9f !important;
+    color: #fff !important;
+    border-color: #9f9f9F !important;
+}
+  
+  @media only screen and (max-width: 1024px) and (min-width: 768px)
+    {
+    .oled-27 {  font-size: 14.21px; }
+      ..cs-lp-product-grid-item img { max-width: 400px;}
+      a.text-decoration-none.text-light.text-uppercase, .oled-27 .btn {    font-size: 12px !important;}
+      .shoping-col .cs-affirm-wrapper {    width: 500px;}
+      .shoping-col .cs-affirm-wrapper .img-d {
+    padding: 16px 20px;
+}
+    }
+
+  
+ @media (max-width: 767px) {
+        .oled-27 .lead{ font-size: 24px; line-height: 32px;}
+        .shoping-col { padding: 44px 0 18px;}
+        .shoping-col .inner{ padding: 0 15px;}
+        .shoping-col .cs-affirm-wrapper .img-d{ padding:19px 9px;}
+        .shoping-col .cs-affirm-wrapper{ width: 100%; border-radius: 24px; margin-top: 30px;}
+        .shoping-col .cs-affirm-img-wrapper{ width: 63px; margin-left: 5px !important;}
+        .shoping-col .btn{ padding: 17px 28px; border-radius: 8px; margin-top: 10px !important; font-size:16px; line-height:24px;}
+        .cs-lp-product-grid-item img{ max-width: 270px; margin-top: 19px;}
+        .shoping-col .cs-affirm-grid, .shoping-col .cs-affirm-wrapper .img-d > div{ display: block !important; justify-content: inherit; text-align: center;}
+        .shoping-col .cs-affirm-wrapper .lead{ dispay:flex; justify-content: center !important;}
+        .shoping-col .price{ margin-bottom: 10px;}
+        .shoping-col #affirm-learn-more__btn{ padding: 8px 16px; border-radius: 8px;}
+        .shoping-col .cs-affirm-img-wrapper .logo{ bottom: 3px;}
+   .cs-affirm--right{justify-content: center;}
+   .cs-lp-grid--{ display:block;}
+        
+
+        .container,
+        .oled-27 .section-3 .container-fluid {
+            padding: 0 32px;
+        }
+   .cs-lp-grid--oled27{ max-width:100%;}
+
+        
+    }
+   @media (min-width:2600px){
+     .cs-lp-product-grid-item img{ width: 754px; margin-top: 54px;}
+    .shoping-col .btn, .shoping-col .btn{ padding: 33px 58px;}
+     .shoping-col .cs-affirm-wrapper{}
+      .shoping-col .cs-affirm-wrapper{ margin-top: 120px; width: 1562px;}
+    .shoping-col .cs-affirm-wrapper .img-d{ padding: 58px 75px;}
+    .shoping-col .cs-affirm-img-wrapper{ width: 166px;}
+    .shoping-col .cs-affirm-img-wrapper .logo{ bottom: 9px;}
+    .shoping-col{ padding-top: 118px; padding-bottom: 137px;}
+     .cs-lp-grid--oled27{ max-width:1986px}
+   }
+     
+  
+     
+</style>
+
