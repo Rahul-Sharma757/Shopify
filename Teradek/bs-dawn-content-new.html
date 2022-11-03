@@ -100,11 +100,33 @@
                   </div> 
               {% endif %}
               {% if block.type == 'imageBlock' and block.settings.imageUrl != blank %}
-                  <img src="{{block.settings.imageUrl | img_url: 'master' }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}}" style="width:{{block.settings.imgWidth}}em;">
+              <style>
+                  #{{ section.settings.uuid }} #{{block.settings.img-unique}}{
+                      width: {{block.settings.imgWidth}}em;
+                  }
+                  @media (max-width: 767px){
+                     #{{ section.settings.uuid }} #{{block.settings.img-unique}}{
+                      width: {{block.settings.mobimgWidth}}em;
+                  } 
+                  }
+              </style>
+                  <img id="{{block.settings.img-unique}}" src="{{block.settings.imageUrl | img_url: 'master' }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}} d-none d-md-block">
+                  <img id="{{block.settings.img-unique}}" src="{{block.settings.mobimageUrl | img_url: 'master' }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}} d-block d-md-none">
               {% endif %}
 
               {% if block.type == 'imageBlock' and block.settings.imageUrlLink != blank %}
-                <img src="{{ block.settings.imageUrlLink }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}}" style="width:{{block.settings.imgWidth}}em;">
+              <style>
+                  #{{ section.settings.uuid }} #{{block.settings.img-unique}}{
+                      width: {{block.settings.imgWidth}}em;
+                  }
+                  @media (max-width: 767px){
+                      #{{ section.settings.uuid }} #{{block.settings.img-unique}}{
+                      width: {{block.settings.mobimgWidth}}em;
+                  } 
+                  }
+              </style>
+                <img id="{{block.settings.img-unique}}" src="{{ block.settings.imageUrlLink }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}} d-none d-md-block">
+                <img id="{{block.settings.img-unique}}" src="{{ block.settings.mobimageUrlLink }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}} d-block d-md-none">
               {% endif %}
                     
               {% if block.type == 'btn' %}
@@ -299,7 +321,7 @@ $(document).ready(function(){
               bottom: {{block.settings.bottomPosition}};
               right: {{block.settings.rightPosition}};
           }
-          .popupover{
+          #{{section.settings.uuid}} .popupover{
             width: {{block.settings.popupoverWidth}}em;
             height: {{block.settings.popupoverHeight}}em;
             line-height: {{block.settings.popupoverLineHeight}}rem;
@@ -310,7 +332,12 @@ $(document).ready(function(){
               top: {{block.settings.mobtopPosition}};
               bottom: {{block.settings.mobbottomPosition}};
               right: {{block.settings.mobrightPosition}};
-          }
+             }
+             #{{section.settings.uuid}} .popupover{
+             width: {{block.settings.mobpopupoverWidth}}em;
+             height: {{block.settings.mobpopupoverHeight}}em;
+             line-height: {{block.settings.mobpopupoverLineHeight}}rem;
+             }
           }
       </style>
       <div class="vis-m position-absolute d-block d-md-none">
@@ -326,8 +353,8 @@ $(document).ready(function(){
          <div class="position-absolute hardware {{ block.settings.positionClasses}} {{block.settings.responsiveClass}}">
              <span class="btn p-0 pe-none m-0 rounded-circle popupover d-none d-md-block {{block.settings.textClass}}" style="background-color:{{block.settings.bgColor}};">{{block.settings.textText}}</span>
 
-             <span class="icon-num btn p-0 m-0 rounded-circle popupover d-block d-md-none {{block.settings.textClass}}" name="tooltip-link" data-title="{{ block.settings.popupoverText }}" style="
-             background-color:{{block.settings.bgColor}};">{{block.settings.textText}}</span>
+             <span class="icon-num btn p-0 m-0 rounded-circle popupover d-block d-md-none {{block.settings.mobtextClass}}" name="tooltip-link" data-title="{{ block.settings.popupoverText }}" style="
+             background-color:{{block.settings.mobbgColor}};">{{block.settings.mobtextText}}</span>
              {{block.settings.customHTML}}
          </div>
       {% endif %}
@@ -1195,7 +1222,13 @@ $(document).ready(function(){
         {
           "type": "imageBlock",
           "name": "Image Block",
-          "settings": [{
+          "settings": [
+            {
+              "type": "text",
+              "id": "img-unique",
+              "label": "Add this field with unique text for image width"
+            },
+            {
               "id": "imageUrl",
               "label": "Select Image",
               "type": "image_picker"
@@ -1214,6 +1247,21 @@ $(document).ready(function(){
                "id": "imgWidth",
                "type": "text",
                "label": "Image width in (em)"
+             },
+             {
+              "id": "mobimageUrl",
+              "label": "Select Mobile Image",
+              "type": "image_picker"
+            },
+            {
+              "id": "mobimageUrlLink",
+              "type": "url",
+              "label": "Mobile Image Url Link"
+            },
+            {
+               "id": "mobimgWidth",
+               "type": "text",
+               "label": "Mobile Image width in (em)"
              },
              {
                "id": "responsiveClass",
@@ -1977,6 +2025,36 @@ $(document).ready(function(){
              "id": "bgColor",
              "label": "Background Color"
             },
+            {
+              "type": "text",
+              "id": "mobtextText",
+              "label": "Enter Mobile Text"
+            },
+            {
+              "type": "text",
+              "id": "mobtextClass",
+              "label": "Text Class for Mobile"
+            },
+            {
+              "type": "text",
+              "id": "mobpopupoverWidth",
+              "label": "Mobile Circle Width in (em)"
+            },
+            {
+              "type": "text",
+              "id": "mobpopupoverHeight",
+              "label": "Mobile Circle Height in (em)"
+            },
+            {
+              "type": "text",
+              "id": "mobpopupoverLineHeight",
+              "label": "Mobile Inner Text Line Height in (rem)"
+            },
+            {
+              "type": "color",
+              "id": "mobbgColor",
+              "label": "Mobile Background Color"
+             },
             {
                "type": "text",
                "id": "mobtopPosition",
