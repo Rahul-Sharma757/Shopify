@@ -1,5 +1,6 @@
 
 <style>
+
   #{{ section.settings.uuid }}{ 
       {% if section.settings.section-bg != blank %}
           background-image:url({{ section.settings.section-bg | img_url:'master'}});
@@ -432,6 +433,73 @@ $(document).ready(function(){
 
             {% if block.type == 'endcarousel' %}
                   </div>
+            {% endif %}
+
+            {% if block.type == 'accordionStart' %}
+              <div class="accordion {{block.settings.accordionClass}}" id="{{block.settings.accordionID}}">
+                {{block.settings.accordioncustomHTML}}
+            {% endif %}
+
+            {% if block.type == 'accordionItem' %}
+                {{block.settings.customHTML}}
+                
+                <style>
+              @font-face{font-family:"Font Awesome 5 Brands";font-style:normal;font-weight:normal;font-display:auto;src:url(fa-brands-400.eot);src:url(fa-brands-400.eot?#iefix) format("embedded-opentype"),url(fa-brands-400.woff2) format("woff2"),url(fa-brands-400.woff) format("woff"),url(fa-brands-400.ttf) format("truetype"),url(fa-brands-400.svg#fontawesome) format("svg")}
+ 
+ .fab{font-family:"Font Awesome 5 Brands"}
+ @font-face{font-family:"Font Awesome 5 Pro";font-style:normal;font-weight:300;font-display:auto;src:url(fa-light-300.eot);src:url(fa-light-300.eot?#iefix) format("embedded-opentype"),url(fa-light-300.woff2) format("woff2"),url(fa-light-300.woff) format("woff"),url(fa-light-300.ttf) format("truetype"),url(fa-light-300.svg#fontawesome) format("svg")}
+ 
+ .fal{font-weight:300}
+ @font-face{font-family:"Font Awesome 5 Pro";font-style:normal;font-weight:400;font-display:auto;src:url(fa-regular-400.eot);src:url(fa-regular-400.eot?#iefix) format("embedded-opentype"),url(fa-regular-400.woff2) format("woff2"),url(fa-regular-400.woff) format("woff"),url(fa-regular-400.ttf) format("truetype"),url(fa-regular-400.svg#fontawesome) format("svg")}
+ 
+ .fal,.far{font-family:"Font Awesome 5 Pro"}.far{font-weight:400}
+ @font-face{font-family:"Font Awesome 5 Pro";font-style:normal;font-weight:900;font-display:auto;src:url(fa-solid-900.eot);src:url(fa-solid-900.eot?#iefix) format("embedded-opentype"),url(fa-solid-900.woff2) format("woff2"),url(fa-solid-900.woff) format("woff"),url(fa-solid-900.ttf) format("truetype"),url(fa-solid-900.svg#fontawesome) format("svg")}.fa,.fas{font-family:"Font Awesome 5 Pro";font-weight:900}
+                  .accordion-header button.accordion-button{
+                    background-color: {{block.settings.btnBGcolor}} !important;
+                    color: {{block.settings.btntextColor}};
+                    border: none;
+                    border-bottom: {{block.settings.btnborderBottom}}rem solid {{block.settings.btnBorderBottomColor}} !important;
+                  }
+                  .accordion-button::after {
+              font-family:"Font Awesome 5 Pro";
+                    content:"\{{block.settings.btnAfter}}";
+                    font-size:{{block.settings.btnsize}}rem;
+                  }
+                  .accordion-button:not(.collapsed)::after {
+              font-family:"Font Awesome 5 Pro";
+                    content:"\{{block.settings.btnbefore}}";
+                    font-size:{{block.settings.btnsize}}rem;
+                  }
+                </style>
+                <div class="accordion-item {{block.settings.accordionItemClass}}">
+                  <h2 class="accordion-header {{block.settings.accordionHeaderClass}}" id="{{block.settings.accordionHeaderID}}">
+                    <button class="accordion-button {{block.settings.accordionButtonClass}}" type="button" data-bs-toggle="collapse" data-bs-target="#{{block.settings.btnTarget}}" aria-expanded="{{block.settings.accordionButtonAriaexpanded}}" aria-controls= "{{block.settings.btnTarget}}">
+                      {{block.settings.accordionButtonText}}
+                    </button>
+                  </h2>
+            {% endif %}
+
+            {% if block.type == 'startColapseBody' %}
+            <style>
+              .accordion-body{
+                background: transparent;
+              }
+            </style>
+                  <div id="{{block.settings.collapseID}}" class="accordion-collapse {{block.settings.accordionClass}}" aria-labelledby="{{block.settings.arialabel}}" data-bs-parent="#{{block.settings.accordionParentID}}">
+                    <div class="accordion-body {{block.settings.accordionBodyClass}}">
+            {% endif %}
+            
+            {% if block.type == 'endCollapseBody' %}
+                    </div>
+                  </div>
+            {% endif %}
+        
+            {% if block.type == 'accordionEnd' %}
+              </div>
+            {% endif %}
+
+            {% if block.type == 'accordion-itemEnd' %}
+              </div>
             {% endif %}
             
           {% endfor %}
@@ -2253,6 +2321,187 @@ $(document).ready(function(){
         {
            "type": "endcarousel",
            "name": "End Carousel"
+        },
+        {
+          "type": "accordionStart",
+          "name": "Start Accordion",
+          "settings": [
+            {
+              "type": "text",
+              "id": "accordionID",
+              "label": "Accordion Unique ID"
+            },
+            {
+              "type": "text",
+              "id": "accordionClass",
+              "label": "Accordion extra Class"
+            },
+            {
+              "type": "html",
+              "id": "accordioncustomHTML",
+              "label": "Custom Html"
+            }
+          ]
+        },
+        {
+          "type": "accordionItem",
+          "name": "Start Accordion Item",
+          "settings": [
+             {
+              "type": "text",
+              "id": "accordionItemClass",
+              "label": "Accordion item extra Class"
+             },
+             {
+              "type": "text",
+              "id": "accordionHeaderID",
+              "label": "Accordion Header unique ID"
+             },
+             {
+              "type": "text",
+              "id": "accordionHeaderClass",
+              "label": "Accordion Header extra Class"
+             },
+             {
+              "type": "text",
+              "id": "accordionButtonText",
+              "label": "Accordion Button Text"
+             },
+             
+             {
+              "type": "select",
+              "id": "btnAfter",
+              "label": "Select Collapsed Icon",
+              "options": [
+                {
+                  "value": "+",
+                  "label": "+"
+                },
+                {
+                  "value": "\f078",
+                  "label": "Down Arrow"
+                },
+                {
+                  "value": "\f0d7",
+                  "label": "Down Arrow 2"
+                }
+              ]
+             },
+             {
+              "type": "select",
+              "id": "btnbefore",
+              "label": "Select Show Icon",
+              "options": [
+                {
+                  "value": "-",
+                  "label": "-" 
+                },
+                {
+                  "value": "\f077",
+                  "label": "Up Arrow"
+                },
+                {
+                  "value": "\f0d8",
+                  "label": "Up Arrow 2"
+                }
+              ]
+             },
+             {
+              "type": "text",
+              "id": "btnsize",
+              "label": "Button Icon Font-Size in (rem)"
+             },
+             {
+              "type": "text",
+              "id": "accordionButtonClass",
+              "label": "Btn Class(Remove Collapsed for active)",
+              "default": "collapsed"
+             },
+             {
+              "type": "text",
+              "id": "btnTarget",
+              "label": "Button Target"
+             },
+             {
+              "type": "select",
+              "id": "accordionButtonAriaexpanded",
+              "label": "Accordion Aria Expanded",
+              "options": [
+                {
+                  "value": "true",
+                  "label": "True"
+                },
+                {
+                  "value": "false",
+                  "label": "False"
+                }
+              ],
+              "default": "false"
+             },
+             {
+              "type": "color",
+              "id": "btntextColor",
+              "label": "Button Text Color"
+             },
+             {
+              "type": "color",
+              "id": "btnBGcolor",
+              "label": "Accordion Button background Color"
+             },
+             {
+              "type": "text",
+              "id": "btnborderBottom",
+              "label": "Border Bottom Thickness in (rem)"
+             },
+             {
+              "type": "color",
+              "id": "btnBorderBottomColor",
+              "label": "Border Bottom Color"
+             },
+             {
+              "type": "html",
+              "id": "customHTML",
+              "label": "Custom Html"
+             }
+          ]
+        },
+        {
+          "type": "startColapseBody",
+          "name": "Start collapse Div",
+          "settings": [
+             {
+              "type": "text",
+              "id": "collapseID",
+              "label": "Add ID same as Button Target"
+             },
+             {
+              "type": "text",
+              "id": "accordionClass",
+              "label": "Collapse Div Class(Add show for showing content)"
+             },
+             {
+              "type": "text",
+              "id": "arialabel",
+              "label": "Aria-label(Use same button Headr ID)"
+             },
+             {
+              "type": "text",
+              "id": "accordionParentID",
+              "label": "Data Parent (Use same id from Start Accordion block)"
+             }
+          ]
+        },
+        {
+          "type": "endCollapseBody",
+          "name": "End Collapse Div"
+        },
+        {
+          "type": "accordion-itemEnd",
+          "name": "End Accordion Item"
+        },
+        {
+          "type": "accordionEnd",
+          "name": "End Accordion"
         }
       ],
       "presets": [{
