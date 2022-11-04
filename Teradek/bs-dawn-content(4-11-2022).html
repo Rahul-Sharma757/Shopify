@@ -410,6 +410,10 @@
                     <button type="button" data-bs-target="#{{block.settings.carouselId}}" data-bs-slide-to="{{block.settings.slideNum}}"  style="background-color: {{block.settings.bgColor}}; color: {{block.settings.btntextColor}};"
                     class="btn {{block.settings.btn-size}} {{block.settings.btnClass}}" {% if block.settings.aria-current != blank %} aria-current="{{block.settings.aria-current}}" {% endif %} aria-label="{{block.settings.arialabel}}">{{block.settings.btnText}}</button>
               {% endif %}
+
+              {% if block.type == 'carouselindicatorDefault' %}
+                <button type="button" data-bs-target="#{{block.settings.carouselId}}" data-bs-slide-to="{{block.settings.slideNum}}" class="{{block.settings.btnClass}}" {% if block.settings.aria-current != blank %} aria-current="{{block.settings.aria-current}}" {% endif %} aria-label="{{block.settings.arialabel}}"></button>
+              {% endif %}
   
               {% if block.type == 'endcarouselIndicator' %}   
                 </div>
@@ -2288,6 +2292,79 @@
                  "label": "Aria Current"
                 }
              ]
+          },
+          {
+            "type": "carouselindicatorDefault",
+            "name": "Default btn for carousel",
+            "settings": [
+             {
+              "type": "text",
+              "id": "carouselId",
+              "label": "Add Same ID which you used for carousel ID"
+             },
+             {
+              "type": "number",
+              "id": "slideNum",
+              "label": "Slide Number"
+             },
+             {
+              "type": "text",
+              "id": "btnClass",
+              "label": "Button Indicator Class"
+             },
+             {
+              "type": "select",
+              "id": "arialabel",
+              "label": "Aria-label",
+              "options": [
+                 {
+                  "value": "slide 1",
+                  "label": "slide 1"
+                 },
+                 {
+                  "value": "slide 2",
+                  "label": "slide 2"
+                 },
+                 {
+                  "value": "slide 3",
+                  "label": "slide 3"
+                 },
+                 {
+                  "value": "slide 4",
+                  "label": "slide 4"
+                 },
+                 {
+                  "value": "slide 5",
+                  "label": "slide 5"
+                 },
+                 {
+                  "value": "slide 6",
+                  "label": "slide 6"
+                 },
+                 {
+                  "value": "slide 7",
+                  "label": "slide 7"
+                 },
+                 {
+                  "value": "slide 8",
+                  "label": "slide 8"
+                 },
+                 {
+                  "value": "slide 9",
+                  "label": "slide 9"
+                 },
+                 {
+                  "value": "slide 10",
+                  "label": "slide 10"
+                 }
+              ]
+             },
+             {
+              "type": "text",
+              "id": "aria-current",
+              "label": "Aria Current"
+             }
+            ]
           },
           {
              "type": "endcarouselIndicator",
