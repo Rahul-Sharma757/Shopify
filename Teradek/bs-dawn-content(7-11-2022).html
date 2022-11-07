@@ -39,6 +39,20 @@
   {% endif %}
 
   .gradient-bg{background: linear-gradient({{block.settings.color-position}}270deg, {{section.settings.fade_color-right}} 0%, rgba(0,0,0,0) {{section.settings.right_fade_percentage}});}
+  @media (max-width:1200px){
+    h1, .h1, .fs-1{font-size: 2.8rem;}
+    h2, .h2, .fs-2{font-size: 2rem;}
+    h3, .h3, .fs-3{font-size: 1.6rem;}
+    h4, .h4, .fs-4{font-size: 1.2rem;}
+    h5, .h5, .fs-5{font-size: 1rem;}
+    h6, .h6, .fs-6{font-size: 0.8rem;}
+    .fs-7{font-size: 0.7rem;}
+    .fs-8{font-size: 0.6rem;}
+    .fs-9{font-size: 0.5rem;}
+    .fs-10{font-size: 0.4rem;}
+    li{font-size: 1rem;}
+    .lead{font-size: 1.5rem;}
+  }
   @media (max-width:767px){
       #{{ section.settings.uuid }}{ 
       {% if section.settings.section-mobile-bg != blank %}
@@ -50,6 +64,9 @@
       background-repeat: {{ section.settings.mobile-bg-repeat }};
       min-height: {{section.settings.section-mobile-min-height }};
   }
+  h1, .h1{font-size: 2rem !important;}
+  .fs-12,.fs-19{font-size: 0.75rem !important;}
+
   }
   </style>
   {{section.settings.customHtmlStyles}}
@@ -345,6 +362,7 @@ $(document).ready(function(){
              }
           }
       </style>
+      {% if block.settings.popupoverText != blank %}
       <div class="vis-m position-absolute d-block d-md-none">
         <div class="tooltip-wrapper">
             <div class="tooltip-outer">
@@ -355,6 +373,7 @@ $(document).ready(function(){
             </div>
         </div>
       </div>
+      {% endif %}
          <div class="position-absolute hardware {{ block.settings.positionClasses}} {{block.settings.responsiveClass}}">
              <span class="btn p-0 pe-none m-0 rounded-circle popupover d-none d-md-block {{block.settings.textClass}}" style="background-color:{{block.settings.bgColor}};">{{block.settings.textText}}</span>
 
