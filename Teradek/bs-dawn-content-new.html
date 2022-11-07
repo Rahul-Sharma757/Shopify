@@ -259,7 +259,7 @@ $(document).ready(function(){
                   {% endif %}
           <div class="videoWidth overlay-inner position-absolute">
             <div class="ratio ratio-16x9">
-              <iframe src="{{block.settings.video_url}}?control={{block.settings.controls}}&autoplay={{block.settings.autoplay}}&mute={{block.settings.mute}}&loop={{block.settings.loop}}&h=3969001fdf&badge=0&autopause={{block.settings.autopause}}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;" title="{{block.settings.video_title}}"></iframe>
+              <iframe src="{{block.settings.video_url}}?controls={{block.settings.controls}}&autoplay={{block.settings.autoplay}}&mute={{block.settings.mute}}&loop={{block.settings.loop}}&h=3969001fdf&badge=0&autopause={{block.settings.autopause}}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;" title="{{block.settings.video_title}}"></iframe>
             </div>
           </div>
         </div>
@@ -411,6 +411,10 @@ $(document).ready(function(){
                   class="btn {{block.settings.btn-size}} {{block.settings.btnClass}}" {% if block.settings.aria-current != blank %} aria-current="{{block.settings.aria-current}}" {% endif %} aria-label="{{block.settings.arialabel}}">{{block.settings.btnText}}</button>
             {% endif %}
 
+            {% if block.type == 'carouselindicatorDefault' %}
+              <button type="button" data-bs-target="#{{block.settings.carouselId}}" data-bs-slide-to="{{block.settings.slideNum}}" class="{{block.settings.btnClass}}" {% if block.settings.aria-current != blank %} aria-current="{{block.settings.aria-current}}" {% endif %} aria-label="{{block.settings.arialabel}}"></button>
+            {% endif %}
+
             {% if block.type == 'endcarouselIndicator' %}   
               </div>
             {% endif %}
@@ -444,16 +448,16 @@ $(document).ready(function(){
                 {{block.settings.customHTML}}
                 
                 <style>
-              @font-face{font-family:"Font Awesome 5 Brands";font-style:normal;font-weight:normal;font-display:auto;src:url(fa-brands-400.eot);src:url(fa-brands-400.eot?#iefix) format("embedded-opentype"),url(fa-brands-400.woff2) format("woff2"),url(fa-brands-400.woff) format("woff"),url(fa-brands-400.ttf) format("truetype"),url(fa-brands-400.svg#fontawesome) format("svg")}
- 
- .fab{font-family:"Font Awesome 5 Brands"}
- @font-face{font-family:"Font Awesome 5 Pro";font-style:normal;font-weight:300;font-display:auto;src:url(fa-light-300.eot);src:url(fa-light-300.eot?#iefix) format("embedded-opentype"),url(fa-light-300.woff2) format("woff2"),url(fa-light-300.woff) format("woff"),url(fa-light-300.ttf) format("truetype"),url(fa-light-300.svg#fontawesome) format("svg")}
- 
- .fal{font-weight:300}
- @font-face{font-family:"Font Awesome 5 Pro";font-style:normal;font-weight:400;font-display:auto;src:url(fa-regular-400.eot);src:url(fa-regular-400.eot?#iefix) format("embedded-opentype"),url(fa-regular-400.woff2) format("woff2"),url(fa-regular-400.woff) format("woff"),url(fa-regular-400.ttf) format("truetype"),url(fa-regular-400.svg#fontawesome) format("svg")}
- 
- .fal,.far{font-family:"Font Awesome 5 Pro"}.far{font-weight:400}
- @font-face{font-family:"Font Awesome 5 Pro";font-style:normal;font-weight:900;font-display:auto;src:url(fa-solid-900.eot);src:url(fa-solid-900.eot?#iefix) format("embedded-opentype"),url(fa-solid-900.woff2) format("woff2"),url(fa-solid-900.woff) format("woff"),url(fa-solid-900.ttf) format("truetype"),url(fa-solid-900.svg#fontawesome) format("svg")}.fa,.fas{font-family:"Font Awesome 5 Pro";font-weight:900}
+                  @font-face{font-family:"Font Awesome 5 Brands";font-style:normal;font-weight:normal;font-display:auto;src:url(fa-brands-400.eot);src:url(fa-brands-400.eot?#iefix) format("embedded-opentype"),url(fa-brands-400.woff2) format("woff2"),url(fa-brands-400.woff) format("woff"),url(fa-brands-400.ttf) format("truetype"),url(fa-brands-400.svg#fontawesome) format("svg")}
+     
+                  .fab{font-family:"Font Awesome 5 Brands"}
+                  @font-face{font-family:"Font Awesome 5 Pro";font-style:normal;font-weight:300;font-display:auto;src:url(fa-light-300.eot);src:url(fa-light-300.eot?#iefix) format("embedded-opentype"),url(fa-light-300.woff2) format("woff2"),url(fa-light-300.woff) format("woff"),url(fa-light-300.ttf) format("truetype"),url(fa-light-300.svg#fontawesome) format("svg")}
+                  
+                  .fal{font-weight:300}
+                  @font-face{font-family:"Font Awesome 5 Pro";font-style:normal;font-weight:400;font-display:auto;src:url(fa-regular-400.eot);src:url(fa-regular-400.eot?#iefix) format("embedded-opentype"),url(fa-regular-400.woff2) format("woff2"),url(fa-regular-400.woff) format("woff"),url(fa-regular-400.ttf) format("truetype"),url(fa-regular-400.svg#fontawesome) format("svg")}
+                  
+                  .fal,.far{font-family:"Font Awesome 5 Pro"}.far{font-weight:400}
+                  @font-face{font-family:"Font Awesome 5 Pro";font-style:normal;font-weight:900;font-display:auto;src:url(fa-solid-900.eot);src:url(fa-solid-900.eot?#iefix) format("embedded-opentype"),url(fa-solid-900.woff2) format("woff2"),url(fa-solid-900.woff) format("woff"),url(fa-solid-900.ttf) format("truetype"),url(fa-solid-900.svg#fontawesome) format("svg")}.fa,.fas{font-family:"Font Awesome 5 Pro";font-weight:900}
                   .accordion-header button.accordion-button{
                     background-color: {{block.settings.btnBGcolor}} !important;
                     color: {{block.settings.btntextColor}};
@@ -737,6 +741,11 @@ $(document).ready(function(){
             }
           ],
           "default": "no-repeat"
+        },
+        {
+          "type": "text",
+          "id": "section-mobile-min-height",
+          "label": "Mobile min-height"
         },
         {
          "type": "html",
@@ -2285,6 +2294,79 @@ $(document).ready(function(){
            ]
         },
         {
+          "type": "carouselindicatorDefault",
+          "name": "Default btn for carousel",
+          "settings": [
+           {
+            "type": "text",
+            "id": "carouselId",
+            "label": "Add Same ID which you used for carousel ID"
+           },
+           {
+            "type": "number",
+            "id": "slideNum",
+            "label": "Slide Number"
+           },
+           {
+            "type": "text",
+            "id": "btnClass",
+            "label": "Button Indicator Class"
+           },
+           {
+            "type": "select",
+            "id": "arialabel",
+            "label": "Aria-label",
+            "options": [
+               {
+                "value": "slide 1",
+                "label": "slide 1"
+               },
+               {
+                "value": "slide 2",
+                "label": "slide 2"
+               },
+               {
+                "value": "slide 3",
+                "label": "slide 3"
+               },
+               {
+                "value": "slide 4",
+                "label": "slide 4"
+               },
+               {
+                "value": "slide 5",
+                "label": "slide 5"
+               },
+               {
+                "value": "slide 6",
+                "label": "slide 6"
+               },
+               {
+                "value": "slide 7",
+                "label": "slide 7"
+               },
+               {
+                "value": "slide 8",
+                "label": "slide 8"
+               },
+               {
+                "value": "slide 9",
+                "label": "slide 9"
+               },
+               {
+                "value": "slide 10",
+                "label": "slide 10"
+               }
+            ]
+           },
+           {
+            "type": "text",
+            "id": "aria-current",
+            "label": "Aria Current"
+           }
+          ]
+        },
+        {
            "type": "endcarouselIndicator",
            "name": "End Carousel Indicators"
         },
@@ -2369,42 +2451,14 @@ $(document).ready(function(){
              },
              
              {
-              "type": "select",
+              "type": "text",
               "id": "btnAfter",
-              "label": "Select Collapsed Icon",
-              "options": [
-                {
-                  "value": "+",
-                  "label": "+"
-                },
-                {
-                  "value": "\f078",
-                  "label": "Down Arrow"
-                },
-                {
-                  "value": "\f0d7",
-                  "label": "Down Arrow 2"
-                }
-              ]
+              "label": "Enter only Icon code For Down Arrow"
              },
-             {
-              "type": "select",
+             {  
+              "type": "text",
               "id": "btnbefore",
-              "label": "Select Show Icon",
-              "options": [
-                {
-                  "value": "-",
-                  "label": "-" 
-                },
-                {
-                  "value": "\f077",
-                  "label": "Up Arrow"
-                },
-                {
-                  "value": "\f0d8",
-                  "label": "Up Arrow 2"
-                }
-              ]
+              "label": "Enter only Icon code For Up Arrow"
              },
              {
               "type": "text",
