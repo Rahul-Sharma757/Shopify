@@ -112,7 +112,9 @@
                     }
                 </style>
                     <img id="{{block.settings.img-unique}}" src="{{block.settings.imageUrl | img_url: 'master' }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}} d-none d-md-block">
+                    {% if block.settings.mobimageUrl != blank %}
                     <img id="{{block.settings.img-unique}}" src="{{block.settings.mobimageUrl | img_url: 'master' }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}} d-block d-md-none">
+                    {% endif %}
                 {% endif %}
   
                 {% if block.type == 'imageBlock' and block.settings.imageUrlLink != blank %}
@@ -127,7 +129,9 @@
                     }
                 </style>
                   <img id="{{block.settings.img-unique}}" src="{{ block.settings.imageUrlLink }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}} d-none d-md-block">
+                  {% if block.settings.mobimageUrl != blank %}
                   <img id="{{block.settings.img-unique}}" src="{{ block.settings.mobimageUrlLink }}" class="img-fluid {{block.settings.imageClass}} {{block.settings.responsiveClass}} d-block d-md-none">
+                  {% endif %}
                 {% endif %}
                       
                 {% if block.type == 'btn' %}
@@ -2613,3 +2617,4 @@
     
     
         </script> -->
+        
