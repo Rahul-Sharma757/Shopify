@@ -10,23 +10,25 @@
   }
 {% endstylesheet %}
 
-{% javascript %}
-setInterval($(window).on('load', function() {
-    if($(window).width() > 767) {
-        $('#fixedNavMobile').removeClass('dropdown-menu');
-    }else{
-        $('#fixedNavMobile').addClass('dropdown-menu');
+<script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+  var element = document.getElementById("fixedNavMobile");
+  function resize() {
+    if (window.innerWidth < 767) {
+       
+      element.classList.add('dropdown-menu');
+    } else {
+       
+      element.classList.remove('dropdown-menu');
     }
-}), 1000);
-setInterval($(window).on('resize', function() {
-    if($(window).width() > 767) {
-        $('#fixedNavMobile').removeClass('dropdown-menu');
-    }else{
-        $('#fixedNavMobile').addClass('dropdown-menu');
-    }
-}), 1000);
-{% endjavascript %}
+  }
+  
+  window.onresize = resize;
+  window.onload = resize;
+  setInterval(resize,1000);
+});
 
+</script>
 
 <div class="canvas">
     <section id="{{section.settings.uuid}}" class="secondary-nav fixed-top px-md-15 px-4 {{section.settings.className}}" style="background-color: {{section.settings.bgColor}};">
