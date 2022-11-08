@@ -15,20 +15,15 @@
   var element = document.getElementById("fixedNavMobile");
   function resize() {
     if (window.innerWidth < 767) {
-       
       element.classList.add('dropdown-menu');
     } else {
-       
       element.classList.remove('dropdown-menu');
     }
   }
-  
   window.onresize = resize;
-  window.onload = resize
-  
+  window.onload = resize;
+  setInterval(resize,1000);
 });
-
-
 </script>
 
 <div class="canvas">
