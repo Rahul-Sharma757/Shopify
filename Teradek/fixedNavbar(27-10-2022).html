@@ -11,7 +11,7 @@
 {% endstylesheet %}
 
 <script>
-      document.addEventListener("DOMContentLoaded", function(event) {
+  document.addEventListener("DOMContentLoaded", function(event) {
   var element = document.getElementById("fixedNavMobile");
   function resize() {
     if (window.innerWidth < 767) {
@@ -24,9 +24,10 @@
   }
   
   window.onresize = resize;
-  window.onload = resize;
-  setInterval(resize,1000);
+  window.onload = resize
+  
 });
+
 
 </script>
 
