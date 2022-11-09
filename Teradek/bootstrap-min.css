@@ -3884,7 +3884,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-bg: #009af8;
   --bs-btn-disabled-border-color: #009af8;
 }
-.btn-prism-purple {
+.btn-purple {
   --bs-btn-color: rgb(255, 255, 255);
   --bs-btn-bg: rgb(123, 98, 242);
   --bs-btn-border-color: rgb(123, 98, 242);
@@ -3901,7 +3901,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: rgb(123, 98, 242);
 }
 
-.btn-black-primary {
+.btn-black {
   --bs-btn-color: #fff;
   --bs-btn-bg: #000;
   --bs-btn-border-color: #000;
@@ -3918,7 +3918,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #000;
 }
 
-.btn-white-primary {
+.btn-white {
   --bs-btn-color: #000;
   --bs-btn-bg: #fff;
   --bs-btn-border-color: #fff;
@@ -3935,7 +3935,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #fff;
 }
 
-.btn-gray-primary {
+.btn-gray {
   --bs-btn-color: #000;
   --bs-btn-bg: rgb(147, 149, 152);
   --bs-btn-border-color: rgb(147, 149, 152);
@@ -4173,7 +4173,7 @@ textarea.form-control-lg {
   --bs-gradient: none;
 }
 
-.btn-outline-prism-purple {
+.btn-outline-purple {
   --bs-btn-color: rgb(123, 98, 242);
   --bs-btn-border-color: rgb(123, 98, 242);
   --bs-btn-hover-color: rgb(123, 98, 242);
@@ -4190,7 +4190,7 @@ textarea.form-control-lg {
   --bs-gradient: none;
 }
 
-.btn-outline-black-primary {
+.btn-outline-black {
   --bs-btn-color: rgb(0, 0, 0);
   --bs-btn-border-color: rgb(0, 0, 0);
   --bs-btn-hover-color: rgb(0, 0, 0);
@@ -4207,7 +4207,7 @@ textarea.form-control-lg {
   --bs-gradient: none;
 }
 
-.btn-outline-white-primary {
+.btn-outline-white {
   --bs-btn-color: #fff;
   --bs-btn-border-color: #fff;
   --bs-btn-hover-color: #000;
@@ -4224,7 +4224,7 @@ textarea.form-control-lg {
   --bs-gradient: none;
 }
 
-.btn-outline-gray-primary {
+.btn-outline-gray {
   --bs-btn-color: rgb(147, 149, 152);
   --bs-btn-border-color: rgb(147, 149, 152);
   --bs-btn-hover-color: rgb(147, 149, 152);
@@ -10285,6 +10285,7 @@ textarea.form-control-lg {
   line-height: 1.6rem !important;
 }
 
+
 .fs-7 {
   font-size: 0.8rem !important;
   line-height: 1.2rem !important;
@@ -10303,6 +10304,11 @@ textarea.form-control-lg {
 .fs-10 {
   font-size: 0.4rem !important;
   line-height: 0.8rem !important;
+}
+
+.fs-19 {
+  font-size: 0.95rem !important;
+  line-height: 1.2rem !important;
 }
 
 .fst-italic {
@@ -17044,41 +17050,41 @@ html {
     font-size: calc(1.5217391304vw - 2.2173913043px);
   }
 }
-@media (min-width: 1920px) { 
+@media (min-width: 1920px) {
   body,
-  html {
-      font-size: calc(0.9375vw + 9px);
-    }
+html {
+    font-size: calc(0.9375vw + 9px);
   }
-  @media (min-width: 2560px) {
-    body,
-  html {
-      font-size: calc(0.625vw + 17px);
-    }
+}
+@media (min-width: 2560px) {
+  body,
+html {
+    font-size: calc(0.625vw + 17px);
   }
-  @media (min-width: 3840px) {
-    body,
-  html {
-      font-size: calc(0.390625vw + 26px);
-    }
+}
+@media (min-width: 3840px) {
+  body,
+html {
+    font-size: calc(0.390625vw + 26px);
   }
-  @media (min-width: 5120px) {
-    body,
-  html {
-      font-size: calc(0.09765625vw + 41px);
-    }
+}
+@media (min-width: 5120px) {
+  body,
+html {
+    font-size: calc(0.09765625vw + 41px);
   }
-  @media (min-width: 6144px) {
-    body,
-  html {
-      font-size: calc(0.0651041667vw + 43px);
-    }
+}
+@media (min-width: 6144px) {
+  body,
+html {
+    font-size: calc(0.0651041667vw + 43px);
   }
-  @media (min-width: 7680px) {
-    body,
-  html {
-      font-size: 48px;
-    }
+}
+@media (min-width: 7680px) {
+  body,
+html {
+    font-size: 48px;
   }
-  
-  /*# sourceMappingURL=bootstrap.css.map */
+}
+
+/*# sourceMappingURL=bootstrap.css.map */
