@@ -390,14 +390,21 @@
               {% endif %}
   
               {% if block.type == 'startcaroselIndicators' %}
+              <style>
+                  #{{block.settings.carouselId}} .carousel-indicators{
+                    position: absolute;
+                    top: {{block.settings.positionTop}} !important;
+                    left: {{block.settings.positionLeft}} !important;
+                    right: {{block.settings.positionRight}} !important;
+                    bottom: {{block.settings.positionBottom}} !important;
+                  }      
+                </style>
                 <div class="carousel-indicators {{block.settings.carouselindicatorsClass}}" style="width: {{block.settings.indicatorWidth}}; margin: 0 auto;">
               {% endif %}
   
               {% if block.type == 'carouselindicatorsBtn' %}
               <style>
-                #{{block.settings.carouselId}} .carousel-indicators{
-                    position: relative;
-                }
+
                 #{{block.settings.carouselId}} .carousel-indicators button.btn.special.active
                 {
                   background-color: {{block.settings.activebgColor}} !important;
@@ -436,7 +443,7 @@
                       height: 0.2em;
                     }
                   </style>
-                  <button type="button" data-bs-target="#{{block.settings.carouselId}}" data-bs-slide-to="{{block.settings.slideNum}}" class="btn {{block.settings.btn-size}} {{block.settings.btnClass}}" {% if block.settings.aria-current != blank %} aria-current="{{block.settings.aria-current}}" {% endif %} aria-label="{{block.settings.arialabel}}"></button>
+                  <button type="button" data-bs-target="#{{block.settings.carouselId}}" data-bs-slide-to="{{block.settings.slideNum}}" class="btn special{{block.settings.btn-size}} {{block.settings.btnClass}}" {% if block.settings.aria-current != blank %} aria-current="{{block.settings.aria-current}}" {% endif %} aria-label="{{block.settings.arialabel}}"></button>
                   {% endif %}
                   {% if block.settings.indicatorsBtns == 'Dots' %}
                   <style>
@@ -448,7 +455,7 @@
                       border:none;
                     }
                   </style>
-                  <button type="button" data-bs-target="#{{block.settings.carouselId}}" data-bs-slide-to="{{block.settings.slideNum}}" class="btn {{block.settings.btn-size}} {{block.settings.btnClass}}" {% if block.settings.aria-current != blank %} aria-current="{{block.settings.aria-current}}" {% endif %} aria-label="{{block.settings.arialabel}}"></button>
+                  <button type="button" data-bs-target="#{{block.settings.carouselId}}" data-bs-slide-to="{{block.settings.slideNum}}" class="btn special {{block.settings.btn-size}} {{block.settings.btnClass}}" {% if block.settings.aria-current != blank %} aria-current="{{block.settings.aria-current}}" {% endif %} aria-label="{{block.settings.arialabel}}"></button>
                   {% endif %}
               {% endif %}
   
@@ -2249,6 +2256,11 @@
           "settings": [
           {
             "type": "text",
+            "id": "carouselId",
+            "label": "Enter carouselId to set indicators position"
+          },
+          {
+            "type": "text",
             "id": "carouselindicatorsClass",
             "label": "Carousel Indicator Extra Class"
           },
@@ -2256,6 +2268,26 @@
             "type": "text",
             "id": "indicatorWidth",
             "label": "Carousel Indicators Width"
+          },
+          {
+            "type": "text",
+            "id": "positionTop",
+            "label": "Top"
+          },
+          {
+            "type": "text",
+            "id": "positionBottom",
+            "label": "Bottom"
+          },
+          {
+            "type": "text",
+            "id": "positionLeft",
+            "label": "Left"
+          },
+          {
+            "type": "text",
+            "id": "positionRight",
+            "label": "Right"
           }
           ]
         },
