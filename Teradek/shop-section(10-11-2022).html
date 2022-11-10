@@ -1,0 +1,790 @@
+<script type="text/javascript">
+  $().ready(function(){
+      affirm.ui.ready(function(){
+       $("#affirm-learn-more_{{section.settings.uuid}}_btn").click(function(){
+           $("#affirm-learn-more_{{section.settings.uuid}} .affirm-modal-trigger" ).click();
+       })
+      });        
+  })
+</script>
+<div id="shop-now" class="main-col cs-outer cs-section-padding--{{section.settings.uuid}} cs-section-margin--{{section.settings.uuid}}">
+  <div class="cs-inner shoping-col bg-white text-center " >
+    <div class="">
+      <h2 class="cs-txt text-center " style="text-align:center;">
+      {{section.settings.title}}
+      </h2>
+      <p class="lead text-muted m-0">{{section.settings.subheadline}}</p>
+    </div>
+      <div class="cs-content-padding--{{section.settings.uuid}} cs-content-margin--{{section.settings.uuid}}">
+          {{section.settings.html_block}}     			
+          <div class="cs-lp-grid--{{section.settings.uuid}} cs-grid-padding--{{section.settings.uuid}}" style="column-gap:{{section.settings.col_spacing}}; row-gap:{{section.settings.row_spacing}};">
+             {%for block in section.blocks%}
+              {% if block.type == 'Product' %}
+              <div class="cs-lp-product-grid-item">
+                <h4 id="headline">{{block.settings.headline}}</h4>
+                <p id="headline-text">{{block.settings.headline-text}}</p>
+                  {%if block.settings.product_img %}
+                      <div class="outer-div-product"><img src={{block.settings.product_img | img_url:'master'}}/></div>
+                  {%endif%}
+                      <div>{{block.settings.icon_html}}</div>
+                  {%if block.settings.product_img_after %}
+                      <div><img src={{block.settings.product_img_after | img_url:'master'}}/></div>
+                  {%endif%}
+                  <!--div>{{block.settings.icon_html_after}}</div-->
+                  <div>
+                      <div class="wells" style="display:flex; flex-direction:column;">
+                          <span class="price d-block">
+                          {% if block.settings.price_override != blank %}
+                              {{block.settings.price_override}}
+                          {% elsif block.settings.product.price_varies == true %}
+                          <span></span> {{block.settings.product.price_min | money}}
+                              {%else%}
+                                  <span></span> {{block.settings.product.price | money }}
+                              {% endif %} 
+                          </span>
+                          <div class="cs-btn-wrapper" style="text-align:center;">
+                              <a class="btn" style="background-color: {{block.settings.product_button_color}}; color: {{block.settings.product_button_text_color}};"  href="{{block.settings.product_button_link}}" class="cs-btn">{{block.settings.product_button_text}}</a>                              
+                          </div>                          
+                      </div>
+                  </div>
+              </div>   
+            {% endif %}
+        {%endfor%}   
+          </div> 
+        
+        {%for block in section.blocks%}
+        
+        {% if block.type == 'block-2' %}
+        <div class="outer {{block.type}}">
+          <div class="inner">
+            <div class="cs-affirm-wrapper p-0">
+              <div class="img-d">
+                <div class="d-flex justify-content-center align-items-center">
+                <div class="d-flex justify-content-between align-items-end lead text-muted m-0">
+                    <span class="lead">{{block.settings.line}} <span class="cs-affirm-img-wrapper d-inline-block d-md-none">
+                      <img class="logo w-100 " src="{{block.settings.affirm_img | img_url:'master'}}"/></span></span>
+                    <div class="cs-affirm-img-wrapper d-none d-md-inline"> 
+                      <img class="logo w-100" src="{{block.settings.affirm_img | img_url:'master'}}"/>
+                    </div>
+                {% comment %}
+                  <div class="cs-affirm--right m-0">
+                    <a id="affirm-learn-more_{{section.settings.uuid}}_btn" class="btn m-0"  style="background-color: {{block.settings.affirm_button_color}}; border:2px solid #f04e23;  color:{{block.settings.affirm_button_text_color}};">{{block.settings.affirm_button_text}}</a>
+                    <p id="affirm-learn-more_{{section.settings.uuid}}"  class="affirm-as-low-as" style="display:none;" data-page-type="product" data-amount="{{block.settings.affirm_price}}"></p>
+                  </div>
+
+          {% endcomment%}
+        
+         </div>
+       
+                </div>
+       
+              </div>
+            </div>
+          </div>   
+        </div>   
+        {% endif %}
+        {%endfor%}  
+           </div>
+      </div>
+</div> 
+        {%for block in section.blocks%}
+        
+        {% if block.type == 'block-3' %}
+        <section id="bg-img" class="section-6 {{block.type}}">
+      <div class="inner-portion text-start">
+          <h2 id="sec6-heading" class="text-white">
+              {{block.settings.sec6-heading}}
+          </h2>
+          <p id="sec6-text" class="text-white">{{block.settings.sec6-text}}</p>
+        <div class="text-start" style="width: fit-content;">
+        <a href="{{block.settings.contact-us-url}}" data-bs-toggle="modal" id="btn-contact-us" class="sales-popup btn btn-contact-us" style="color: {{block.settings.contact-btn-color}}; background: {{block.settings.contact-btn-bg}};">{{block.settings.btn-contact-us}}</a>
+        
+        </div>
+      </div>
+          
+           <div class="modal fade form-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">      
+    <div class="modal-body">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+       <iframe class="mfp-iframe w-100" src="https://teradek.com/pages/sales-contact-form?7014W000001uQHE#sales {{block.settings.btn_url}}"></iframe>
+    </div>       
+  </div>
+</div>
+</div>
+          
+          
+  </section>
+        {% endif %}
+        {%endfor%}  
+        {%for block in section.blocks%}
+        
+        {% if block.type == 'block-4' %}
+  <section id="last-bg-img" class="section-7 {{block.type}}" style="z-index:50;">
+      <div class="position-absolute ending-text"style="z-index:51;" >
+          <h2 id="headings-left text-white" style="z-index:52;">{{block.settings.headings-left}}</h2>
+          <a href="{{block.settings.btn-url}}" id="shop-a-la-carte" class="btn btn-Shop-a-la-carte" style="z-index:53; color: {{block.settings.btn-color}}; background: {{block.settings.btn-bg-color}}">{{block.settings.shop-a-la-carte}}</a>
+      </div>
+  </section>
+        {% endif %}
+        {%endfor%}  
+
+
+{% schema %}
+{
+"name": "BS5 Shop Scetion",
+"settings": [
+{
+      "id":"uuid",
+      "type":"text",
+      "label":"Unique ID"
+    },
+
+  {
+    "id": "num_items",
+    "type": "text",
+    "label": "Number of Products"
+  },
+  {
+    "id": "bg_color",
+    "type": "color",
+    "label": "Background Color"
+  },
+  {
+    "id": "title",
+    "type": "html",
+    "label": "Heading"
+  },
+  {
+    "id": "subheadline",
+    "type": "text",
+    "label": "Sub Headline"
+  },
+  {
+    "id": "product_button_color",
+    "type": "color",
+    "label": "Button Color"
+  },
+      {
+          "id": "product_button_text1",
+          "type": "text",
+          "label": "Button Text"
+  }
+
+],
+
+"blocks": [
+{
+  "name": "Product Block",
+  "type": "Product",
+  "settings": [
+  {
+    "id": "headline",
+    "type": "text",
+    "label": "Headline"
+  },
+      {
+    "id": "headline-text",
+    "type": "text",
+    "label": "Headline Text"
+  },
+  {
+          "type": "product",
+          "id":"product",
+          "label":"product"
+      },
+        
+      {
+          "type": "image_picker",
+          "label": "Image",
+          "id": "product_img"
+      },
+      {
+          "type": "text",
+          "label": "price",
+          "id": "price_override"
+      },
+      {
+          "id": "product_button_text",
+          "type": "text",
+          "label": "Button Text"
+  },
+  {
+    "id": "product_button_text_color",
+    "type": "color",
+    "label": "Button Text Color"
+  },
+  {
+    "id": "product_button_color",
+    "type": "color",
+    "label": "Button Color"
+  },
+  {
+    "id": "product_button_link",
+    "type": "url",
+    "label": "Button link"
+  }
+    
+  ]
+},
+{
+      "type": "block-2",
+      "name": "Affirm",
+      "settings": [
+        
+  {
+    "id": "affirm_button_text",
+    "type": "text",
+    "label": "Button  Text"
+  },
+  {
+    "id": "affirm_button_text_color",
+    "type": "color",
+    "label": "Button  Text Color"
+  },
+  {
+    "id": "affirm_button_color",
+    "type": "color",
+    "label": "Button  Color"
+  },
+
+  {
+    "id": "line",
+    "type": "text",
+    "label": "Text"
+  }, 
+  {
+    "id": "affirm_img",
+    "type": "image_picker",
+    "label": "Affirm Image"
+  },
+    {
+    "id": "affirm_price",
+    "type": "text",
+    "label": "Price"
+  }
+    ]
+  },
+{
+     "type": "block-3",
+     "name": "right-content-block",
+     "settings": [
+         {
+          "id": "sec6-heading",
+          "type": "text",
+          "label": "Heading"
+         },
+         {
+          "id": "sec6-text",
+          "type": "text",
+          "label": "Text"
+         },
+         {
+          "id": "btn-contact-us",
+          "type": "text",
+          "label": "Button Text"
+         },
+        {
+          "id": "contact-us-url",
+          "type": "url",
+          "label": "URL"
+         },
+         {
+          "id": "contact-btn-color",
+          "type": "color",
+          "label": "Button Text Color"
+         },
+         {
+          "id": "contact-btn-bg",
+          "type": "color",
+          "label": "Button Background Color"
+          },
+         {
+          "id": "bg-img",
+          "type": "image_picker",
+          "label": "Background Image"
+         }
+      ]
+},
+{
+ "type": "block-4",
+ "name": "left-content-block",
+ "settings": [
+    {
+     "id": "headings-left",
+     "type": "text",
+     "label": "Heading"
+    },
+    {
+     "id": "shop-a-la-carte",
+     "type": "text",
+     "label": "Button Text"
+    },
+    {
+     "id": "btn-url",
+     "type": "url",
+     "label": "Button URL"
+    },
+    {
+     "id": "btn-color",
+     "type": "color",
+     "label": "Button color"
+    },
+    {
+    "id": "btn-bg-color",
+    "type": "color",
+    "label": "Background Color"
+    },
+    {
+     "id": "last-bg-img",
+     "type": "image_picker",
+     "label": "Background Image"
+    }
+ ]
+}
+
+],
+
+"presets": [{
+  "name": "BS5 Shop Scetion"
+}]
+}
+{% endschema %}
+
+<style>
+.mfp-iframe {
+  height: 80vh;
+}
+.btn-close {position: absolute;
+  right: -2.8%;
+  top: -3%;
+  background: none;
+  font-size: 1.5em;
+  font-weight: 700;
+  height: auto;
+  width: auto;
+  z-index: 1;
+  color: #f04e23;
+  opacity: 1;
+}
+.shoping-col{    padding-top: 3.95vw;
+  padding-bottom: 4.58vw;}
+.shoping-col h2 {
+  line-height: 1.14em ;
+  font-size: 3.83vw;
+}
+.shoping-col h2 {
+  margin-bottom: 0.23em !important;
+}
+.main-col .lead {
+  font-size: 1.64vw !important;
+  line-height: 1.33em;
+  margin-bottom: 1em;
+  padding-left: 0 !important;
+  font-weight: 400;
+  margin-bottom:0 ;
+  color:#939598  !important;
+}
+.shoping-col p {
+  font-size: 0.8em;
+  line-height: 1.5em;
+  margin-bottom: 0.63em;
+}
+.cs-lp-product-grid-item img{max-width: 100%;
+  width:23.138vw;
+  margin: 0 auto;
+  margin-top: 3% !important;
+  margin-left: 9%;
+}
+.shoping-col .cs-affirm-wrapper{width: 52.083vw; max-width:100%;	
+  margin: 0 auto;
+  margin-top: 4.027vw;
+  color:#939598;
+  background-color: #F5F5F5;
+  border-radius: 2.22vw;}
+.shoping-col .cs-affirm-wrapper .img-d {
+  padding: 1.4vw 2.5vw;
+}
+.shoping-col  .logo {
+  bottom: 0.625vw;
+  position: relative;
+}
+.shoping-col .cs-affirm-img-wrapper {
+  width: 13.55vw;
+          padding-left:1rem;
+  display: block;
+}
+.shoping-col .btn{font-size: 1.09vw;
+ 
+  line-height: 1.5em;
+  padding: 1.04vw 1.5vw;
+  margin-top: 0.69vw;
+  border-radius: 0.55vw;
+  border: none;
+}
+.shoping-col .btn:hover, .shoping-col .btn:focus{
+background-color: #9f9f9f !important;
+  color: #fff;
+  box-shadow: none;
+}
+.btn-warning:hover, .btn-outline-warning:hover {
+  background: #9f9f9f ;
+  color: #fff ;
+  border-color: #9f9f9F ;
+}
+
+
+
+.d-block{ display:block;}
+.cs-lp-grid--{{section.settings.uuid}} {
+ display:grid;
+ max-width:1100px;
+ grid-template-columns:repeat({{section.settings.num_items}}, 1fr);
+ justify-content:center;
+ justify-items:center;
+ align-items:end;
+ margin:0 auto;
+}
+.shoping-col .cs-affirm-img-wrapper {
+  width: 13.55vw;
+          padding-left:1rem;
+  display: block;
+}
+.wells{margin-top: 15%;}
+.shoping-col .cs-affirm-wrapper .lead{ margin-bottom:0 !important;}
+
+/*   .cs-lp-product-grid-item img {
+  width:100%;
+  max-width:434px;
+  margin:0;
+}
+*/
+.img-m {
+  display: none;
+}
+
+.cs-affirm-wrapper {
+  background-color: #f5f5f5;
+  border-radius: 32px;
+  max-width: 728px;
+  padding-left: 2rem;
+  margin: 0 auto;
+}
+.cs-affirm-grid {
+  display: grid;
+  max-width: 768px;
+  grid-template-columns: 70% 30%;
+  justify-content: start;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.cs-affirm--left {
+  display: flex;
+}
+.cs-cool-gray {
+  color: #939598;
+}
+div.cs-txt--affirm {
+  font-size: min(max(24px,8vw),24px);
+  line-height: min(max(36px,10vw),32px);
+}
+div.cs-txt--affirm {
+  font-size: min(max(24px,8vw),24px);
+  line-height: min(max(36px,10vw),32px);
+}
+.cs-affirm-img-wrapper {
+  //*margin-top: -0.5rem;*/
+  margin-left: 0.5rem;
+}
+.cs-affirm--right {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+
+.shoping-col .cs-affirm-img-wrapper .logo{ bottom:0.325vw;}
+
+#affirm-learn-more__btn:hover, #affirm-learn-more__btn:focus{background-color: #9f9f9f !important; color:white !important; box-shadow:none !important; border-color: #9f9f9f !important;}
+
+a.cs-btn {
+text-align: center; 
+border-radius: 8px; 
+padding: 11px 38px 13px 39px; 
+text-decoration: none; 
+background-repeat: no-repeat; 
+font-size: 16px; 
+font-family: HKGP700; 
+ 
+display: inline-block;
+margin:0 auto;
+text-align:center;
+text-decoration:none;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 24px 17px 25px;
+  font-size: 16px;
+  font-family: HKGP700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.btn:hover {
+background: #9f9f9f ;
+  color: #fff ;
+  border-color: #9f9f9F ;
+
+}
+
+.section-6{
+/*     background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/sec6-bg.png?v=1653971737) no-repeat center; */
+  background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/rt-talk-to-a-specialist-2.png?v=1655142131) no-repeat center; 
+
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+/*     height:0; */
+/*     padding-bottom:calc(650/1460 * 100%); */
+  min-height: 43.52vw;
+  position: relative;
+  background-size: 100% !important;
+}
+.btn-contact-us{
+  font-size: 1.09vw !important;
+  line-height: 1.30vw !important;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 1.30vw 2.05vw !important;
+  margin-top: 2.73vw !important;
+  font-family: HK Grotesk Pro; font-weight:700;
+}
+.section-6 .inner-portion h2{
+  padding-top: 12.60vw;
+  margin-bottom: 2.10vw;
+  font-size: 3.83vw;
+  line-height: 4.38vw;
+}
+.section-6 p{
+font-size: 1.64vw;
+  line-height: 2.19vw;
+  font-family: HK Grotesk Pro; font-weight:400;
+}
+.inner-portion{
+  width: 80.82vw;
+  margin: 0 auto;
+}
+/* .section-7{     background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/sec-7-bg.png?v=1654584446) no-repeat center; */
+.section-7{     background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/A_La_Carte.png?v=1655141654) no-repeat center;
+
+  background-size: 100% !important;
+background-repeat: no-repeat !important;
+  background-position: center !important;
+  min-height: 38.04vw;
+  position: relative;
+}
+.section-7 h2{
+  font-size: 3.83vw;
+  color: #ffffff;
+  line-height: 4.38vw; 
+}
+.btn-Shop-a-la-carte{
+  font-size: 1.09vw !important;
+  line-height: 1.64vw !important;
+  font-weight: bold;
+  padding: 1.16vw 3.76vw;
+border-radius: 8px;
+  margin-top: 3.76vw;
+    font-family: HK Grotesk Pro;
+  font-weight: 700;
+}
+.ending-text{
+  top: 12.87vw;
+  right: 0;
+  left: 0;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+.outer-div-product{
+height: 22.9vw;
+}
+span.price.d-block{
+font-size: 1.09vw;
+}
+h4#headline{
+font-size: 1.64vw;
+line-height: 2.19vw;
+font-weight: 500;
+margin-top: 3.08vw;
+}
+p#headline-text{
+  font-size: 1.09vw;
+  line-height: 1.64vw;
+  margin-bottom: 1.36vw;
+}
+@media (min-width: 2600px){
+  p#headline-text{
+  font-size: 28px;
+  line-height: 42px;
+  margin-bottom: 35px;
+}
+  h4#headline {
+  font-size: 42px;
+  line-height: 56px;
+  margin-top: 80px;
+  }
+  .btn-Shop-a-la-carte {
+  font-size: 28px !important;
+  line-height: 42px !important;
+  padding: 30px 97px;
+  margin-top: 97px;
+}
+  .section-7 h2{font-size: 99px; line-height: 113px;}
+  .ending-text{top: 334px; right: 225px;}
+  .section-7{min-height: 988px; max-width: 2600px; margin: 0 auto;} 
+  .btn-contact-us {
+  font-size: 28px !important;
+  line-height: 33px !important;
+  padding: 33px 53px !important;
+  margin-top: 70px !important;
+
+}
+  .section-6 p{font-size: 42px; line-height: 56px; }
+  .section-6 .inner-portion h2{
+    font-size: 99px;
+    line-height: 113px;
+    margin-bottom: 62px;
+    padding-top: 327px;
+  }
+  .inner-portion{width: 2098px;}
+  .section-6{min-height: 1131px; max-width: 2600px; margin: 0 auto;}
+  span.price.d-block{
+font-size: 28px;
+}
+  .shoping-col .btn{font-size: 28px;}
+  .outer-div-product{height: 595px;}
+  .cs-lp-product-grid-item img{width: 550px;}
+  .wells{margin-top: 82px;}
+  .shoping-col h2{font-size: 99px;}
+  .shoping-col{padding-top: 102px; padding-bottom: 119px;}
+  .main-col .lead{font-size: 42px !important;}
+  .cs-lp-product-grid-item img{width: 653px;}
+  .shoping-col .btn{font-size: 28px; padding: 28px 50px; line-height: 42px; margin-top: 17.94px; border-radius: 14px;}
+  .shoping-col .cs-affirm-wrapper .img-d{padding: 50px 65px;}
+  .shoping-col .cs-affirm-wrapper{width: 1354px; margin-top: 104px; border-radius: 57px;}
+  .shoping-col .cs-affirm-img-wrapper{width: 144px;}
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px)
+  {
+    .cs-lp-product-grid-item img { max-width: 400px;}
+    a.text-decoration-none.text-light.text-uppercase, .main-col .btn {    font-size: 12px ;}
+    .shoping-col .cs-affirm-wrapper {    width: 500px;}
+    .shoping-col .cs-affirm-wrapper .img-d {
+  padding: 16px 20px;
+}
+  }
+
+
+
+@media (max-width: 767px) {
+ .ending-text {
+  top: 50%;
+  right: 0;
+  left: 0;
+  text-align: center;
+  transform: translateY(-50%);
+}
+ .section-7 h2 {
+  font-size: 40px;
+  line-height: 48px;
+}
+ .btn-Shop-a-la-carte {
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: bold;
+  padding: 16px 24px;
+  margin-top: 17px;
+}
+ .section-6{
+   background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/sec-6-mobo-img.png?v=1654598366) no-repeat center;
+  background-size: 100% !important;
+background-repeat: no-repeat !important;
+  background-position: center !important;
+  min-height: 579px;
+  position: relative;
+}
+ .section-6 .inner-portion{
+   position: absolute;
+   left: 45px;
+   top: 115px;
+ }
+ .section-6 .inner-portion h2{
+ font-size: 40px;
+   line-height: 48px;
+ }
+ .section-6 p{
+ font-size: 16px;
+   line-height: 24px;
+ }
+ .btn-contact-us {
+  font-size: 16px !important;
+  line-height: 19px !important;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 19px 31px !important;
+  margin-top: 25px !important;
+}
+ .section-7{
+   background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/section-7-bg.png?v=1654781855) no-repeat center;
+  background-size: 100% !important;
+background-repeat: no-repeat !important;
+  background-position: center !important;
+  height: 579px;
+  position: relative;
+}
+ .section-7:after{content: '';
+  display: block;
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 23px;
+  right: 25px;
+  border: 1px solid #f04e23;
+  padding: 24px;}
+ .cs-lp-grid--{display: block;}
+ .outer-div-product{height: 85px;}
+ .wells{margin-top: 230px;}
+ span.price.d-block{font-size: 16px; line-height: 24px;}
+ p#headline-text{font-size: 16px; line-height: 24px; margin-bottom: 20px;}
+ h4#headline{font-size: 24px; line-height: 32px; margin-top: 50px; margin-bottom: 0;}
+ .shoping-col h2{font-size: 40px; line-height: 48px; margin-bottom: 13px !important;}
+ .main-col{ font-size:16px}
+ .cs-btn-wrapper{margin-bottom: 28px;}
+      .main-col .lead {font-size: 24px !important; line-height: 32px !important;}
+      .shoping-col { padding: 44px 35px 18px;}
+      
+      .shoping-col .cs-affirm-wrapper .img-d{ padding:19px 25px;}
+      .shoping-col .cs-affirm-wrapper{ width: 100%; border-radius: 24px; margin-top: 30px;}
+      .shoping-col .cs-affirm-img-wrapper{ width: 163px; margin-left: 5px ;}
+      .shoping-col .btn{ padding: 16px 24px; border-radius: 8px; font-size:16px; line-height:24px;}
+      .cs-lp-product-grid-item img{ max-width: 270px; margin-top: 19px;}
+  
+      .shoping-col .cs-affirm-grid, .shoping-col .cs-affirm-wrapper .img-d > div{ display: block !important; justify-content: inherit!important; text-align: center;}
+      .shoping-col .cs-affirm-wrapper .lead{ display:flex; justify-content: center !important ; align-items:center; font-size:20px; line-height:24px;}
+      .shoping-col .price{ margin-bottom: 10px;}
+      .shoping-col #affirm-learn-more__btn{ padding: 16px 24px; border-radius: 8px; margin-top: 11px !important;}
+      .shoping-col .cs-affirm-img-wrapper .logo{ bottom: 3px;}
+ .cs-affirm--right{justify-content: center;}
+      
+
+      .container,
+      .main-col .section-3 .container-fluid {
+          padding: 0 32px;
+      }
+ .cs-lp-product-grid-item img{width: 320px;}
+      
+  }
+   
+</style>
