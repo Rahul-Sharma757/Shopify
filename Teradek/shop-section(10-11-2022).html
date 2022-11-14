@@ -12,6 +12,7 @@
     <div class="">
       <h2 class="cs-txt text-center " style="text-align:center;">
       {{section.settings.title}}
+        
       </h2>
       <p class="lead text-muted m-0">{{section.settings.subheadline}}</p>
     </div>
@@ -40,7 +41,8 @@
                           <span></span> {{block.settings.product.price_min | money}}
                               {%else%}
                                   <span></span> {{block.settings.product.price | money }}
-                              {% endif %} 
+                              {% endif %}
+                              
                           </span>
                           <div class="cs-btn-wrapper" style="text-align:center;">
                               <a class="btn" style="background-color: {{block.settings.product_button_color}}; color: {{block.settings.product_button_text_color}};"  href="{{block.settings.product_button_link}}" class="cs-btn">{{block.settings.product_button_text}}</a>                              
@@ -132,7 +134,7 @@
 
 {% schema %}
 {
-"name": "BS5 Shop Scetion",
+"name": "shop_RT-system",
 "settings": [
 {
       "id":"uuid",
@@ -346,7 +348,7 @@
 ],
 
 "presets": [{
-  "name": "BS5 Shop Scetion"
+  "name": "shop_RT-system"
 }]
 }
 {% endschema %}

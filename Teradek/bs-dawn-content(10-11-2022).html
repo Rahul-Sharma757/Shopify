@@ -50,10 +50,7 @@
         background-repeat: {{ section.settings.mobile-bg-repeat }};
         min-height: {{section.settings.section-mobile-min-height }};
     }
-    h1, .h1{font-size: 2rem !important;}
-    .fs-12,.fs-19{font-size: 0.75rem !important;}
-  
-    }
+  }
     </style>
     {{section.settings.customHtmlStyles}}
     <div class="canvas">
@@ -69,15 +66,15 @@
                 {% endif %}
   
                 {% if block.type == 'html' %}
-                {% if block.settings.line-1-size == "fs-7" and block.settings.col-line-1 != blank %}
-                    <small class="fs-7 line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.space-class }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }}" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</small>
-                {% endif %}
-                {% if block.settings.line-1-size != "fs-7" and block.settings.col-line-1 != blank %}
-                    <{{block.settings.line-1-size}} class="line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }}" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</{{block.settings.line-1-size}}>
-                {% endif %}
-                {% if block.settings.btn-txt != blank %}
-                    <a class="btn {{ block.settings.btn-class}} {{ block.settings.responsiveClass }}">{{ block.settings.btn-txt }}</a>
-                {% endif %}
+                  {% if block.settings.line-1-size == "fs-7" and block.settings.col-line-1 != blank %}
+                      <small class="fs-7 line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.space-class }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }}" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</small>
+                  {% endif %}
+                  {% if block.settings.line-1-size != "fs-7" and block.settings.col-line-1 != blank %}
+                      <{{block.settings.line-1-size}} class="line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }}" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</{{block.settings.line-1-size}}>
+                  {% endif %}
+                  {% if block.settings.btn-txt != blank %}
+                      <a class="btn {{ block.settings.btn-class}} {{ block.settings.responsiveClass }}">{{ block.settings.btn-txt }}</a>
+                  {% endif %}
                 {% endif %}
   
                 {% if block.type == 'card' %}

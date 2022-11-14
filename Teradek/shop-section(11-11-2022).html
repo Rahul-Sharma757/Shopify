@@ -1,0 +1,120 @@
+<script type="text/javascript">
+    $().ready(function(){
+        affirm.ui.ready(function(){
+         $("#affirm-learn-more_{{section.settings.uuid}}_btn").click(function(){
+             $("#affirm-learn-more_{{section.settings.uuid}} .affirm-modal-trigger" ).click();
+         })
+        });        
+    })
+</script>
+<style>
+
+    #{{ section.settings.uuid }}{ 
+        {% if section.settings.section-bg != blank %}
+            background-image:url({{ section.settings.section-bg | img_url:'master'}});
+        {% endif %}
+        background-size: {{ section.settings.section-bg-size }};
+        background-color: {{ section.settings.section-bg-color }};
+        background-position: {{ section.settings.bg-position }};
+        background-repeat: {{ section.settings.bg-repeat }};
+        min-height: {{section.settings.section-min-height }};
+        overflow-x: hidden;
+    }
+    .section{padding:{{section.settings.custom-padding}};}
+    {% if section.settings.show_left_fade == true %}
+    #{{ section.settings.uuid }} .{{ section.settings.container-class }}:before{
+        content:'';
+        Display:block;
+        background: linear-gradient(90deg, {{section.settings.fade_color-left}} 0%, rgba(0,0,0,0) {{section.settings.left_fade_percentage}});
+        height:100%;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:-17.4%;
+    }
+    {% endif %}
+    
+    {% if section.settings.show_right_fade == true %}
+    #{{ section.settings.uuid }} .{{ section.settings.container-class }}:after{
+        content:'';
+        Display:block;
+        background: linear-gradient(270deg, {{section.settings.fade_color-right}} 0%, rgba(0,0,0,0) {{section.settings.right_fade_percentage}});
+        height:100%;
+        width:100%;
+        position:absolute;
+        top:0;
+        right:-17.4%;
+    }
+    {% endif %}
+  
+    .gradient-bg{background: linear-gradient({{block.settings.color-position}}270deg, {{section.settings.fade_color-right}} 0%, rgba(0,0,0,0) {{section.settings.right_fade_percentage}});}
+    @media (max-width:767px){
+        #{{ section.settings.uuid }}{ 
+        {% if section.settings.section-mobile-bg != blank %}
+            background-image:url({{ section.settings.section-mobile-bg | img_url:'master'}});
+        {% endif %}
+        background-size: {{ section.settings.section-mobile-bg-size }};
+        background-color: {{ section.settings.section-mobile-bg-color }};
+        background-position: {{ section.settings.mobile-bg-position }};
+        background-repeat: {{ section.settings.mobile-bg-repeat }};
+        min-height: {{section.settings.section-mobile-min-height }};
+    }
+    }
+</style>
+<section id="{{ section.settings.uuid }}" class="section {{ section.settings.section-class }}">
+    <div class="{{ section.settings.container-class }} {{section.settings.spacing-container-class}}">
+    {% for block in section.blocks %} 
+        {% if block.type == 'html' %}
+            {% if block.settings.line-1-size == "fs-7" and block.settings.col-line-1 != blank %}
+                <small class="fs-7 line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.space-class }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }}" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</small>
+            {% endif %}
+            {% if block.settings.line-1-size != "fs-7" and block.settings.col-line-1 != blank %}
+                <{{block.settings.line-1-size}} class="line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }}" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</{{block.settings.line-1-size}}>
+            {% endif %}
+            {% if block.settings.btn-txt != blank %}
+                <a class="btn {{ block.settings.btn-class}} {{ block.settings.responsiveClass }}">{{ block.settings.btn-txt }}</a>
+            {% endif %}
+        {% endif %}
+
+        {% if block.type == 'productBlock' %}
+        <style>
+            .cs-lp-grid--{{block.settings.csGrid}}{
+                display: grid;
+            }
+        </style>
+            <div class="cs-lp-grid--{{block.settings.csGrid}}" style="column-gap:{{block.settings.colGap}}; row-gap:{{block.settings.colGap}};">
+            
+            </div>
+        {%endif%}
+    {%endfor%}
+    </div>
+</section>
+  
+  {% schema %}
+{
+  "name": "Shop Scetion BS5",
+  "settings": [
+    {
+        "id":"uuid",
+        "type":"text",
+        "label":"Unique ID"
+    },
+  ],
+  
+  "blocks": [
+    {
+      "type": "html",
+      "name": "Text",
+      "settings": []
+    },
+    {
+        "type": "productBlock",
+        "name": "Product Block",
+        "settings": []
+    }
+  ],
+  "presets": [{
+    "name": "Shop Section BS5"
+  }]
+  }
+  {% endschema %}
