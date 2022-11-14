@@ -1,0 +1,1982 @@
+<!-- CSS only -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+{% include 'SE-BS-Overrides' %}
+<link rel="stylesheet" href="https://cdn.shopify.com/s/files/1/0097/6004/7167/t/23/assets/all.css">
+{{ 'style.css' | asset_url | stylesheet_tag }}
+{{ 'owl.carousel.min.css' | asset_url | stylesheet_tag }}
+
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+{{ 'owl.carousel.min.js' | asset_url | script_tag }}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+    $(document).on("ready", function () {
+        console.log('it is now ready');
+        function scrollToAnchor(aid) {
+            const destination = $('#' + aid);
+            let userAgent = navigator.userAgent;
+
+            if (userAgent.match(/chrome|chromium|crios/i)) {
+                $('html,body').animate({
+                    scrollTop: destination.offset().top
+                }, 100);
+            } else {
+                $('html,body').animate({
+                    scrollTop: destination.offset().top
+                }, 1000);
+            }
+
+        }
+
+        $("[name='s3-link']").on('click', function () {
+            scrollToAnchor('s4');
+        });
+        $("[name='tooltip-link']").on('click', function () {
+            scrollToAnchor('tooltip');
+        });
+
+        $("[name='shop']").on('click', function () {
+          console.log('clicked');
+            scrollToAnchor('shop-now');
+        });
+
+    });
+
+    /*$('#modal-video1').on('hidden.bs.modal', function () {
+        $("#modal-video1 iframe").attr("src", $("#modal-video1 iframe").attr("src"));
+    });
+    $('#modal-video2').on('hidden.bs.modal', function () {
+        $("#modal-video2 iframe").attr("src", $("#modal-video2 iframe").attr("src"));
+    });*/
+
+$(document).ready(function() {
+// Gets the video src from the data-src on each button
+var $videoSrc;
+$('.play-btn').click(function() {
+    $videoSrc = $(this).data( "src" );
+});
+console.log($videoSrc);
+
+// when the modal is opened autoplay it
+$('#modal-video1').on('shown.bs.modal', function (e) {
+
+// set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+$("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" );
+})
+
+// stop playing the youtube video when I close the modal
+$('#modal-video1').on('hide.bs.modal', function (e) {
+    // a poor man's stop video
+    $("#video").attr('src',$videoSrc);
+})
+// document ready
+});
+</script>
+
+
+
+<style>
+
+    html, body {
+      font-family: HK Grotesk Pro;
+     font-size:14px;
+    }
+
+  .collapse.in{display: block !important;}
+
+  	.rt-system .iframe-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .rt-system .iframe-wrapper iframe {
+      width: 100vw;
+      height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+      min-height: 100vh;
+      min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+      .vis-d {
+     display:block;
+    }
+    .vis-m {
+     display:none;
+    }
+
+  a.btn-danger {
+   background: #F04E23;
+   border:none;
+  }
+   .btn-danger:hover {
+   background: #939598 !important;
+   border:none;
+  }
+
+  .btn-danger:active {
+    background: #F04E23 !important;
+     border:none;
+   }
+
+
+
+   /* body{background: #000;} */
+   .bg-danger{background-color: #F04E23 !important;}
+   .text-muted {color: #939598 !important;}
+    .navbar-content {
+        width: 100%;
+    }
+
+    .cs-btn-wrapper {
+        margin: 0 auto;
+    }
+
+    .site-footer .footer-links a {
+        margin-left: 0;
+      text-decoration: none;
+    }
+
+    .yamm-fw a,
+    nav.yamm .yamm-fw a {
+        text-decoration: none;
+    }
+
+    .btn.newsletter-sign-up-large {
+        display: block;
+        width: 100%;
+        border-radius: 0%;
+        margin: 0%;
+    }
+   .dropdown-toggle::after {
+        display: none;
+    }
+  .site-footer .footer-links ul {
+        padding-left: 0;
+    }
+  .btn.newsletter-sign-up-small {
+            display: none;
+        }
+/*    */
+    .rt-system{
+        font-size: 1.64vw !important;
+        line-height: 2.19vw;
+        max-width: 2600px;
+        margin: 0 auto;
+        font-family: HK Grotesk Pro;
+    }
+    .rt-system p{
+        margin-bottom: 0;
+    }
+    .desktop-break{
+        display: block;
+    }
+    .rt-system .banner{
+/*         background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/rt-banner.png?v=1654576570) no-repeat center; */
+      	background-color:#000;
+        background-size: 100vw auto;
+        min-height: 49.31vw;
+    }
+    .rt-system .inner-portion{
+        width: 80.82vw;
+        margin: 0 auto;
+    }
+    .rt-system h1{
+        font-size: 3.33em;
+        line-height: 1em;
+        margin-bottom: 0.18em;
+    }
+    .rt-system h2{
+        font-size: 2.33em;
+        line-height: 1.14em;
+    }
+    .rt-system h3{
+        font-size: 1.67em;
+        line-height: 1.2em;
+        margin-bottom: 0.6em;
+    }
+    .rt-system h4{
+        font-size: 1.33em;
+        line-height: 1.25em;
+        top: 6.84vw;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+    .rt-system h6{
+        font-size: 0.5em;
+        line-height: 1.33em;
+        letter-spacing: 0.1em;
+        font-weight: bold;
+    }
+    .rt-system .fs-20{font-size: 0.8em !important; line-height: 1.6em;}
+    .rt-system .lead{
+        font-size: 1.33em !important;
+        line-height: 1.25em !important;
+    }
+    .rt-system  hr{opacity: 1 !important;}
+    .rt-system .text-muted{
+        font-size: 1.64vw;
+        padding-left: 0% !important;
+        margin-top: 0;
+    }
+    .rt-system .bg-webdark{
+        background: #1A1A1A;
+    }
+    .rt-system .bg-warmlight{
+        background: #F2F1EA;
+    }
+    .rt-system .banner-text{
+        position: absolute;
+        left: 12.73vw;
+        top: 11.369vw;
+    }
+    .rt-system .banner-text a.btn-danger{
+        font-size: 0.67em !important;
+        line-height: 1.5em !important;
+        padding: 1em 1.5em !important;
+        margin-top: 2.88em;
+        border-radius: 8px;
+    }
+    .rt-system .banner-text a.btn-danger:focus{box-shadow: none;}
+    .rt-system .section-1{
+        min-height: 48.1vw;
+    }
+    .modal-lg {
+        max-width: 55.55vw;
+    }
+    .modal.fade.show {
+        opacity: 1;
+    }
+
+    .modal .fluid-width-video-wrapper {
+        padding-top: 0 !important;
+    }
+    #modal-video1 .btn-close{ top: -5%;}
+    .form-modal .btn-close {
+        right: -2.7%;
+        top: -2.6%;
+    }
+    .rt-system .section-1 h2{color: #939598;}
+    .rt-system .section-1 .inner-portion{
+        margin-top: 6.57vw;
+        margin-bottom: 7.12vw;
+    }
+    .rt-system .section-1 .sec1-card-title{
+        font-size: 0.5em;
+        line-height: 1.33em;
+        color: #939598;
+        margin-bottom: 1.83em;
+        letter-spacing: 0.1em;
+        margin-top: 2.75em;
+    }
+    .rt-system .section-1 .card-text{
+        font-size: 0.67em;
+        line-height: 1.5em;
+    }
+    .btn-close{
+        opacity: 1;
+    }
+    .rt-system .wireless-range-icon{
+        width: 5.47vw;
+        height: auto;
+        margin: 0 auto;
+    }
+    .rt-system .motor-control-icon{
+        width: 5.41vw;
+        height: auto;
+        margin: 0 auto;
+    }
+    .rt-system .advanced-conntrollers-icon{
+        width: 4.79vw;
+        height: auto;
+        margin: 0 auto;
+    }
+    .rt-system .realtime-sh-overlays-icon{
+        width: 6.16vw;
+        height: auto;
+        margin: 0 auto;
+    }
+    .rt-system .third-party{
+        width: 5.13vw;
+        height: auto;
+        margin: 0 auto;
+    }
+    .rt-system .section-1 .row{
+        margin-top: 8.35vw !important;
+    }
+    .rt-system .section-2{
+        min-height: 75.85vw;
+    }
+    .rt-system .section-2 .upper-text{
+        padding-top: 3.63vw; margin-bottom: 3.04em;
+    }
+    .rt-system .fade{opacity: 1;}
+    .rt-system .btn-buy-now-sec-2{
+        font-size: 0.67em;
+        line-height: 1.5em;
+        border-radius: 8px;
+        font-weight: bold;
+        border: none;
+        margin-top: 0.96vw;
+        color: #fff;
+        padding: 0.94em 1.5em 1.06em 1.5em;
+    }
+    .rt-system .btn-buy-now-sec-2:hover, .rt-system .btn-buy-now-sec-2:focus{background-color: #939598 !important; color: white; box-shadow: none;}
+    .rt-system .section-2 .upper-text h2{
+        margin-bottom: 0.61em;
+    }
+    .rt-system .channel-kit{
+        margin-top: 2.87vw;
+    }
+    .rt-system .tab-ul{
+        margin-bottom: 2.12vw !important;
+    }
+    .rt-system .lense-contron-kit-tab1-img{
+        /* width: 41.02vw; */
+        width: 39.3vw;
+        height: auto;
+    }
+    .rt-system .tab-content{
+        padding-bottom: 4.24vw;
+    }
+    .rt-system .nab-tabs{
+        width: 41.36vw;
+        height: auto;
+        margin: 0 auto;
+        margin-bottom: 7.46vw;
+        border: 2px solid #F04E23;
+        border-radius: 8px;
+    }
+    .rt-system .nab-tab-btns{
+        font-size: 0.67em !important;
+        line-height: 1.5em !important;
+        font-weight: 500;
+        color: #fff !important;
+        padding: 0.75em 0.94em;
+    }
+    .rt-system .btn-tab1{
+        border-right: 2px solid #F04E23;
+    }
+    .rt-system .channel-kit p{margin-bottom: 1.2em;}
+    .rt-system .nav-link .active{
+        background-color: #F04E23;
+    }
+    .rt-system .nab-tabs button:focus:not(:focus-visible){
+        background-color: #F04E23;
+    }
+    .rt-system .section-3 h2{
+        font-size: 2.33em;
+        line-height: 1.14em;
+        margin-bottom: 0.36em;
+    }
+    .rt-system .section-3{
+        padding-top: 3.21vw;
+        padding-bottom: 5.41vw;
+    }
+    .rt-system .section-4{
+        padding-top: 3.83vw;
+        padding-bottom: 6.50vw;
+    }
+    .rt-system .black-portion{
+        width: 90.13vw;
+        height: auto;
+        background-color: #000000;
+        margin: 0 auto;
+        margin-top: 4.10vw;
+        padding-top: 4.24vw;
+        padding-bottom: 6.23vw;
+        border-radius: 2.19vw;
+    }
+    .rt-system .section-4 h2{
+        font-size: 2.33em;
+        line-height: 1.14em;
+        margin-bottom: 0.34em;
+    }
+    .rt-system .section-4 .black-portion .h3 small{
+        font-size: 0.34em;
+        line-height: 1.26em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #F04E23;
+        margin-bottom: 0.53em;
+    }
+    .rt-system .shd1210{
+        width: 64.41vw;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 8.35vw;
+    }
+    .rt-system .ml-18 {
+    margin-left: 1.25vw;
+    }
+    .rt-system .circle-check {
+    width: 1.59vw;
+    height: 1.59vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: #F04E23;
+    }
+    .rt-system .black-portion2{
+        width: 90.13vw;
+        height: auto;
+        background-color: #000000;
+        background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/Lens-mapping-bg-dekstop.png?v=1654722682) no-repeat center;
+        background-size: 100%;
+        min-height: 34.52vw;
+        margin: 0 auto;
+        padding-left: 4.65vw;
+        margin-top: 3.83vw;
+        border-radius: 2.19vw;
+    }
+    .rt-system .black-portion2 .row.m-0{min-height: 34.52vw;}
+    .rt-system .lense-mapping{
+        width: 37.26vw;
+        height: auto;
+        margin: 0 auto;
+    }
+    .rt-system .play-btn{
+        font-size: 0.5em;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        line-height: 1.33em;
+    }
+    .rt-system .ml-14 {
+    margin-left: 0.97vw;
+   }
+   .rt-system .loop-video{
+       width: 64.41vw;
+       margin: 0 auto;
+   }
+   .rt-system .shd-overlays {
+    top: -2.70vw;
+    left: 6.80vw;
+    width: 80.2%;
+    right: 0px;
+    bottom: -0.5vw;
+}
+   .rt-system .black-portion3{
+        width: 90.13vw;
+        background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/black-portion-3-bg.png?v=1654580062) no-repeat center;
+        background-size: 100% auto;
+        height: auto;
+        background-color: #000000;
+        margin: 0 auto;
+        padding-left: 4.65vw;
+        margin-top: 3.83vw;
+        padding-top: 6.64vw;
+        border-radius: 2.19vw;
+        padding-bottom: 2.80vw;
+    }
+    .rt-system hr{height: 0.17vw; margin-bottom: 2.19vw;}
+    .rt-system .range-finder{
+        width: 34.24vw;
+        margin: 0 auto;
+        height: auto;
+        margin-top: -3.42vw;
+    }
+    .rt-system .black-portion3 h3, .rt-system .black-portion3 p{margin-bottom: 2.19vw;}
+    .rt-system .black-portion2 h3, .rt-system .black-portion2 p{margin-bottom: 2.19vw;}
+    .rt-system .black-portion4{
+        background: #000000;
+        border-radius: 2.19vw;
+        padding-top: 4.79vw;
+        text-align: center;
+    }
+    .rt-system .daisy-chain-motor{
+        width: 25.13vw;
+        height: auto;
+        margin-top: 2.39vw;
+        padding-bottom: 1.02vw;
+        margin-left: 2.8vw;
+    }
+    .rt-system .combo{
+        width: 27.94vw;
+    }
+    .rt-system .combo-portion{
+        width: 90.13vw;
+        margin: 0 auto;
+        margin-top: 6.02vw;
+    }
+    .rt-system .unparalleled-app-control-img{
+        width: 21.09vw;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 2.72vw;
+    }
+    .rt-system .camera-runstop{
+        width: 27.94vw;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 5.89vw;
+    }
+      /*carousel */
+
+    .carousel-section{
+      padding: 10.67vw 4.51vw 0 4.51vw;
+    }
+
+    .text-primary{
+      color: rgba(123, 98, 242, 1) !important;
+    }
+
+    .text-shadow{
+      text-shadow: 0.4em 0.8em 1.6em rgba(0, 0, 0, 0.25);
+    }
+
+    .slider{
+      position: relative;
+    }
+
+    .slider .owl-item.active.center .slider-card{
+      transform: scale(1.1);
+      opacity: 1;
+      color: white;
+    }
+    .wave-card{
+      border: 0.05em solid rgba(255, 255, 255, 1) !important;
+      border-radius: 0.8em;
+      padding: 1.60vw 0 1.60vw 2.01vw;
+    }
+
+    .wave-card span{
+      margin-left: 0.83vw;
+    }
+
+    .slider-card{
+      background: transparent;
+      margin: 3.47vw 2.43vw 7.57vw 2.43vw;
+      border: 1px solid rgba(255, 255, 255, 1);
+      border-radius: 0.4em;
+      box-shadow: none;
+      color: white;
+      height: 23.40vw;
+      width: 23.75vw;
+    }
+
+    .slider-foot{
+      padding: 1.39vw 0;
+    }
+
+    .owl-carousel .owl-nav button.owl-next,
+    .owl-carousel .owl-nav button.owl-prev,
+    .owl-carousel button.owl-dot{
+      color: rgba(123, 98, 242, 1);
+    }
+
+    .owl-carousel .owl-nav button.owl-next{
+      position: absolute;
+      opacity: 1;
+      font-size: 5.8em !important;
+      z-index: 1;
+      top: 8.72vw;
+      line-height: 1;
+      right: -2.36vw;
+    }
+
+    .owl-carousel .owl-nav button.owl-prev{
+      position: absolute;
+      opacity: 1;
+      font-size: 5.8em !important;
+      z-index: 1;
+      line-height: 1;
+      top: 8.72vw;
+      left: -2.36vw;
+    }
+
+    .owl-stage{
+      display: flex;
+      align-items: center;
+    }
+    .carousel-col{
+      border: 0.05em solid rgba(230, 230, 231, 1);
+      width: 30.69vw;
+      height: 29.86vw;
+    }
+    /* .carousel{
+      position: static;
+    } */
+
+    .carousel-indicators{
+      left: 0;
+      top: 31.53vw;
+      right: auto;
+      margin-right: 0;
+      margin-bottom: 0;
+      margin-left: 0;
+    }
+
+    .carousel-indicators [data-bs-target]{
+      width: 6.99vw;
+      height: 6.81vw;
+      opacity: 1;
+      padding: 0.56vw;
+      border: 0.05em solid rgba(230, 230, 231, 1);
+      margin: 0 1.32vw 0 0 !important;
+    }
+    .owl-img-carousel{
+      position: relative;
+    }
+
+    .owl-img-carousel .owl-nav{
+      display: none !important;
+    }
+.rt-system .section-6{
+/*     background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/rt-talk-to-a-specialist-2.png?v=1655142131) no-repeat center; */
+    background-size: 100%;
+    min-height: 43.52vw;
+    position: relative;
+}
+.btn-contact-us{
+    font-size: 0.67em;
+    line-height: 1.19em;
+    font-weight: bold;
+    color: #fff;
+    background: #F04E23 !important;
+    padding: 1.30vw 2.05vw;
+    margin-top: 2.73vw;
+  	border:none;
+}
+  .btn-contact-us:hover, .btn-contact-us:focus{
+    color: #fff;
+    background: #939598 !important;
+    box-shadow: none;
+  }
+
+/*   .shoping-col .btn {
+    background: #F04E23 !important;
+    border:none;
+  }
+
+
+  .shoping-col .btn:hover {
+     background: #939598 !important;
+    border:none;
+  }
+
+  .shoping-col #affirm-learn-more__btn .btn {
+    border: 2px solid #f04e23 !important;
+    background:#fff !important;
+    color: #f04e23 !important;
+
+  }
+   */
+
+
+
+.rt-system .section-6 .inner-portion h2{
+    padding-top: 12.60vw;
+    margin-bottom: 0.64em;
+}
+.rt-system .section-7{
+/*     background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/A_La_Carte.png?v=1655141654) no-repeat center; */
+    background-size: 100%;
+    min-height: 38.04vw;
+    position: relative;
+}
+ .btn-Shop-a-la-carte{
+    font-size: 0.67em;
+    line-height: 1.24em;
+    font-weight: bold;
+    color: white;
+    background: #F04E23 !important;
+    padding: 1.16vw 3.76vw;
+    margin-top: 3.76vw;
+    font-family: HK Grotesk Pro; font-weight:700;
+    border:none;
+}
+
+.btn-Shop-a-la-carte:hover, .btn-Shop-a-la-carte:focus{
+  background:#939598 !important;
+  border:none;
+  box-shadow: none;
+}
+
+
+.rt-system .ending-text{
+    top: 12.87vw;
+    right: 8.69vw;
+    z-index:100;
+}
+.rt-system .section-5{
+    background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/Testimonial-Bg.png?v=1654723055) no-repeat center;
+    background-size: cover;
+    padding: 2.32vw 0;
+    position: relative;
+}
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot{color: #F04E23;}
+.rt-system .fs-12{
+    font-size: 0.5em;
+}
+.owl-carousel .owl-nav button.owl-next{
+    background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/next.svg?v=1654089595) no-repeat center center;
+    background-size: 1.73vw auto;
+    color: transparent !important;
+}
+.owl-carousel .owl-nav button.owl-prev{
+    background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/prev.svg?v=1654090696) no-repeat center center;
+    background-size: 1.73vw auto;
+    color: transparent !important;
+}
+.rt-system .fs-16{
+    font-size: 0.67em !important;
+    line-height: 1.5em;
+}
+.rt-system .nab-tab-btns.active, .rt-system .nab-tab-btns:hover{
+    background-color: #F04E23 !important;
+}
+.rt-system .tab2-img{
+    width: 40.75vw;
+    height: auto;
+}
+.mobile-break{
+        display: none;
+    }
+    .rt-system .tabers{
+        position: absolute;
+        left: 50%;
+        top: -7%;
+    }
+    .rt-system .tabers2{
+        position: absolute;
+        left: 58%;
+    }
+    .rt-system h2 small{
+        font-size: 0.43em;
+        line-height: 1.33em;
+        font-weight: 500;
+        margin-bottom: 0.33em;
+    }
+    .rt-system .play-btn-img{
+        width: 3.01vw;
+        height: 3.01vw;
+    }
+    .rt-system .upper-text h2{
+        font-size: 2.33em;
+        line-height: 1.14em;
+    }
+    .rt-system .section-3 p{
+        margin-bottom: 1.55em;
+    }
+    .rt-system .black-portion .row.m-0{
+        padding-left: 7.39vw;
+    }
+  @media (min-width: 2600px){
+      .rt-system{
+          font-size: 42px !important;
+          line-height: 56px;
+      }
+      .rt-system .banner{
+          background-size: 2598px auto;
+          min-height: 1281px;
+      }
+      .rt-system .banner-text{
+          left: 261px;
+          top: 295px;
+      }
+      .rt-system .banner-text a.btn-danger{
+          margin-top: 53px;
+      }
+      .rt-system .section-1{
+          min-height: 1249px;
+      }
+      .rt-system .section-1 .inner-portion{
+          margin-top: 170px;
+          margin-bottom: 188px;
+      }
+      .rt-system .inner-portion{
+          width: 2099px;
+      }
+      .rt-system .section-1 .row{
+          margin-top: 222px !important;
+      }
+      .rt-system .wireless-range-icon{
+          width: 142px;
+      }
+      .rt-system .motor-control-icon{
+          width: 140px;
+      }
+      .rt-system .advanced-conntrollers-icon{
+          width: 124px;
+      }
+      .rt-system .realtime-sh-overlays-icon{
+          width: 160px;
+      }
+      .rt-system .third-party{
+          width: 133px;
+      }
+      .rt-system .section-2{
+          min-height: 1970px;
+      }
+      .rt-system .section-2 .upper-text{
+          padding-top: 83px;
+          margin-bottom: 129px;
+      }
+      .rt-system .nab-tabs{
+          width: 1099px;
+          margin-bottom: 182px;
+          border-radius: 8px;
+      }
+      .rt-system .tab-content{
+          padding-bottom: 110px;
+      }
+      .rt-system .tab-ul{
+          margin-bottom: 55px !important;
+      }
+      .rt-system .btn-buy-now-sec-2{
+          margin-top: 24px;
+      }
+      .rt-system .section-3{
+          padding: 142px 0;
+      }
+      .rt-system .section-4{
+          padding-top: 174px;
+          padding-bottom: 169px;
+      }
+      .rt-system .text-muted{
+          font-size: 42px;
+      }
+      .rt-system .black-portion{
+          width: 2343px;
+          padding-top: 208px;
+          padding-bottom: 245px;
+          margin-top: 106px;
+          border-radius: 56px;
+      }
+      .rt-system .black-portion .row.m-0{
+          padding-left: 192px;
+      }
+      .rt-system .shd-overlays {
+    top: -70px;
+    left: 176px;
+    width: 1342px;
+    right: 0px;
+    bottom: -12px;
+}
+.rt-system .loop-video{
+    width: 1674px;
+}
+      .rt-system .circle-check{
+          width: 41px;
+          height: 41px;
+      }
+      .rt-system .ml-18{
+          margin-left: 32px;
+      }
+      .rt-system .shd1210{
+          width: 1562px;
+          margin-top: 216px;
+      }
+      .rt-system .black-portion2{
+          width: 2341px;
+          padding-left: 120px;
+          margin-top: 99px;
+          border-radius: 56px;
+          min-height: 897px;
+      }
+      .rt-system .black-portion2 .row.m-0{
+          min-height: 897px;
+      }
+      .rt-system .black-portion2 h3, .rt-system .black-portion2 p{
+          margin-bottom: 56px;
+      }
+      .rt-system hr{
+          height: 4px;
+          margin-bottom: 56px;
+      }
+      .rt-system .ml-14{
+          margin-left: 25px;
+      }
+      .rt-system .lense-mapping{
+          width: 968px;
+      }
+      .rt-system .black-portion3{
+          background-size: 100%;
+          width: 2341px;
+          padding-left: 120px;
+          margin-top: 99px;
+          padding-top: 172px;
+          border-radius: 56px;
+          padding-bottom: 72px;
+      }
+      .rt-system .black-portion3 h3, .rt-system .black-portion3 p{
+          margin-bottom: 56px;
+      }
+      .rt-system .range-finder{
+          width: 889px;
+          margin-top: -88px;
+      }
+      .rt-system .combo-portion{
+          width: 2341px;
+          margin-top: 156px;
+      }
+      .rt-system .combo{
+          width: 725px;
+      }
+      .rt-system .black-portion4{
+          border-radius: 56px;
+          padding-top: 124px;
+      }
+      .rt-system .daisy-chain-motor{
+          width: 652px;
+          margin-top: 62px;
+          margin-left: 72px;
+          padding-bottom: 26px;
+      }
+      .rt-system .unparalleled-app-control-img{
+          width: 547px;
+          margin-top: 70px;
+      }
+      .rt-system .camera-runstop{
+          width: 725px;
+          margin-top: 152px;
+      }
+      .rt-system .section-5{
+          padding: 60px 0;
+      }
+      .rt-system h4{
+          top: 177px;
+      }
+      .carousel-section{
+          padding: 277px 117px 0 117px;
+      }
+      .owl-carousel .owl-nav button.owl-prev{
+          top: 148px;
+          left: -61px;
+      }
+      .owl-carousel .owl-nav button.owl-next{
+          top: 148px;
+          right: -61px;
+      }
+      .rt-system .channel-kit{
+          margin-top: 74px;
+      }
+      .slider-card{
+          margin: 90px 63px 196px 63px;
+          height: 509px;
+          width: 614px;
+      }
+      .slider-foot{
+          padding: 36px 0;
+      }
+      .rt-system .tab2-img{
+    width: 933px;
+    height: auto;
+}
+.rt-system .lense-contron-kit-tab1-img{
+    width: 1065px;
+}
+.rt-system .play-btn-img{
+        width: 78px;
+        height: 78px;
+    }
+    .owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next{
+        background-size: 44px;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 768px){}
+  @media (max-width: 767px){
+    /* .banner .fluid-width-video-wrapper{ height: 72vh;} */
+    .rt-system .banner{ overflow: hidden;}
+    .banner.vis-m .fluid-width-video-wrapper iframe{transform: scale(1.5);}
+    .rt-system .loop-video{ width: 302px;}
+    .rt-system .loop-video .shd-overlays{     display: block !important;
+    bottom: auto;
+    top: 64px;
+    left: 13px;
+    width: 278px;}
+    .vis-d {
+     display:none;
+    }
+    .vis-m {
+     display:block;
+    }
+
+    .rt-system .iframe-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .rt-system .iframe-wrapper iframe {
+      width: 100vw;
+      height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+      min-height: 100vh;
+      min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .modal-lg {
+            max-width: 100%;
+        }
+
+        .btn-close {
+            right: -7px;
+            top: -16px;
+            padding: 0;
+        }
+
+        .modal-body {
+            padding: 0;
+        }
+  .btn.newsletter-sign-up-large {
+        display: none;
+    }
+
+  .btn.newsletter-sign-up-small {
+        display: block;
+    }
+    .desktop-break{
+        display: none;
+    }
+    .mobile-break{
+        display: block;
+    }
+    .carousel-section {
+      padding: 62px 35px 0 35px;
+    }
+    /*  */
+    .rt-system .banner{
+/*         background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/rt-banner-mobo.png?v=1654585632) no-repeat center; */
+        background-size: cover;
+        min-height: 579px;
+    }
+    .rt-system{
+        font-size: 16px !important;
+        line-height: 24px;
+    }
+    .rt-system h1 {
+    font-size: 56px;
+    line-height: 64px;
+    margin-bottom: 17px;
+    }
+    .rt-system h2{
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .rt-system .lead {
+    font-size: 24px !important;
+    line-height: 32px !important;
+    }
+    .rt-system .banner-text a.btn-danger {
+    font-size: 16px !important;
+    line-height: 24px !important;
+    padding: 16px 24px !important;
+    margin-top: 35px;
+    }
+
+    .rt-system a.btn-danger:hover {
+    	background:#939598 !important;
+     	border:none !important;
+    }
+
+    .rt-system .banner-text{
+        text-align: center;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .rt-system .section-1 {
+       min-height: 1122px;
+    }
+    .rt-system .section-1 .inner-portion{
+       margin-top: 56px;
+       margin-bottom: 10px;
+       width: auto;
+    }
+    .rt-system hr{
+        margin-bottom: 36px;
+        margin-top: 28px;
+        height: 2px;
+    }
+    .rt-system .section-1 .row{
+        margin-top: 45px;
+        padding-left: 17px;
+        padding-right: 17px;
+    }
+    .rt-system .wireless-range-icon{
+        width: 66px;
+    }
+    .rt-system .motor-control-icon{
+        width: 71px;
+    }
+    .rt-system .advanced-conntrollers-icon{
+        width: 56px;
+    }
+    .rt-system .realtime-sh-overlays-icon{
+        width: 75px;
+    }
+    .rt-system .third-party{
+        width: 62px;
+    }
+    .rt-system .section-1 .row .col-6.col-md{
+        margin-bottom: 50px;
+    }
+    .rt-system .section-1 .sec1-card-title{
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 9px;
+    }
+    .rt-system .section-1 .card-text{
+        font-size: 14px;
+        line-height: 16px;
+    }
+    .rt-system .section-2{
+        min-height: auto;
+    }
+    .rt-system .section-2 .upper-text h2{
+        color: #939598 !important;
+    }
+    .rt-system .section-2 .upper-text{
+        padding-top: 70px;
+        margin-bottom: 28px;
+    }
+    .rt-system .text-muted{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .rt-system .nab-tabs{
+        width: 276px;
+        margin-bottom: 53px;
+        border-radius: 8px;
+    }
+    .rt-system .nab-tab-btns{
+        font-size: 14px !important;
+        line-height: 16px !important;
+        padding: 16px 10px;
+    }
+    .rt-system .btn-tab1{
+        border-radius: 5px 0px 0px 5px;
+    }
+    .rt-system .btn-tab2{
+        border-radius: 0px 5px 5px 0px;
+    }
+    .rt-system .tabers{
+        position: relative;
+        left: 0;
+    }
+    .rt-system .mob-40{
+        font-size: 40px;
+        line-height: 48px;
+        margin-bottom: 19px;
+    }
+    .rt-system .price-details{
+        font-size: 24px;
+        line-height: 32px;
+        margin-bottom: 19px;
+    }
+    .rt-system .fs-20{
+        font-size: 16px !important;
+        line-height: 24px !important;
+    }
+    .rt-system .inner-portion .d-md-flex.justify-content-between{
+        padding-left: 45px;
+    }
+    .rt-system .inner-portion{
+        width: auto;
+    }
+    .rt-system .tab-pane .row{
+        padding-left: 50px;
+    }
+    .rt-system .lense-contron-kit-tab1-img{
+        max-width: 309px;
+        width: 100%;
+        margin-top: 40px;
+        margin-bottom: 100px;
+    }
+    .rt-system h6{
+        font-size: 12px;
+        line-height: 16px;
+    }
+    .rt-system .tab-li{
+        font-size: 16px !important;
+        line-height: 24px;
+        color: #939598;
+        margin-bottom: 19px;
+    }
+    .rt-system .btn-buy-now-sec-2{
+        font-size: 16px;
+        line-height: 24px;
+        padding: 17px 29px;
+        margin-top: 30px;
+        margin-bottom: 56px;
+    }
+    .rt-system .tab2-img{
+        width: 100%;
+        max-width: 282px;
+        margin-top: 35px;
+        margin-bottom: 50px;
+    }
+    .rt-system .tabers2{
+        position: relative;
+        left: 0;
+    }
+    .rt-system .section-3{
+        padding-top: 50px;
+        padding-bottom: 63px;
+    }
+    .rt-system .section-3 p.text-center{
+        padding: 0 25px;
+        font-size: 20px;
+        line-height: 32px;
+    }
+    .rt-system .section-3 h2{
+        margin-bottom: 28px;
+    }
+    .rt-system .section-4{
+        padding-top: 70px;
+        padding-bottom: 68px;
+    }
+    .rt-system .section-4 h2{
+        margin-bottom: 24px;
+    }
+    .rt-system .mt-24{
+        margin-top: 24px;
+    }
+    .rt-system .mb-mobo{
+        margin-bottom: 38px;
+    }
+    .rt-system .black-portion{
+        width: 330px;
+        margin: 0 auto;
+        border-radius: 32px;
+        padding-top: 47px;
+        padding-left: 0;
+        padding-bottom: 58px;
+    }
+    .rt-system h3 small{
+        font-size: 19px;
+        line-height: 24px;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+    }
+    .rt-system .ml-18{
+        margin-left: 32px;
+    }
+    .rt-system .black-portion ul li{
+        font-size: 16px;
+        line-height: 33px;
+    }
+    .rt-system .circle-check{
+        width: 21px;
+        height: 21px;
+    }
+    .rt-system .fs-12{
+        font-size: 12px;
+    }
+    .rt-system .shd1210{
+        max-width: 302px;
+        width: 100%;
+        margin-top: 40px;
+    }
+    .rt-system .icons-check{
+        position: relative;
+    }
+    .rt-system .icons-check::after{
+        content: "\f00c";
+        font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    position: absolute;
+    top: 0px;
+    left: 4px;
+    font-size: 14px;
+    color: #fff;
+    }
+    .rt-system .icons-check::before{
+        content: "";
+        display: block;
+        width: 21px;
+        height: 21px;
+        border-radius:100%;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 5px;
+        background-color: #F04E23;
+    }
+    .rt-system .black-portion2{
+        width: 330px;
+        margin: 28px auto;
+        border-radius: 32px;
+        background: #000000;
+        padding-top: 47px;
+        padding-left: 0;
+    }
+    .rt-system .black-portion .row{
+        padding: 0 25px;
+    }
+    .rt-system .black-portion2 .row{
+        padding: 0 32px;
+    }
+    .rt-system .black-portion2 h3, .rt-system .black-portion2 p, .rt-system .black-portion3 h3, .rt-system .black-portion3 p{
+        margin-bottom: auto;
+    }
+    .rt-system .play-btn-img{
+        width: 41px;
+        height: 41px;
+    }
+    .rt-system .ml-14{
+        margin-left: 14px;
+    }
+    .rt-system .play-btn{
+        font-size: 12px;
+        line-height: 16px;
+        margin-top: 32px;
+    }
+    .rt-system .black-portion3{
+        width: 330px;
+        border-radius: 32px;
+        background-image: none;
+        padding-top: 47px;
+        padding-left: 0;
+        padding-bottom: 0px;
+    }
+    .rt-system .black-portion3 .row{
+        padding: 0 30px;
+    }
+    .rt-system .black-portion3 .fs-16{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .rt-system .black-portion3-img-mob{
+        margin-top: 32px;
+    }
+    .rt-system .black-portion4{
+        width: 330px;
+        border-radius: 32px;
+        padding-top: 43px !important;
+        padding-left: 0;
+        padding-bottom: 0px;
+        overflow: hidden;
+    }
+    .rt-system .text-start-sm{
+        text-align: start !important;
+    }
+    .rt-system .combo.black-portion4{
+        padding: 0 29px;
+        margin-bottom: 28px;
+    }
+    .rt-system .fs-16{
+        font-size: 16px !important;
+        line-height: 24px;
+    }
+    .rt-system .combo-portion{
+        width: 330px;
+        margin-top: 50px;
+    }
+    .rt-system .daisy-chain-motor {
+    width: 320px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border-radius: 0px;
+    margin-left: 20px;
+    /* transform: scale(1.16); */
+}.rt-system .combo.black-portion4.first{
+
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+}
+.rt-system .combo.black-portion4.first > div{padding: 0 29px !important;}
+.rt-system .unparalleled-app-control-img{
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+    margin-top: 30px;
+    height: auto;
+}
+.rt-system .black-portion4.last{
+    padding-bottom: 25px !important;
+}
+.rt-system .camera-runstop {
+    width: 100%;
+    max-width: 329px;
+    height: auto;
+    margin: 0 auto;
+    transform: scale(1.2);
+    margin-top: 50px;
+  }
+  .rt-system .section-5 h4{
+      font-size: 32px;
+      line-height: 40px;
+      top: 57px;
+      left: 0;
+      right: 0;
+      text-align: center;
+  }
+  /*  */
+    .slider-card{
+    background: transparent;
+    margin: 110px auto 15px auto;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    box-shadow: none;
+    color: white;
+    width: 257px;
+    height: auto;
+}
+  .owl-carousel .owl-nav button.owl-prev {
+    position: absolute;
+    opacity: 1;
+    font-size: 131px !important;
+    z-index: 1;
+    top: 145px;
+    left: -38px;
+}
+.owl-carousel .owl-nav button.owl-next {
+    position: absolute;
+    opacity: 1;
+    font-size: 131px !important;
+    z-index: 1;
+    top: 145px;
+    right: -38px;
+}
+.owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next{
+    background-size: 15px auto;
+}
+.rt-system .slider-foot p.fs-16{
+    font-size: 14px !important;
+    line-height: 16px;
+}
+.rt-system .pspe-4{
+    padding-left: 3px;
+    padding-right: 3px;
+}
+/*  */
+.rt-system .section-5{
+    background: url(https://cdn.shopify.com/s/files/1/0095/4332/files/Testimonial-Bg-Mobile.png?v=1654724616) no-repeat center;
+    background-size: cover;
+    padding: auto;
+}
+.slider-foot {
+    padding: 11px 11px;
+}
+.rt-system .lense-mapping{
+    width: 100%;
+    height: auto;
+    margin-top: 80px;
+}
+.rt-system .upper-text h2{
+    font-size: 32px;
+    line-height: 40px;
+}
+.rt-system .section-3 h2{
+    font-size: 32px;
+    line-height: 40px;
+}
+.rt-system .section-4 h2{
+    color: #fff !important;
+}
+.rt-system .text-md-uppercase{
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+.rt-system h2 small{
+    font-size: 12px;
+}
+.rt-system .section-5 h2{
+    top: 56px;
+}
+.rt-system .black-portion .row.m-0{
+    padding-left: 24px;
+}
+}
+
+
+
+
+</style>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+
+<section class="rt-system">
+
+    <section class=" vis-d banner position-relative">
+    <iframe src="https://player.vimeo.com/video/718120926?h=168aaaa6f6&amp;background=1&amp;controls=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Teradek RT LP_Hero Video"></iframe>
+        <div class="banner-text">
+            <h1 class="text-danger">Teradek RT</h1>
+            <p class="text-white">Premium wireless lens control, <br> now more accessible than ever</p>
+            <a href="#" name = "shop" class="btn btn-danger fw-bold">Shop Now</a>
+        </div>
+    </section>
+
+    <section class=" vis-m banner position-relative">
+<iframe src="https://player.vimeo.com/video/718120232?h=1a7a0fe4e4&amp;background=1&amp;controls=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Teradek RT"></iframe>
+        <div class="banner-text">
+            <h1 class="text-danger">Teradek RT</h1>
+            <p class="text-white">Premium wireless lens control, <br> now more accessible than ever</p>
+            <a href="#" name = "shop" class="btn btn-danger fw-bold">Shop Now</a>
+        </div>
+    </section>
+
+
+    <section class="section-1">
+        <div class="inner-portion">
+            <div class="d-md-flex justify-content-between">
+                <div>
+                    <h2>Teradek RT is <br class="desktop-break"> <br class="mobile-break"> everything you want <br class="mobile-break"><br class="desktop-break"> in a FIZ system. <br class="desktop-break"><br class="mobile-break">
+                        <span class="text-black">And more.</span>
+                    </h2>
+                    <hr class="d-block d-md-none bg-danger w-50 rounded-pill">
+                </div>
+                <div>
+                    <p><span class="ms-auto">Wirelessly control focus, iris, and zoom <br class="desktop-break"><br class="mobile-break"> with the efficiency and accuracy you <br class="mobile-break"> need <br class="desktop-break">
+                        to get the shot. Make your <br class="mobile-break"> hardware work <br class="desktop-break"> for you with a <br class="mobile-break"> comprehensive ecosystem <br class="desktop-break"> of SmallHD <br class="mobile-break"> and third-party tools.</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row align-items-end justify-content-center m-0">
+                <div class="col-6 col-md px-0">
+                    <div class="card text-center border-0">
+                        <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/wireless-range-icon.svg?v=1653659785" class="wireless-range-icon" alt="wireless range icon">
+                        <div class="card-body px-0">
+                          <h5 class="sec1-card-title fw-bold text-uppercase">5000ft <br> Wireless Range</h5>
+                          <p class="card-text">Interference <br class="mobile-break"> resistant <br class="desktop-break"> FHSS <br class="mobile-break"> 2.4GHz wireless</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md px-0">
+                    <div class="card text-center border-0">
+                        <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/motor-control-icon.svg?v=1653660429" class="motor-control-icon" alt="Motor Controller">
+                        <div class="card-body px-0">
+                          <h5 class="sec1-card-title fw-bold text-uppercase">Precise Motor <br> control</h5>
+                          <p class="card-text">Simultaneous <br class="mobile-break"> focus, iris, <br class="desktop-break"> and <br class="mobile-break"> zoom control</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md px-0">
+                    <div class="card text-center border-0">
+                        <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/advanced-conntrollers-icon.svg?v=1653660444" class="advanced-conntrollers-icon" alt="Advanced Controllers">
+                        <div class="card-body px-0">
+                          <h5 class="sec1-card-title fw-bold text-uppercase">Advanced <br> Controllers</h5>
+                          <p class="card-text">Up to 6 mappable <br class="mobile-break"> axes <br class="desktop-break"> with fluid-feel <br class="mobile-break"> control</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md px-0">
+                    <div class="card text-center border-0">
+                        <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/realtime-sh-overlays-icon.svg?v=1653660515" class="realtime-sh-overlays-icon" alt="Real Time SmallHD Overlays">
+                        <div class="card-body px-0">
+                          <h5 class="sec1-card-title fw-bold text-uppercase">REal-Time <br>  SmallHD Overlays</h5>
+                          <p class="card-text">On-screen lens <br class="mobile-break"> data <br class="desktop-break"> and focus <br class="mobile-break"> marks</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md px-0">
+                    <div class="card text-center border-0">
+                        <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/third-party-icon.svg?v=1654155836" class="third-party" alt="Third Party Integration">
+                        <div class="card-body px-0">
+                          <h5 class="sec1-card-title fw-bold text-uppercase">3rd-Party <br>integrations</h5>
+                          <p class="card-text">Compatible with <br class="mobile-break"> Focusbug <br class="desktop-break">and <br class="mobile-break"> Cine RT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-2 bg-webdark">
+        <div class="inner-portion">
+            <div class="upper-text">
+                <h2 class="text-muted text-center">Lens control kits <br class="mobile-break"> made easy.</h2>
+                <p class="text-white text-center">Pick a kit that best suits your needs, then <br class="mobile-break"> expand as needed.<br class="desktop-break"> We’ve simplified the <br class="mobile-break"> Teradek RT kits to get you working right <br class="desktop-break"><br class="mobile-break"> out of the box.
+                </p>
+            </div>
+            <ul class="nav justify-content-center nab-tabs" id="pills-tab" role="tablist">
+                <li class="nav-item w-50 mb-0" role="presentation">
+                    <button class="nav-link w-100 nab-tab-btns btn-tab1 active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                       type="button" role="tab" aria-controls="pills-home" aria-selected="true">Single Channel Kit
+                    </button>
+                </li>
+                <li class="nav-item w-50 mb-0" role="presentation">
+                    <button class="nav-link w-100 nab-tab-btns btn-tab2" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab"
+                      aria-controls="pills-profile" aria-selected="false">FIZ Kit
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="row position-relative">
+                        <div class="col-md-6">
+                            <h2 class="text-white mob-40">
+                                Single <br class="mobile-break"> Channel Kit
+                            </h2>
+                            <p class="text-white price-details">Starting at $3,499</p>
+                            <div class="channel-kit">
+                                <p class="fs-20 text-muted">Hit the ground running with the single axis system that <br class="desktop-break"> pays for itself in no <br class="mobile-break"> time.
+                                    Ideal for any camera <br class="mobile-break"> configuration <br class="desktop-break"> that prioritizes speed,<br class="mobile-break"> size, and weight. Expandable
+                                    to meet <br class="mobile-break"><br class="desktop-break"> your needs by adding new components <br class="mobile-break"> and integrations.
+                                </p>
+                                <div class="d-none d-md-block">
+                                    <h6 class="card-title text-danger">CTRL.1</h6>
+                                    <ul class="m-0 ps-0 tab-ul">
+                                        <li class="text-muted fs-16">Lightweight single axis controller with lens mapping.</li>
+                                    </ul>
+                                    <h6 class="card-title text-danger">MDR.S</h6>
+                                    <ul class="m-0 ps-0 tab-ul">
+                                        <li class="text-muted fs-16">Incredibly compact receiver with up to 3 channels of lens control.</li>
+                                    </ul>
+                                    <h6 class="card-title text-danger">MK3.1 LENS MOTOR</h6>
+                                    <ul class="m-0 ps-0 tab-ul">
+                                        <li class="text-muted fs-16">Quiet, responsive motor setting the standard for accuracy.</li>
+                                    </ul>
+                                    <a href="#" name="shop" class="btn btn-buy-now-sec-2 btn-danger">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md px-0 tabers">
+                            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/Kit_Image.png?v=1654719356" class="lense-contron-kit-tab1-img d-none d-md-block" alt="lense-control-kit-1">
+                            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/Kit_Image-Mob-Tab-1_0f47ed8b-d591-41aa-b187-841cc26c52ef.png?v=1654763357" class="lense-contron-kit-tab1-img d-block d-md-none" alt="lense-control-kit-1">
+                            <div class="d-block d-md-none">
+                                <h6 class="card-title text-danger">CTRL.1</h6>
+                                <ul class="m-0 ps-0 tab-ul">
+                                    <li class="text-muted fs-16 tab-li">Lightweight single axis controller with <br> lens mapping.</li>
+                                </ul>
+                                <h6 class="card-title text-danger">MDR.S</h6>
+                                <ul class="m-0 ps-0 tab-ul">
+                                    <li class="text-muted fs-16 tab-li">Incredibly compact receiver with up <br> to 3 channels of lens control.</li>
+                                </ul>
+                                <h6 class="card-title text-danger">MK3.1 LENS MOTOR</h6>
+                                <ul class="m-0 ps-0 tab-ul">
+                                    <li class="text-muted fs-16 tab-li">Quiet, responsive motor setting the <br> standard for accuracy.</li>
+                                </ul>
+                                <a href="https://teradek.com/products/rt-single-channel-wireless-lens-control-kit?variant=42024613576882" name="shop" class="btn btn-buy-now-sec-2 bg-danger">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="row position-relative">
+                        <div class="col-md px-0">
+                            <h2 class="text-white mob-40">
+                                FIZ Kits
+                            </h2>
+                            <p class="text-white price-details">Starting at $5,399</p>
+                            <div class="channel-kit">
+                                <p class="fs-20 text-muted">The 3 channel FIZ system ready for <br class="mobile-break"> anything because your job <br class="desktop-break">
+                                    depends on <br class="mobile-break"> it. All the features needed for major <br class="mobile-break"> multi-camera setups <br class="desktop-break">
+                                    where lens <br class="mobile-break"> control lives on the camera. Expand <br class="mobile-break"> with additional motors <br class="desktop-break">
+                                    or a CTRL.1 <br class="mobile-break"> hand unit for the DP or DIT to control <br class="mobile-break"> iris separately.
+                                </p>
+                                <div class="d-none d-md-block">
+                                    <h6 class="card-title text-danger">CTRL.3</h6>
+                                    <ul class="m-0 ps-0 tab-ul">
+                                        <li class="text-muted fs-16">Wireless 3 axis controller with lens <br class="mobile-break"> mapping and Bluetooth <br class="desktop-break"> RT App control.</li>
+                                    </ul>
+                                    <h6 class="card-title text-danger">MDR.X</h6>
+                                    <ul class="m-0 ps-0 tab-ul">
+                                        <li class="text-muted fs-16">Lightweight receiver with a 5,000 ft<br class="mobile-break"> range, three motor ports, and<br class="desktop-break"> two<br class="mobile-break"> accessory inputs.</li>
+                                    </ul>
+                                    <h6 class="card-title text-danger">MK3.1</h6>
+                                    <ul class="m-0 ps-0 tab-ul">
+                                        <li class="text-muted fs-16">Brushless, high-speed motor with smooth<br class="mobile-break"> and silent operation and adjustable torque.</li>
+                                    </ul>
+                                    <a href="https://teradek.com/products/rt-fiz-wireless-lens-control?variant=42272944619698" name="shop" class="btn btn-buy-now-sec-2 bg-danger">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md tabers2">
+                            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/Fiz-Kits.png?v=1662658066" class="tab2-img d-none d-md-block" alt="FIZ Kit">
+                            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/Fiz-Kits-Mobile-2b.png?v=1662658816" class="tab2-img d-block d-md-none" alt="FIZ Kit">
+                            <div class="d-block d-md-none">
+                                <h6 class="card-title text-danger">CTRL.3</h6>
+                                <ul class="m-0 ps-0 tab-ul">
+                                    <li class="fs-20  fs-16 tab-li">Wireless 3-axis controller with lens <br> mapping and Bluetooth RT App control.</li>
+                                </ul>
+                                <h6 class="card-title text-danger">MDR.X OR MDR.S</h6>
+                                <ul class="m-0 ps-0 tab-ul">
+                                    <li class="fs-20  fs-16 tab-li">Choose between the lightweight <br> MDR.X receiver with three motor <br> ports and two accessory inputs or the<br> incredibly compact MDR.S</li>
+                                </ul>
+                                <h6 class="card-title text-danger">MOTR.X</h6>
+                                <ul class="m-0 ps-0 tab-ul">
+                                    <li class="fs-20  fs-16 tab-li">High-speed, silent motor with adjustable <br> torque and daisy-chain connectivity.</li>
+                                </ul>
+                                <a href="#" name="shop" class="btn btn-buy-now-sec-2 bg-danger">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-3 bg-warmlight">
+        <div class="inner-portion">
+            <h2 class="text-center text-muted">Expand and Customize <br class="desktop-break"> <br class="mobile-break"> Your System</h2>
+            <p class="text-center fs-20">Teradek RT scales to any production out of the box: any lens, up to 3 <br class="desktop-break">
+                motors, up to 3 hand units, 19mm or 15mm rod mounting, <br class="mobile-break">and more.
+            </p>
+            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/Camera-Img-Diagram.png?v=1654721708" class="w-100 d-none d-md-block" alt="Scale Production">
+            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/Slice_1_5e9eb722-03af-4134-8eb2-e0960beda616.png?v=1654757171" class="d-block d-md-none" alt="Scale Production">
+        </div>
+    </section>
+    <section class="section-4 bg-webdark">
+        <h2 class="text-center text-white text-muted">Premium Features <br class="mobile-break"> & Integrations</h2>
+        <p class="text-white text-center mb-mobo">All the features that make you a rock star on <br class="mobile-break"> set without  compromising <br class="desktop-break">
+            quality or <br class="mobile-break"> performance. Our innovations and 3rd-party <br class="mobile-break"> integrations are <br class="desktop-break">
+            developed from thorough <br class="mobile-break"> R&D and valuable user feedback.
+        </p>
+        <div class="black-portion">
+            <div class="row m-0">
+                <div class="col-md-7 px-0">
+                    <h2 class="text-white">
+                        <small class="text-danger d-block text-md-uppercase">An Industry First</small>
+                        SmallHD Lens <br class="desktop-break"><br class="mobile-break"> Data Overlays
+                    </h2>
+                    <p class="text-muted">Teradek's reputation for innovation and <br class="desktop-break">
+                        collaboration allows us to build beyond our own <br class="desktop-break">
+                        ecosystem of products. Teradek RT, when paired <br class="desktop-break">
+                        with SmallHD monitors, can now display an <br class="desktop-break">  intuitive
+                        and unobtrusive overlay of lens data <br class="desktop-break"> including focus, iris,
+                        and zoom marks with no <br class="desktop-break"> latency. No more
+                        looking down at the hand unit to <br class="desktop-break"> check marks. Keep
+                        your eyes on the shot and <br class="desktop-break"> perform at your best.
+                    </p>
+                </div>
+                <div class="col-md align-self-center px-0 mt-24">
+                    <ul class="ps-0 ms-0">
+                        <li class="text-muted d-flex align-items-center mb-0 icons-check justify-content-start">
+                            <span class="circle-check position-relative d-none d-md-flex">
+                                <i class="fas fa-check fs-12 text-white"></i>
+                            </span>
+                            <span class="ml-18">Zero-latency <span class="d-inline d-md-none"> overlays</span></span>
+                        </li>
+                        <li class="text-muted d-flex align-items-center mb-0 icons-check justify-content-start">
+                            <span class="circle-check position-relative d-none d-md-flex">
+                                <i class="fas fa-check fs-12 text-white"></i>
+                            </span>
+                            <span class="ml-18">On-screen focus markers</span>
+                        </li>
+                        <li class="text-muted d-flex align-items-center mb-0 icons-check justify-content-start">
+                            <span class="circle-check position-relative d-none d-md-flex">
+                                <i class="fas fa-check fs-12 text-white"></i>
+                            </span>
+                            <span class="ml-18">Pinch-to-zoom focus scale</span>
+                        </li>
+                        <li class="text-muted d-flex align-items-center mb-0 icons-check justify-content-start">
+                            <span class="circle-check position-relative d-none d-md-flex">
+                                <i class="fas fa-check fs-12 text-white"></i>
+                            </span>
+                            <span class="ml-18">Integration with TOF.1 Rangefinder</span>
+                        </li>
+                        <li class="text-muted d-flex align-items-center mb-0 icons-check justify-content-start">
+                            <span class="circle-check position-relative d-none d-md-flex">
+                                <i class="fas fa-check fs-12 text-white"></i>
+                            </span>
+                            <span class="ml-18">Axis limits</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="position-relative loop-video">
+                <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/black-portion-img.png?v=1654265103" class="shd1210 d-none d-md-block" alt="">
+                <div class="ratio ratio-16x9 position-absolute shd-overlays d-none d-md-block">
+
+                        <iframe src="https://player.vimeo.com/video/717609520?muted=1&h=be0e641cda&badge=0&autoplay=1&loop=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;" title="Teradek RT Overlays_PageOS 5_Looped_UHD_HEVC_V1.mp4"></iframe>
+                </div>
+            </div>
+            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/mob-shd.png?v=1654233904" class="shd1210 d-block d-md-none" alt="">
+        </div>
+        <div class="black-portion2">
+            <div class="row m-0">
+                <div class="col-md-6 px-0 align-self-center">
+                    <h2 class="text-white mob-40"><small class="d-block text-danger text-md-uppercase">Natively Integrated</small> Lens Mapping</h2>
+                    <!-- <hr class="bg-danger w-50 d-none d-md-block">
+                    <hr class="bg-danger d-block d-md-none"> -->
+                    <p class="text-muted">Auto-calibrate lenses to  pre-<br class="mobile-break">marked imperial or <br class="desktop-break"> metric focus<br class="mobile-break"> rings at the  push of a button.</p>
+                    <button type="button" data-src="https://player.vimeo.com/video/301290121" class="text-white text-decoration-none fw-bold play-btn" data-bs-target="#modal-video1" data-bs-toggle="modal">
+                        <span>
+                            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/play.svg?v=1653929624" class="play-btn-img"></span> <span class="ml-14 text-uppercase">watch LENS mapping video
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/Lens-mapping-bg-mobile.png?v=1654724271" class="lense-mapping d-block d-md-none" alt="lense-mapping">
+        </div>
+        <div class="black-portion3">
+            <div class="row m-0">
+                <div class="col-md-6 px-0">
+                    <h2 class="text-white mob-40"><small class="d-block text-danger text-md-uppercase">Industry Standard</small> Rangefinder Integrations</h2>
+                    <!-- <hr class="bg-danger w-50 d-none d-md-block">
+                    <hr class="bg-danger d-block d-md-none"> -->
+                    <p class="text-muted">MDR.X works seamlessly with leading<br class="mobile-break"> brands<br class="desktop-break"> such as FocusBug, Cine RT,<br class="mobile-break"> and <a href="https://teradek.com/products/tof-1?variant=37242483048626" class="text-underline text-muted d-inline">TOF.1</a></p>
+                    <button type="button" data-src="https://www.youtube.com/embed/j4G6qDhaYn8" class="text-white text-decoration-none fw-bold play-btn" data-bs-target="#modal-video1" data-bs-toggle="modal">
+                        <span>
+                            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/play.svg?v=1653929624" class="play-btn-img"></span> <span class="ml-14 text-uppercase">watch TOF.1 in action
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/mob-3.png?v=1654237210" class="black-portion3-img-mob d-block d-md-none" alt="">
+        </div>
+        <div class="d-md-flex justify-content-between combo-portion">
+            <div class="combo black-portion4 first px-0">
+                <div>
+                <h3 class="text-white text-center text-start-sm mob-40">Daisy Chain <br> Motors</h3>
+                <hr class="bg-danger w-50 mx-auto d-none d-md-block">
+                <hr class="bg-danger d-block d-md-none">
+                <p class="text-center text-muted fs-20 d-none d-md-block">Reduce weight and clutter on your rig <br> by daisy chaining MOTR.X, allowing <br> for shorter, cleaner cable runs.</p>
+                <p class="text-start-sm text-muted fs-16 d-block d-md-none">Reduce weight and clutter on your rig by daisy chaining MOTR.X.</p>
+            </div>
+                <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/daisy-chain-motors_e1ec8fa8-9960-4441-aeb4-b68c53a452ea.png?v=1654580516" class="daisy-chain-motor d-none d-md-block" alt="">
+                <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/Slice_3_afdcb602-06a4-4cb4-bef4-775250ae1542.png?v=1654759670" class="daisy-chain-motor d-block d-md-none" alt="">
+            </div>
+            <div class="combo black-portion4">
+                <h3 class="text-white text-center mob-40 text-start-sm">Unparalleled <br class="desktop-break"> App Control</h3>
+                <hr class="bg-danger w-50 mx-auto d-none d-md-block">
+                <hr class="bg-danger d-block d-md-none">
+                <p class="text-center text-muted fs-20 text-start-sm">Perform nearly all CTRL.3<br class="mobile-break"> functions <br class="desktop-break"> from an iOS device<br class="mobile-break"> over Bluetooth. <br class="desktop-break"> Configure and<br class="mobile-break"> control motors and <br class="desktop-break"> controller<br class="mobile-break"> settings, map lenses, run/<br class="desktop-break"> stop,<br class="mobile-break"> and firmware updates.</p>
+                <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/unparallel-app-control.png?v=1654582342" class="unparalleled-app-control-img d-none d-md-block" alt="">
+                <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/device-settings-mob.png?v=1654239868" class="unparalleled-app-control-img d-block d-md-none" alt="">
+            </div>
+            <div class="combo black-portion4 last">
+                <h3 class="text-white text-center mob-40 text-start-sm">Camera <br class="mobile-break"><br class="desktop-break"> Run/Stop</h3>
+                <hr class="bg-danger w-50 mx-auto d-none d-md-block">
+                <hr class="bg-danger d-block d-md-none">
+                <p class="text-center text-muted text-start-sm fs-20"> Reliably start and stop recording on<br class="mobile-break"> all <br class="desktop-break"> major cameras from the hand<br class="mobile-break"> unit on or <br class="desktop-break"> near set and keep<br class="mobile-break"> production moving.
+                </p>
+                <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/camera-runstop.png?v=1653934327" class="camera-runstop d-none d-md-block" alt="">
+                <img src="https://cdn.shopify.com/s/files/1/0095/4332/files/camera-run-stop-mobo.png?v=1654249611" class="camera-runstop d-block d-md-none" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="section-5">
+        <h2 class="text-white text-center position-absolute start-0 end-0">See Why Focus <br class="desktop-break"> Pullers<br class="mobile-break"> Choose RT</h2>
+        <div class="carousel-section">
+            <div class="slider" class="pt-5">
+              <div class="">
+                <div class="slider">
+                  <div class="owl-carousel">
+                    <div class="slider-card position-relative d-flex flex-column overflow-hidden">
+                      <div class="flex-fill d-flex justify-content-center">
+                        <p class="fs-20 p-0 my-auto text-center py-4 pspe-4">“I was surprised how easy and <br class="desktop-break"> intuitive it was to set up. The <br class="desktop-break"> Teradek RT system is a bit more <br class="desktop-break">
+                            lightweight and handier. ‘Plug <br class="desktop-break"> and play’ is a true description.”
+                        </p>
+                      </div>
+                      <div class="bg-white slider-foot text-center">
+                        <p class="text-danger fs-16 p-0 m-0 text-shadow"><span style="font-weight:600">Peter Heinrichs,</span> <i> Cinematographer and 1st AC</i></p>
+                      </div>
+                    </div>
+                    <div class="slider-card position-relative d-flex flex-column overflow-hidden">
+                      <div class="flex-fill d-flex justify-content-center">
+                        <p class="fs-20 p-0 my-auto text-center py-4 pspe-4">“Honestly TOF.1 looks, pardon <br class="desktop-break"> me for saying, badass.”</p>
+                      </div>
+                      <div class="bg-white slider-foot text-center">
+                        <p class="text-danger p-0 m-0 fs-16 text-shadow"><span style="font-weight:600"> Henrikas Genutis,</span><i> ICG Local 600</i></p>
+                      </div>
+                    </div>
+                    <div class="slider-card position-relative d-flex flex-column overflow-hidden">
+                      <div class="text-center flex-fill d-flex justify-content-center">
+                        <p class="fs-20 p-0 my-auto text-center py-4 pspe-4">"The MDR.S is by far the <br class="desktop-break"> lightest and smallest footprint <br class="desktop-break"> of any MDR on the market right <br class="desktop-break"> now. Reliability and form factor <br class="desktop-break"> are the two most essential <br class="desktop-break"> characteristics in an MDR, and <br class="desktop-break"> the MDR.S has both."</p>
+                      </div>
+                      <div class="bg-white slider-foot text-center">
+                        <p class="text-danger p-0 m-0 fs-16 text-shadow"><span style="font-weight:600">Lane Stevens,</span> <i> 1st AC</i></p>
+                      </div>
+                    </div>
+                    <div class="slider-card position-relative d-flex flex-column overflow-hidden">
+                        <div class="text-center flex-fill d-flex justify-content-center">
+                          <p class="fs-20 p-0 my-auto text-center py-4 pspe-4">“I always have the RT and I <br class="desktop-break"> love the reliability. It instantly <br class="desktop-break"> works and I can trust it. It’s <br class="desktop-break"> super strong and sturdy.”</p>
+                        </div>
+                        <div class="bg-white slider-foot text-center">
+                          <p class="text-danger p-0 m-0 fs-16 text-shadow"><span style="font-weight:600"> Benjamin Hardman,</span><i> Natural History DP</i></p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+    <div class="modal fade" id="modal-video1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-end"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button></div>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="" title="YouTube video player" id="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+<!-- Owl Carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- custom JS code after importing jquery and owl -->
+
+<!-- <script type="text/javascript">// <![CDATA[
+    $().ready(function () {
+        affirm.ui.ready(function () {
+            $("#affirm-learn-more__btn").click(function () {
+                $("#affirm-learn-more_ .affirm-modal-trigger").click();
+            })
+        });
+    })
+// ]]></script> -->
+<script>
+    jQuery(document).ready(function () {
+
+        jQuery('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            infinite: true,
+            responsiveClass: true,
+            center: true,
+            nav: true,
+            arrows: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                576: {
+                    items: 1,
+                },
+                768: {
+                    items: 3,
+                },
+                1000: {
+                    items: 3,
+                    loop: true
+                }
+            }
+        })
+
+    });
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+
+</script>
+
+
+<!-- <script src="https://player.​vimeo.​com/api/player.​js"></script> -->
