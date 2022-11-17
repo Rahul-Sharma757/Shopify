@@ -8,227 +8,58 @@
   })
 </script>
 <style>
-  #{{ section.settings.uuid }}
+
+  #{{ section.settings.uuid }}{ 
+      {% if section.settings.section-bg != blank %}
+          background-image:url({{ section.settings.section-bg | img_url:'master'}});
+      {% endif %}
+      background-size: {{ section.settings.section-bg-size }};
+      background-color: {{ section.settings.section-bg-color }};
+      background-position: {{ section.settings.bg-position }};
+      background-repeat: {{ section.settings.bg-repeat }};
+      min-height: {{section.settings.section-min-height }};
+      overflow-x: hidden;
   }
-
-    {
-      {
-      % if section.settings.section-bg !=blank %
-    }
-
-    background-image:url({{ section.settings.section-bg | img_url:'master'}});
-
-      {
-      % endif %
-    }
-
-    background-size: {
-        {
-        section.settings.section-bg-size
-      }
-    }
-
-    ;
-
-    background-color: {
-        {
-        section.settings.section-bg-color
-      }
-    }
-
-    ;
-
-    background-position: {
-        {
-        section.settings.bg-position
-      }
-    }
-
-    ;
-
-    background-repeat: {
-        {
-        section.settings.bg-repeat
-      }
-    }
-
-    ;
-
-    min-height: {
-        {
-        section.settings.section-min-height
-      }
-    }
-
-    ;
-    overflow-x: hidden;
+  .section{padding:{{section.settings.custom-padding}};}
+  {% if section.settings.show_left_fade == true %}
+  #{{ section.settings.uuid }} .{{ section.settings.container-class }}:before{
+      content:'';
+      Display:block;
+      background: linear-gradient(90deg, {{section.settings.fade_color-left}} 0%, rgba(0,0,0,0) {{section.settings.left_fade_percentage}});
+      height:100%;
+      width:100%;
+      position:absolute;
+      top:0;
+      left:-17.4%;
   }
-
-  .section {
-    padding: {
-        {
-        section.settings.custom-padding
-      }
-    }
-
-    ;
+  {% endif %}
+  
+  {% if section.settings.show_right_fade == true %}
+  #{{ section.settings.uuid }} .{{ section.settings.container-class }}:after{
+      content:'';
+      Display:block;
+      background: linear-gradient(270deg, {{section.settings.fade_color-right}} 0%, rgba(0,0,0,0) {{section.settings.right_fade_percentage}});
+      height:100%;
+      width:100%;
+      position:absolute;
+      top:0;
+      right:-17.4%;
   }
+  {% endif %}
 
-    {
-    % if section.settings.show_left_fade==true %
+  .gradient-bg{background: linear-gradient({{block.settings.color-position}}270deg, {{section.settings.fade_color-right}} 0%, rgba(0,0,0,0) {{section.settings.right_fade_percentage}});}
+  @media (max-width:767px){
+      #{{ section.settings.uuid }}{ 
+      {% if section.settings.section-mobile-bg != blank %}
+          background-image:url({{ section.settings.section-mobile-bg | img_url:'master'}});
+      {% endif %}
+      background-size: {{ section.settings.section-mobile-bg-size }};
+      background-color: {{ section.settings.section-mobile-bg-color }};
+      background-position: {{ section.settings.mobile-bg-position }};
+      background-repeat: {{ section.settings.mobile-bg-repeat }};
+      min-height: {{section.settings.section-mobile-min-height }};
   }
-
-  #{{ section.settings.uuid }}
-  }
-
-  . {
-      {
-      section.settings.container-class
-    }
-  }
-
-  :before {
-    content: '';
-    Display: block;
-
-    background: linear-gradient(90deg, {
-        {
-        section.settings.fade_color-left
-      }
-    }
-
-    0%, rgba(0, 0, 0, 0) {
-        {
-        section.settings.left_fade_percentage
-      }
-    });
-  height:100%;
-  width:100%;
-  position:absolute;
-  top:0;
-  left:-17.4%;
-  }
-
-    {
-    % endif %
-  }
-
-    {
-    % if section.settings.show_right_fade==true %
-  }
-
-  #{{ section.settings.uuid }}
-  }
-
-  . {
-      {
-      section.settings.container-class
-    }
-  }
-
-  :after {
-    content: '';
-    Display: block;
-
-    background: linear-gradient(270deg, {
-        {
-        section.settings.fade_color-right
-      }
-    }
-
-    0%, rgba(0, 0, 0, 0) {
-        {
-        section.settings.right_fade_percentage
-      }
-    });
-  height:100%;
-  width:100%;
-  position:absolute;
-  top:0;
-  right:-17.4%;
-  }
-
-    {
-    % endif %
-  }
-
-  .gradient-bg {
-    background: linear-gradient({
-        {
-        block.settings.color-position
-      }
-    }
-
-    270deg, {
-      {
-      section.settings.fade_color-right
-    }
-  }
-
-  0%, rgba(0, 0, 0, 0) {
-      {
-      section.settings.right_fade_percentage
-    }
-  });
-  }
-
-  @media (max-width:767px) {
-    #{{ section.settings.uuid }}
-  }
-
-    {
-      {
-      % if section.settings.section-mobile-bg !=blank %
-    }
-
-    background-image:url({{ section.settings.section-mobile-bg | img_url:'master'}});
-
-      {
-      % endif %
-    }
-
-    background-size: {
-        {
-        section.settings.section-mobile-bg-size
-      }
-    }
-
-    ;
-
-    background-color: {
-        {
-        section.settings.section-mobile-bg-color
-      }
-    }
-
-    ;
-
-    background-position: {
-        {
-        section.settings.mobile-bg-position
-      }
-    }
-
-    ;
-
-    background-repeat: {
-        {
-        section.settings.mobile-bg-repeat
-      }
-    }
-
-    ;
-
-    min-height: {
-        {
-        section.settings.section-mobile-min-height
-      }
-    }
-
-    ;
-  }
-  }
-</style>
+  </style>
 <section id="{{ section.settings.uuid }}" class="section {{ section.settings.section-class }}">
   <div class="{{ section.settings.container-class }} {{section.settings.spacing-container-class}}">
     {% for block in section.blocks %}
@@ -250,26 +81,14 @@
 
     {% if block.type == 'gridBlock' %}
     <style>
-      .cs-lp-grid-- {
-          {
-          block.settings.csGrid
-        }
-      }
-
-        {
+      .cs-lp-grid--{{block.settings.csGrid}}
+      {
         display: grid;
         margin: 0 auto;
         justify-content: center;
         justify-items: center;
         align-items: end;
-
-        grid-template-columns: repeat({
-            {
-            block.settings.productItems
-          }
-        }
-
-        , 1fr);
+        grid-template-columns: repeat({{block.settings.productItems}}, 1fr);
       }
     </style>
     <div class="cs-lp-grid--{{block.settings.csGrid}}"
