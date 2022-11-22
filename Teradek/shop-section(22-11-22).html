@@ -112,24 +112,24 @@
         style="column-gap:{{block.settings.colGap}}; row-gap:{{block.settings.rowGap}};">
         {% endif %}
         {% if block.type == 'Product' %}
-        <div class="col text-center">
+        <div class="col {{block.settings.gridItemClass}}">
           <{{block.settings.line-1-size}} class="{{block.settings.col-line-1-classes}} {{block.settings.headingClass}}">
             {{block.settings.headline}}</{{block.settings.line-1-size}}>
           <{{block.settings.line-2-size}}
             class="{{block.settings.col-line-2-classes}} {{block.settings.headingTextClass}}">
-            {{block.settings.headline-text}}</{{block.settings.line-1-size}}>
+            {{block.settings.headline-text}}</{{block.settings.line-2-size}}>
             {%if block.settings.product_img %}
-            <div class="outer-div-product"><img src="{{block.settings.product_img | img_url:'master'}}"
-                class="img-fluid" style="width: {{block.settings.imgWidth}};" /></div>
+            <img src="{{block.settings.product_img | img_url:'master'}}"
+                class="img-fluid" style="width: {{block.settings.imgWidth}};" />
             {%endif%}
             <div>{{block.settings.icon_html}}</div>
             {%if block.settings.product_img_after %}
-            <div><img src="{{block.settings.product_img_after | img_url:'master'}}" class="img-fluid" style="width: {{block.settings.imgWidth}};" /></div>
+            <img src="{{block.settings.product_img_after | img_url:'master'}}" class="img-fluid" style="width: {{block.settings.imgWidth}};" />
             {%endif%}
             <!--div>{{block.settings.icon_html_after}}</div-->
             <div>
               <div class="wells" style="display:flex; flex-direction:column;">
-                <span class="price d-block d-flex justify-content-center">
+                <span class="price d-flex justify-content-{{block.settings.priceAlignment}}">
                   {% if block.settings.price_override != blank %}
                   {{block.settings.price_override}}
                   {% elsif block.settings.product.price_varies == true %}
@@ -139,7 +139,7 @@
                   {% endif %}
   
                 </span>
-                <div class="cs-btn-wrapper" style="text-align:center;">
+                <div class="cs-btn-wrapper">
                   <a class="btn {{block.settings.btn-size}} {{block.settings.btn-color}} {{block.settings.btnClass}}"
                     href="{{block.settings.product_button_link}}">{{block.settings.product_button_text}}</a>
                 </div>
@@ -627,7 +627,13 @@
           {
               "name": "Product Block",
               "type": "Product",
-              "settings": [{
+              "settings": [
+              {
+                "type": "text",
+                "id": "gridItemClass",
+                "label": "Grid Item Class"
+              },
+              {
                       "type": "select",
                       "id": "line-1-size",
                       "label": "Headline Size Tag",
@@ -902,6 +908,26 @@
                       "type": "text",
                       "label": "price",
                       "id": "price_override"
+                  },
+                  {
+                    "type": "select",
+                    "id": "priceAlignment",
+                    "label": "Price Alignment",
+                    "options": [
+                       {
+                        "value": "start",
+                        "label": "Left"
+                       },
+                       {
+                        "value": "center",
+                        "label": "Center"
+                       },
+                       {
+                        "value": "end",
+                        "label": "Right"
+                       }
+                    ],
+                    "default": "center"
                   },
                   {
                       "id": "product_button_text",
