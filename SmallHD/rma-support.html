@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>SmallHD Support: Create a support case</title>
+</head>
+<style>
+    * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 1rem;
+    }
+
+    .d-none {
+        display: none !important;
+    }
+
+    h3 {
+        color: #000000;
+    }
+
+    label {
+        font-weight: 600;
+    }
+
+    .thanks {
+        position: fixed;
+        top: 0%;
+        left: 0;
+        bottom: 0%;
+        right: 0%;
+        width: 100%;
+        height: 100vh;
+        background: #FFF;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+    }
+
+    .thanks-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .thanks-hidden {
+        display: none;
+    }
+
+    .form-control.is-valid,
+    .was-validated .form-control:valid {
+        background: transparent !important;
+    }
+
+    .site-footer-wrapper {
+        font-size: 14px;
+    }
+
+    .site-footer-block-menu a {
+        font-size: 1rem;
+    }
+
+    .form-control {
+        height: auto;
+    }
+
+    .holiday-popup-container {
+        font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+        .offset-md-2 {
+            margin-left: 16.66666667%;
+        }
+    }
+</style>
+
+<body>
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 py-5">
+                <!--             <div class="logo text-center py-5">
+                <img src="img/servlet.png" class="img-fluid" alt="logo">
+            </div> -->
+                <form class="needs-validation"
+                    action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST"
+                    novalidate>
+
+                    <input type=hidden name="orgid" value="00D4W000000EpWk">
+                    <input type=hidden name="retURL" value="http://dev.prlxweb.com/rma/thankyou.html">
+                    <input type="hidden" id="00N8a00000Jl3Fs" name="00N8a00000Jl3Fs" type="checkbox" value="0" />
+                    <h3>Creative Solutions: RMA Request Form</h3>
+                    <div class="mb-3">
+                        <label for="company" class="form-label">Company</label>
+                        <input class="form-control form-select py-2" id="company" maxlength="80" name="company" size="20"
+                            type="text" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="00N4W00000ROufs" class="form-label">Brand:</label>
+                                <select class="form-control form-select py-2" id="00N4W00000ROufs" name="00N4W00000ROufs" title="Brand">
+                                    <option value="Creative Solutions" selected>Creative Solutions</option>
+                                    <option value="Teradek">Teradek</option>
+                                    <option value="Wooden Camera">Wooden Camera</option>
+                                    <option value="SmallHD">SmallHD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="md-3">
+                                <label class="form-label">Serial Number *</label>
+                                <input class="form-control py-2" id="00N4W00000ROug2" maxlength="255"
+                                    name="00N4W00000ROug2" size="20" type="text" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Contact Name *</label>
+                                <input class="form-control py-2" id="name" maxlength="80" name="name" size="20"
+                                    type="text" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email *</label>
+                                <input class="form-control py-2" id="email" type="text" maxlength="80" name="email"
+                                    size="20" required />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="telephone" class="form-label">Telephone *</label>
+                                <input class="form-control py-2" id="phone" maxlength="40" name="phone" size="20"
+                                    type="text" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="subject">Subject *</label>
+                                <input class="form-control py-2" id="subject" maxlength="80" name="subject" size="20"
+                                    type="text" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-6 hidden invisible">
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Status</label>
+                                <select class="form-control" id="00N4W00000RnNm1" name="00N4W00000RnNm1" title="Status">
+                                    <option selected="selected">New</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Description *</label>
+                                <textarea class="form-control py-2" name="description" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Shipping Address</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="shipping-address" class="form-label">Shipping Address</label>
+                                <input class="form-control py-2" id="00N4W00000ROuh5" maxlength="255"
+                                    name="00N4W00000ROuh5" size="20" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="shipping-address2" class="form-label">Shipping Address Line 2</label>
+                                <input class="form-control py-2" id="00N4W00000ROuhA" maxlength="255"
+                                    name="00N4W00000ROuhA" size="20" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="city" class="form-label">City</label>
+                                <input class="form-control py-2" id="00N4W00000ROuhF" maxlength="255"
+                                    name="00N4W00000ROuhF" size="20" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="province" class="form-label">State / Province / Region</label>
+                                <input class="form-control py-2" id="00N4W00000ROuhK" maxlength="255"
+                                    name="00N4W00000ROuhK" size="20" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="zip" class="form-label">Postal / Zip Code</label>
+                                <input class="form-control py-2" id="00N4W00000ROuhP" maxlength="255"
+                                    name="00N4W00000ROuhP" size="20" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="zip" class="form-label">Country</label>
+                                <input class="form-control py-2" id="00N4W00000ROuhU" maxlength="255"
+                                    name="00N4W00000ROuhU" size="20" type="text" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="submit" id="submit" value="submit" class="btn btn-primary px-4 py-2 mt-5"
+                            name="submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+<script>
+
+    /*shipping address same as billing address*/
+    var S_street = document.getElementById("00N4W00000ROuh5");
+    var S_city = document.getElementById("00N4W00000ROuhF");
+    var S_state = document.getElementById("00N4W00000ROuhK");
+    var S_country = document.getElementById("00N4W00000ROuhU");
+    var S_zip = document.getElementById("00N4W00000ROuhP");
+
+    var B_street = document.getElementById("00N4W00000ROuhj");
+    var B_city = document.getElementById("00N4W00000ROuht");
+    var B_state = document.getElementById("00N4W00000ROuhy");
+    var B_country = document.getElementById("00N4W00000ROui8");
+    var B_zip = document.getElementById("00N4W00000ROui3");
+    let xcv = document.getElementById('00N4W00000ROuhe');
+
+    function billingFunction() {
+        if (xcv.checked === true) {
+            B_street.value = S_street.value;
+            B_city.value = S_city.value;
+            B_state.value = S_state.value;
+            B_country.value = S_country.value;
+            B_zip.value = S_zip.value;
+        } else {
+            B_street.value = "";
+            B_city.value = "";
+            B_state.value = "";
+            B_country.value = "";
+            B_zip.value = "";
+
+        }
+    }
+    /*end*/
+    //Proper BS5 validation///
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+
+    /*Redirect to thankyou page with validation*/
+    $("#csform").submit(function (e) {
+        const contact_mail = document.getElementById('00N4W00000Rmrt2');
+        const first_name = document.getElementById('00N4W00000Rnk21');
+        const last_name = document.getElementById('00N4W00000Rnk27');
+        const descriptions = document.getElementById('description');
+        const subjects = document.getElementById('subject');
+        // alert(JSON.stringify($("#csform").serialize()));
+        $.ajax({
+            type: "POST",
+            crossDomain: true,
+            dataType: 'jsonp',
+            format: 'json',
+            url: 'https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8',
+            data: $("#csform").serialize(), // serializes the form's elements.
+            error: function (error) {
+                if (contact_mail.value == '' || first_name.value == '' || last_name.value == '' || descriptions.value == '' || subjects.value == '') {
+                    subjectError = "Please provide a valid subject.";
+                    document.getElementById("sub-invalid").innerHTML = subjectError;
+                    return false;
+                } else {
+                    window.location.href = 'thankyou.html';
+                }
+            }
+        });
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+    });
+</script>
+
+</html> 
