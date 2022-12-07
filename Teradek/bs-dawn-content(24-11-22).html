@@ -66,10 +66,12 @@
   
                 {% if block.type == 'html' %}
                 {% if block.settings.line-1-size == "fs-7" and block.settings.col-line-1 != blank %}
-                    <small class="fs-7 line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.space-class }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }}" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</small>
+                    <small class="fs-7 line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.space-class }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }} d-none d-md-block" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</small>
+                    <small class="fs-7 line-1 {{ block.settings.col-line-2-classes }} {{ block.settings.space-class }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }} d-block d-md-none" style="color:{{ block.settings.line-1-color }}; font-size: {{block.settings.customfontmobo}};" >{{ block.settings.col-line-1 }}</small>
                 {% endif %}
                 {% if block.settings.line-1-size != "fs-7" and block.settings.col-line-1 != blank %}
-                    <{{block.settings.line-1-size}} class="line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }}" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</{{block.settings.line-1-size}}>
+                    <{{block.settings.line-1-size}} class="line-1 {{ block.settings.col-line-1-classes }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }} d-none d-md-block" style="color:{{ block.settings.line-1-color }}" >{{ block.settings.col-line-1 }}</{{block.settings.line-1-size}}>
+                    <{{block.settings.line-1-size}} class="line-1 {{ block.settings.col-line-2-classes }} {{ block.settings.add-class }} {{ block.settings.responsiveClass }} d-block d-md-none" style="color:{{ block.settings.line-1-color }}; font-size: {{block.settings.customfontmobo}};">{{ block.settings.col-line-1 }}</{{block.settings.line-1-size}}>
                 {% endif %}
                 {% if block.settings.btn-txt != blank %}
                     <a class="btn {{ block.settings.btn-class}} {{ block.settings.responsiveClass }}">{{ block.settings.btn-txt }}</a>
@@ -929,6 +931,90 @@
               "type": "color",
               "id": "line-1-color",
               "label": "Text Color"
+            },
+            {
+                "type": "select",
+                "id": "col-line-2-classes",
+                "label": "Font Size Classes for Mobile",
+                "options": [{
+                    "value": "display-1",
+                    "label": "display-1 (75px)"
+                  },
+                  {
+                    "value": "display-2",
+                    "label": "display-2 (71px)"
+                  },
+                  {
+                    "value": "display-3",
+                    "label": "display-3 (56px)"
+                  },
+                  {
+                    "value": "display-4",
+                    "label": "display-4 (61px)"
+                  },
+                  {
+                    "value": "display-5",
+                    "label": "display-5 (56px)"
+                  },
+                  {
+                    "value": "display-6",
+                    "label": "display-6 (49px)"
+                  },
+                  {
+                    "value": "fs-1",
+                    "label": "fs-1 (40px)"
+                  },
+                  {
+                    "value": "fs-2",
+                    "label": "fs-2 (32px)"
+                  },
+                  {
+                    "value": "fs-3",
+                    "label": "fs-3 (24px)"
+                  },
+                  {
+                    "value": "fs-4",
+                    "label": "fs-4 (20px)"
+                  },
+                  {
+                    "value": "fs-5",
+                    "label": "fs-5 (20px)"
+                  },
+                  {
+                    "value": "fs-6",
+                    "label": "fs-6 (16px)"
+                  },
+                  {
+                    "value": "fs-7",
+                    "label": "fs-7 (14px)"
+                  },
+                  {
+                    "value": "fs-8",
+                    "label": "fs-8 (12px)"
+                  },
+                  {
+                    "value": "fs-9",
+                    "label": "fs-9 (10px)"
+                  },
+                  {
+                    "value": "fs-10",
+                    "label": "fs-10 (8px)"
+                  },
+                  {
+                    "value": "fs-19",
+                    "label": "fs-19 (12px)"
+                  },
+                  {
+                    "value": "none",
+                    "label": "None"
+                  }
+                ],
+                "default": "none"
+            },
+            {
+                "type": "text",
+                "id": "customfontmobo",
+                "label": "Custom font-size for Mobile"
             },
             {
               "id": "responsiveClass",
