@@ -1,0 +1,66 @@
+{%include "BS-SHD-Overrides"%}
+
+
+<style>
+
+  /*Site Main Override -- May be calle main-content in other brands*/
+
+
+  .main-content{
+    background-color:{{section.settings.outer_bg_color}};
+    padding:{{section.settings.outer_padding}};
+  
+  }
+
+   #PageContainer {
+    background-color:{{section.settings.outer_bg_color}};
+  } 
+
+  @media(max-width:767px){
+  .main-content {
+    padding:{{section.settings.outer_padding_m}};
+  }
+
+
+  }
+</style>
+
+<div id="main--inner">
+
+
+</div>
+
+{% schema %}
+  {
+    "name": "LP BS5",
+    "settings": [
+
+  		{
+  			"id": "outer_bg_color",
+  			"type": "color",
+  			"label": "Outer Bg Color"
+  		},
+      {
+  			"id": "outer_padding",
+  			"type": "text",
+  			"label": "Outer Padding"
+  		},{
+  			"id": "outer_padding_m",
+  			"type": "text",
+  			"label": "Outer Padding Mobile"
+  		}
+]
+,
+
+  	"presets": [{
+  		"name": "LP BS5"
+  	}]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
