@@ -1,0 +1,393 @@
+<apex:page standardController="QuoteLineItem" extensions="TeradekPDFOnQuoteController"  renderAs="pdf">
+    
+    <apex:includeScript value="{!$Resource.teradekPDF}"/>
+    <head>
+        <style>
+            @font-face {
+    font-family: HKGP;
+    src: url(https://cdn.shopify.com/s/files/1/0095/4332/files/HKGroteskPro-Medium.woff2?v=14162184359723177369);
+    font-weight: 500;
+}
+@font-face {
+    font-family: HKGP;
+    src: url(https://cdn.shopify.com/s/files/1/0095/4332/files/HKGroteskPro-Bold.woff2?v=8543036681052152058);
+    font-weight: bold;
+}
+           td{font-size: 10px !important; line-height: 14px;}
+           th{ font-size: 11px;}
+           .d-block{ display: block;}
+           .mb-2{ margin-bottom: 10px;}
+           .text-uppercase{ text-transform: uppercase;}
+        </style>
+    </head>
+    <body style="font-family: 'HKGP', Arial, Helvetica, sans-serif;font-size: 12px !important; line-height: 20px; margin: 0 auto; padding: 0 60px;">
+        <table width="100%" border="0" cellspacing="0" colspacing="0" >
+            <tbody>
+                <tr>
+                    <td width="30%">
+                        <div style="margin-right: 30px;">
+                            <img src="{!URLFOR($Resource.wooden_camera,
+                              '/img/wooden_camera.png')}"  height="80px" width="250px" /> 
+                              
+                        </div>
+                    </td>
+                    <td align="right">
+                        <span style="display:block; font-size: 20px; line-height: 20px; margin-bottom: 10px; font-weight: bold;">Wooden Camera</span>
+                        <span style="font-size:12px; line-height:18px;">Wooden Camera LLC 1826 W Commerce Street Dallas,<br/> TX 75208 USA </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="height:40px ;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+            <tbody>
+                <tr>
+                    <td width="50%">
+                        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong style="font-size:13px; line-height:18px;">Customer Name</strong><br/>
+                                        <span style="font-size:12px; line-height:18px;">
+                                            {!quoteData.Account.Name}<br/>
+                                            {!quoteData.BillingState}, {!quoteData.BillingCity}<br/> 
+                                            {!quoteData.BillingPostalCode} {!quoteData.BillingCountry}
+                                            <!-- Shashikant Tripathi, 201301<br/>
+                                            Noida UP India                                     -->
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height:30px ;"></td>
+                                </tr>
+                            </tbody>
+                        </table>               
+                    </td>
+                    <td valign="top" width="50%">
+                        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td align="right">
+                                        <strong style="font-size: 30px; line-height: 30px; margin-bottom: 20px; color: #009af8;">QUOTE</strong><br/><br/>
+                                        <span style="font-size: 20px; line-height: 20px;">
+                                            #{!quoteData.QuoteNumber}
+                                            <!-- #00000979 -->
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 50px;"></td>
+                </tr>
+                <tr>
+                    <td width="50%"  valign="top">
+                        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td valign="top" width="50%">
+                                        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+                                            <tbody>
+                                                <tr style="vertical-align: top;">
+                                                    <td>
+                                                        <strong style="font-size:13px; line-height:18px;">Order Date:</strong><br/>
+                                                        <span style="font-size:12px; line-height:18px;">
+                                                            <apex:outputText value="{0,date,d MMM  yyyy}">
+                                                                <apex:param value="{!quoteData.CreatedDate}" />
+                                                            </apex:outputText>                                                            
+                                                        </span>
+                                                    </td>
+                                                    <td align="right">
+                                                        <strong style="font-size:13px; line-height:18px;">Customer PO #:</strong><br/>
+                                                        <span style="font-size:12px; line-height:18px;">
+                                                            N/A
+                                                        </span>                                                     
+                                                    </td>
+                                                </tr>
+                                                <tr><td style="height:10px ;"></td></tr>
+                                                <tr style="vertical-align: top;">
+                                                    <td>
+                                                        <strong style="font-size:13px; line-height:18px;">Terms:</strong> <br/>   
+                                                        <span style="font-size:12px; line-height:18px;">
+                                                            {!quoteData.Terms__c}                                                           
+                                                        </span>
+                                                    </td>
+                                                    <td align="right">
+                                                        <strong style="font-size:13px; line-height:18px;">Phone:</strong> <br/>   
+                                                        <span style="font-size:12px; line-height:18px;">
+                                                            {!quoteData.Phone}
+                                                        </span>                                
+                                                    </td>
+                                                </tr>
+                                                <tr><td style="height:10px ;"></td></tr>
+                                                <tr style="vertical-align: top;">
+                                                    <td>
+                                                        <strong style="font-size:13px; line-height:18px;">Expiration Date:</strong><br/>
+                                                        <span style="font-size:12px; line-height:18px;">
+                                                            <apex:outputText value="{0,date,d MMM  yyyy}">
+                                                                <apex:param value="{!quoteData.ExpirationDate}" />
+                                                            </apex:outputText>
+                                                        </span>
+                                                    </td>
+                                                    <td align="right">
+                                                        <strong style="font-size:13px; line-height:18px;">Email:</strong><br/>
+                                                        <span style="font-size:12px; line-height:18px;">
+                                                            {!quoteData.Email}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>                                
+                            </tbody>
+                        </table> 
+                    </td>
+                    <td width="50%" valign="top">
+                        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td valign="top" width="50%" style="padding-left: 10px;">
+                                        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <strong style="font-size:13px; line-height:18px;">Bill To:</strong><br/>
+                                                        <span style="font-size:12px; line-height:18px;">
+                                                            {!quoteData.BillingStreet}<br/> 
+                                                            {!quoteData.BillingState}, {!quoteData.BillingCity} {!quoteData.BillingPostalCode}<br/>
+                                                            {!quoteData.BillingCountry}
+                                                            <!-- Mother dairy<br/>
+                                                            UP, Noida 201301<br/>
+                                                            India -->
+                                                        </span>
+                                                    </td>
+                                                </tr>                                                
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td align="right" valign="top" width="50%" style="padding-left: 10px;">
+                                        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="right">
+                                                        <strong style="font-size:13px; line-height:18px;">Ship To:</strong><br/>
+                                                        <span style="font-size:12px; line-height:18px;">
+                                                            {!quoteData.ShippingStreet}<br/> 
+                                                            {!quoteData.ShippingState}, {!quoteData.ShippingCity} {!quoteData.ShippingPostalCode}<br/>
+                                                            {!quoteData.ShippingCountry}                                                            
+                                                        </span>                                                    
+                                                    </td>
+                                                </tr>                                                
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>   
+                                <tr>
+                                     <td valign="top" width="50%" style="padding-left: 10px;">
+                                        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <strong style="font-size:13px; line-height:18px;">Ship Via:</strong><br/>
+                                                        <span style="font-size:12px; line-height:18px;">
+                                                            
+                                                        </span>
+                                                    </td>
+                                                </tr>                                                
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>                             
+                            </tbody>
+                        </table> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+            <tbody>
+                <tr>
+                    <td style="height: 30px;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="100%;" style="border-spacing: 0px; margin-top: 20px; text-align: left;" >
+            <thead style="">
+                <tr>
+                    <!-- <th class="text-uppercase" style="padding:10px;">
+                        Line#
+                    </th> -->
+                    <th valign="top" width="20%" class="text-uppercase" style="padding:10px;border-bottom: 1px solid black; font-size: 9px; line-height:12px;">
+                        <strong> SKU</strong>
+                    </th>  
+                    <th valign="top" width="20%" class="text-uppercase" style="padding:10px;border-bottom: 1px solid black; font-size: 9px; line-height:12px; "> 
+                        <strong>DESCRIPTION</strong>
+                    </th>
+                                 
+                    <th valign="top" width="10%" class="text-uppercase" style="padding:10px;border-bottom: 1px solid black; font-size: 9px; line-height:12px;">
+                        <strong>UNIT PRICE</strong>
+                    </th>
+                    <!-- <th valign="top" width="10%" class="text-uppercase" style="padding:10px;border-bottom: 1px solid black;">
+                        APPLICABLE PRICE
+                    </th> -->
+                    <th valign="top" width="10%" class="text-uppercase" style="padding:10px;border-bottom: 1px solid black; font-size: 9px; line-height:12px;">
+                        <strong>QTY</strong>
+                    </th>
+                    <th valign="top" width="10%" class="text-uppercase" style="padding:10px;border-bottom: 1px solid black; font-size: 9px; line-height:12px;">
+                        <strong>PARTNER DISCOUNT</strong>
+                    </th>
+                    <th valign="top" width="10%" class="text-uppercase" style="padding:10px;border-bottom: 1px solid black; font-size: 9px; line-height:12px;">
+                        <strong>DISCOUNT</strong>
+                    </th>
+                    
+                    <th valign="top" width="10%" class="text-uppercase" style="padding:10px;border-bottom: 1px solid black;  font-size: 9px; line-height:12px;">
+                        <strong>EXTENDED PRICE</strong>
+                    </th>
+                </tr>
+        </thead>
+        <tbody>            <apex:variable value="1" var="num"/>
+            <apex:repeat value="{!lstQuoteLineItems}" var="qli">                  
+                <tr>  
+                    <!-- <td style="border-top: 1px solid black;padding: 10px;">
+                        {!num} <apex:variable var="num" value="{!VALUE(num) + 1}"/>
+                    </td> -->   
+                    <td valign="top" style="padding: 15px  10px;">
+                        {!qli.Product2.ProductCode}
+                    </td>               
+                    <td valign="top" style="padding: 15px 10px;">
+                        {!qli.Product2.Name}
+                    </td>                    
+                    <td valign="top" style="padding: 15px  10px;">
+                        {!qli.UnitPrice}                   
+                    </td>
+                    <!-- <td style="padding: 15px  10px;">
+                        {!qli.PartnerPrice__c}
+                    </td> -->
+                    <td valign="top" style="padding: 15px  10px;">
+                        {!qli.Quantity} 
+                    </td>
+                    
+                     <td valign="top" style="padding: 15px  10px;">
+                              {!quoteData.Tier_Discount__c}
+                    </td>
+                    <td valign="top" style="padding: 15px  10px;">
+                       {!qli.Discount} 
+                    </td>
+                    <td valign="top" style="padding: 15px  10px;">
+                        {!qli.Total__c} 
+                    </td>
+                </tr>  
+            </apex:repeat>
+        </tbody>
+
+        </table>
+        <table  width="100%" border="0" cellspacing="0" colspacing="0">
+            <tbody>
+                <tr>
+                    <td style="height: 30px;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="border:2px solid #000; padding:10px; line-height: 18px; font-size: 12px;">IMPORTANT: Freight amount will be added to the order once the Ship-to Address is confirmed. Unless a Shipping Account or label is provided you are responsible for those charges.<br/><strong> This quote is valid for thirty&nbsp;days or while supplies last. </strong> </p>
+
+        
+        <table width="100%;" style="margin: 30px 0; padding-top: 20px;">        
+            <tbody>
+                <tr>
+                    <td valign="top" width="50%">
+                        <table width="100%" border="0" cellspacing="0" colspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td align="top">
+                                        <strong>*Credit Card payments may be subject to surchage</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td align="top" width="50%" style="padding-left:20px;">
+                        <table width="100%" border="0" cellspacing="0" colspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td valign="top">
+                                        Sub-Total:<br/>
+                                         <apex:outputPanel rendered="{!if(quoteData.Tier_Discount__c !=0 , True , false)}">
+                                        Partner Discount: <br/>
+                                         </apex:outputPanel>
+                                        Misc. Charges: <br/>
+                                        <apex:outputPanel rendered="{!if(quoteData.ShippingHandling !=0 && quoteData.ShippingHandling !=NULL , True , false)}">
+                                        Freight: <br/>
+                                             </apex:outputPanel>
+                                         <apex:outputPanel rendered="{!if(quoteData.Tax !=NULL && quoteData.Tax !=0 , True , false)}">                                         
+                                             Tax:<br/>                                                
+                                             </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!if(quoteData.Tier_Discount_Amount__c !=0 , True , false)}">
+                                            Partner Discount Amount:<br/>
+                                            </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!if(quoteData.Additional_Discount_Amount__c !=0 , True , false)}">
+                                        Additional Discount Amount:
+                                            </apex:outputPanel>
+                                    </td>
+                                    <td valign="top" style="text-align:right !important;">
+                                        ${!quoteData.Subtotal__c}<br/>
+                                        <apex:outputPanel rendered="{!if(quoteData.Tier_Discount__c !=0 , True , false) }">
+                                        <apex:outputField value="{!quoteData.Tier_Discount__c}"/><br/>
+                                             </apex:outputPanel>
+                                        ${!quoteData.Misc_Charges__c}<br/>
+                                        <apex:outputPanel rendered="{!if(quoteData.ShippingHandling !=0 && quoteData.ShippingHandling !=NULL , True , false)}">
+                                        ${!quoteData.ShippingHandling}<br/>
+                                              </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!if(quoteData.Tax !=NULL &&   quoteData.Tax !=0  , True , false)}">                                          
+                                            ${!quoteData.Tax}<br/>                                             
+                                             </apex:outputPanel>
+                                        ${!quotedata.Tier_Discount_Amount__c}<br/>
+                                        ${!quotedata.Additional_Discount_Amount__c}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table> 
+        <table width="100%;" style="border-top:1px solid #000; margin: 50px 0; padding-top: 20px; text-align: left;">
+            <thead>
+                <tr>
+                    <th width="33.33%">
+
+                    </th>
+                    <th align="center" width="33.33%">
+                       
+                    </th>
+                    <th align="right" width="33.33%">
+                        <strong>Total Due:</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td align="center">
+                        
+                    </td>
+                    <td align="right">
+                        <span style="font-size:30px; font-weight: bold; color:#009af8;margin-top: 14px; display: block;">
+                            ${!quoteData.Total__c}
+                           
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="border:2px solid #000 ;padding:10px;  line-height:18px; font-size: 12px;">This Quote is governed by and subject to Wooden Camera LLC's STANDARD TERMS AND CONDITIONS OF SALE, which are hereby incorporated by reference, and is accessible at the company's web site at: <a style="color: #009af8;" href="https://woodencamera.com/pages/terms-conditions">https://woodencamera.com/pages/terms-conditions</a></p>
+    </body>
+
+</apex:page>
